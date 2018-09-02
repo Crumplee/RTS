@@ -29,6 +29,7 @@ public class Player : MonoBehaviour {
 		}
 	}
 	
+	
 	private Dictionary< ResourceType, int > InitResourceList() {
 		Dictionary< ResourceType, int > list = new Dictionary< ResourceType, int >();
 		list.Add(ResourceType.Food, 100);
