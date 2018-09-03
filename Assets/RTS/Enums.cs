@@ -1,3 +1,3 @@
 ﻿namespace RTS {
-	public enum ResourceType { Food, Wood, Gold }
+	public enum ResourceType { Food, Wood, Gold, Unknown }
 }

@@ -91,5 +91,15 @@ public class WorldObject : MonoBehaviour {
 			return false;
 		}
 	}
-	
+
+    public virtual void SetHoverState(GameObject hoverObject)
+    {
+
+    }
+
+    public Bounds GetSelectionBounds()
+    {
+        return selectionBounds;
+    }
+
 }
