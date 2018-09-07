@@ -214,6 +214,16 @@ Prefab:
       propertyPath: depositAmount
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 114118960834693048, guid: 3ae79667c9faf154689373aa7b92b99e,
+        type: 2}
+      propertyPath: hitPoints
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114118960834693048, guid: 3ae79667c9faf154689373aa7b92b99e,
+        type: 2}
+      propertyPath: maxHitPoints
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ae79667c9faf154689373aa7b92b99e, type: 2}
   m_IsPrefabAsset: 0
@@ -268,6 +278,11 @@ MonoBehaviour:
   buttonClick: {fileID: 2800000, guid: d7d9618e2fda39447a1e40ecfba14dab, type: 3}
   buildFrame: {fileID: 2800000, guid: e5d3ceac6211e9d4da9b1d7224b3a4e3, type: 3}
   buildMask: {fileID: 2800000, guid: 1e332fccb172110419df445d2f359b29, type: 3}
+  healthy: {fileID: 2800000, guid: aed5af028b466cb4dbe2da4306692ee1, type: 3}
+  damaged: {fileID: 2800000, guid: f503be5cfe17b9d4aa7baeeaa53e1471, type: 3}
+  critical: {fileID: 2800000, guid: 049cb7b421aa82a44a3a1672346aac01, type: 3}
+  resourceHealthBars:
+  - {fileID: 2800000, guid: 9863349a21479104b8ce0b5640559faa, type: 3}
 --- !u!1 &416456799
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,6 +528,16 @@ Prefab:
     - target: {fileID: 4794307667586436, guid: 925a80aded24e914e844e17dfa82aaed, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 114944096630016992, guid: 925a80aded24e914e844e17dfa82aaed,
+        type: 2}
+      propertyPath: hitPoints
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114944096630016992, guid: 925a80aded24e914e844e17dfa82aaed,
+        type: 2}
+      propertyPath: maxHitPoints
+      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 925a80aded24e914e844e17dfa82aaed, type: 2}
@@ -786,6 +811,11 @@ Prefab:
     - target: {fileID: 1130004838368746, guid: 49be9e21344b10545a04983acb5a09dd, type: 2}
       propertyPath: m_Name
       value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 114293804913378682, guid: 49be9e21344b10545a04983acb5a09dd,
+        type: 2}
+      propertyPath: capacity
+      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49be9e21344b10545a04983acb5a09dd, type: 2}

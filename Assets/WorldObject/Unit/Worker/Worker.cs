@@ -148,4 +148,17 @@ public class Worker : Unit
     {
 
     }
+
+    protected override void DrawSelectionBox(Rect selectBox)
+    {
+        base.DrawSelectionBox(selectBox);
+        float percentFull = currentLoad / capacity;
+        float maxHeight = selectBox.height - 4;
+        float height = maxHeight * percentFull;
+        float leftPos = selectBox.x + selectBox.width - 7;
+        float topPos = selectBox.y + 2 + (maxHeight - height);
+        float width = 5;
+        Texture2D resourceBar = ResourceManager.GetResourceHealthBar(harvestType);
+        if (resourceBar) GUI.DrawTexture(new Rect(leftPos, topPos, width, height), resourceBar);
+    }
 }

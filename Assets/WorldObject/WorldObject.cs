@@ -17,7 +17,11 @@ public class WorldObject : MonoBehaviour {
 	
 	protected Bounds selectionBounds;
 
-	protected virtual void Awake() {
+    // health display
+    protected GUIStyle healthStyle = new GUIStyle();
+    protected float healthPercentage = 1.0f;
+
+    protected virtual void Awake() {
 		selectionBounds = ResourceManager.InvalidBounds;
 		CalculateBounds();
 	}
@@ -80,11 +84,24 @@ public class WorldObject : MonoBehaviour {
 		}
 	}
 	
-	protected virtual void DrawSelectionBox(Rect selectBox) {
-		GUI.Box(selectBox, "");
-	}
-	
-	public bool IsOwnedBy(Player owner) {
+    // for display health
+    protected virtual void DrawSelectionBox(Rect selectBox)
+    {
+        GUI.Box(selectBox, "");
+        CalculateCurrentHealth();
+        GUI.Label(new Rect(selectBox.x, selectBox.y - 7, selectBox.width * healthPercentage, 5), "", healthStyle);
+    }
+
+    // calculates the selected object health
+    protected virtual void CalculateCurrentHealth()
+    {
+        healthPercentage = (float)hitPoints / (float)maxHitPoints;
+        if (healthPercentage > 0.65f) healthStyle.normal.background = ResourceManager.HealthyTexture;
+        else if (healthPercentage > 0.35f) healthStyle.normal.background = ResourceManager.DamagedTexture;
+        else healthStyle.normal.background = ResourceManager.CriticalTexture;
+    }
+
+    public bool IsOwnedBy(Player owner) {
 		if(player && player.Equals(owner)) {
 			return true;
 		} else {

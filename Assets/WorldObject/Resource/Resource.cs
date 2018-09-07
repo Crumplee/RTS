@@ -37,4 +37,10 @@ public class Resource : WorldObject
     {
         return resourceType;
     }
+
+    protected override void CalculateCurrentHealth()
+    {
+        healthPercentage = amountLeft / capacity;
+        healthStyle.normal.background = ResourceManager.GetResourceHealthBar(resourceType);
+    }
 }

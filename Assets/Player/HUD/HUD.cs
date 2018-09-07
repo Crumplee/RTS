@@ -26,12 +26,16 @@ public class HUD : MonoBehaviour {
 	
 	private const int BUILD_IMAGE_PADDING = 8;
 	public Texture2D buildFrame, buildMask;
-	
-	// Use this for initialization
-	void Start () {
+
+    //health display
+    public Texture2D healthy, damaged, critical;
+    public Texture2D[] resourceHealthBars;
+
+    // Use this for initialization
+    void Start () {
 		player = transform.root.GetComponent< Player >();
-		ResourceManager.StoreSelectBoxItems(selectBoxSkin);
-		resourceValues = new Dictionary< ResourceType, int >();
+        ResourceManager.StoreSelectBoxItems(selectBoxSkin, healthy, damaged, critical);
+        resourceValues = new Dictionary< ResourceType, int >();
 		
 		resourceImages = new Dictionary< ResourceType, Texture2D >();
 		for(int i = 0; i < resources.Length; i++) {
@@ -52,7 +56,20 @@ public class HUD : MonoBehaviour {
 			}
 		}
 		buildAreaHeight = Screen.height - RESOURCE_BAR_HEIGHT - SELECTION_NAME_HEIGHT - 2 * BUTTON_SPACING;
-	}
+
+        Dictionary<ResourceType, Texture2D> resourceHealthBarTextures = new Dictionary<ResourceType, Texture2D>();
+        for (int i = 0; i < resourceHealthBars.Length; i++)
+        {
+            switch (resourceHealthBars[i].name)
+            {
+                case "gold":
+                    resourceHealthBarTextures.Add(ResourceType.Gold, resourceHealthBars[i]);
+                    break;
+                default: break;
+            }
+        }
+        ResourceManager.SetResourceHealthBarTextures(resourceHealthBarTextures);
+    }
 	
 	// Update is called once per frame
 	void OnGUI () {
