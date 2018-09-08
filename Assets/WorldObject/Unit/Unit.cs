@@ -114,4 +114,9 @@ public class Unit : WorldObject {
         destinationTarget = null;
     }
 
+    public virtual void Init(Building creator)
+    {
+        //specific initialization for a unit can be specified here
+    }
+
 }
