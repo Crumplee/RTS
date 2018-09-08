@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -264,7 +264,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 344679727}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 087b7c569cea0034db4add5eac90cc9a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4810a61c304ae384bbe0ee0fd404d886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   resourceSkin: {fileID: 11400000, guid: 52586c987df97774a8a8ffa1a13f96fd, type: 2}
@@ -278,6 +278,22 @@ MonoBehaviour:
   buttonClick: {fileID: 2800000, guid: d7d9618e2fda39447a1e40ecfba14dab, type: 3}
   buildFrame: {fileID: 2800000, guid: e5d3ceac6211e9d4da9b1d7224b3a4e3, type: 3}
   buildMask: {fileID: 2800000, guid: 1e332fccb172110419df445d2f359b29, type: 3}
+  activeCursor: {fileID: 0}
+  selectCursor: {fileID: 2800000, guid: 9d12c8bba6263214889f26e2dd1ef924, type: 3}
+  leftCursor: {fileID: 2800000, guid: 72508e10fde99964991f97955100da40, type: 3}
+  rightCursor: {fileID: 2800000, guid: b7c392030dd01564bb5fb5848bafc27e, type: 3}
+  upCursor: {fileID: 2800000, guid: 41aa6fe8950bfed45bc2153d6090ce13, type: 3}
+  downCursor: {fileID: 2800000, guid: 23e4c53d05d9e0446a53d7c394f17392, type: 3}
+  moveCursors:
+  - {fileID: 2800000, guid: c147768aa9b602a4c941c3abb5f1a79e, type: 3}
+  - {fileID: 2800000, guid: 80df47168167b3442a8aa193b0010abc, type: 3}
+  attackCursors:
+  - {fileID: 2800000, guid: f1b2faa3be40d65439d2b82f647871ea, type: 3}
+  - {fileID: 2800000, guid: 4271c55148f13d244bd816b5a433aad3, type: 3}
+  harvestCursors:
+  - {fileID: 2800000, guid: 8c6f54e6657777e40ab30e2b4f1e26ee, type: 3}
+  - {fileID: 2800000, guid: eb7df12a1adfd9f4fa94959daf87f768, type: 3}
+  mouseCursorSkin: {fileID: 11400000, guid: cd3047314573ecc4e969926bf67d455b, type: 2}
   healthy: {fileID: 2800000, guid: aed5af028b466cb4dbe2da4306692ee1, type: 3}
   damaged: {fileID: 2800000, guid: f503be5cfe17b9d4aa7baeeaa53e1471, type: 3}
   critical: {fileID: 2800000, guid: 049cb7b421aa82a44a3a1672346aac01, type: 3}

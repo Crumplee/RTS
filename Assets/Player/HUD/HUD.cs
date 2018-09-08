@@ -27,6 +27,12 @@ public class HUD : MonoBehaviour {
 	private const int BUILD_IMAGE_PADDING = 8;
 	public Texture2D buildFrame, buildMask;
 
+    //cursor
+    public Texture2D activeCursor;
+    public Texture2D selectCursor, leftCursor, rightCursor, upCursor, downCursor;
+    public Texture2D[] moveCursors, attackCursors, harvestCursors;
+    public GUISkin mouseCursorSkin;
+
     //health display
     public Texture2D healthy, damaged, critical;
     public Texture2D[] resourceHealthBars;
@@ -210,4 +216,22 @@ public class HUD : MonoBehaviour {
 			GUI.DrawTexture(new Rect(2 * BUILD_IMAGE_PADDING, topPos, width, height), buildMask);
 		}
 	}
+/*
+    private void DrawMouseCursor()
+    {
+        if (!MouseInBounds())
+        {
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.visible = false;
+            GUI.skin = mouseCursorSkin;
+            GUI.BeginGroup(new Rect(0, 0, Screen.width, Screen.height));
+            UpdateCursorAnimation();
+            Rect cursorPosition = GetCursorDrawPosition();
+            GUI.Label(cursorPosition, activeCursor);
+            GUI.EndGroup();
+        }
+    }*/
 }

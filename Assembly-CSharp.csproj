@@ -63,6 +63,9 @@
      <Compile Include="Assets\WorldObject\Building\Building.cs" />
      <Compile Include="Assets\WorldObject\Building\Buildings.cs" />
      <Compile Include="Assets\WorldObject\Building\Castle\Castle.cs" />
+     <Compile Include="Assets\WorldObject\Resource\GoldDeposit\Gold.cs" />
+     <Compile Include="Assets\WorldObject\Resource\GoldDeposit\GoldDeposit.cs" />
+     <Compile Include="Assets\WorldObject\Resource\Resource.cs" />
      <Compile Include="Assets\WorldObject\Unit\Unit.cs" />
      <Compile Include="Assets\WorldObject\Unit\Units.cs" />
      <Compile Include="Assets\WorldObject\Unit\Worker\Worker.cs" />
