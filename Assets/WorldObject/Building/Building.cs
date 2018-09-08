@@ -9,14 +9,16 @@ public class Building : WorldObject {
 	protected Queue< string > buildQueue;
 	private float currentBuildProgress = 0.0f;
 	private Vector3 spawnPoint;
+    protected Vector3 rallyPoint;
 
-	protected override void Awake() {
+    protected override void Awake() {
 		base.Awake();
 		buildQueue = new Queue< string >();
 		float spawnX = selectionBounds.center.x + transform.forward.x * selectionBounds.extents.x + transform.forward.x * 10;
 		float spawnZ = selectionBounds.center.z + transform.forward.z + selectionBounds.extents.z + transform.forward.z * 10;
 		spawnPoint = new Vector3(spawnX, 0.0f, spawnZ);
-	}
+        rallyPoint = spawnPoint;
+    }
 	 
 	protected override void Start () {
 		base.Start();
@@ -55,4 +57,26 @@ public class Building : WorldObject {
 	public float getBuildPercentage() {
 		return currentBuildProgress / maxBuildProgress;
 	}
+
+    public override void SetSelection(bool selected, Rect playingArea)
+    {
+        base.SetSelection(selected, playingArea);
+        if (player)
+        {
+            RallyPoint flag = player.GetComponentInChildren<RallyPoint>();
+            if (selected)
+            {
+                if (flag && player.human && spawnPoint != ResourceManager.InvalidPosition && rallyPoint != ResourceManager.InvalidPosition)
+                {
+                    flag.transform.localPosition = rallyPoint;
+                    flag.transform.forward = transform.forward;
+                    flag.Enable();
+                }
+            }
+            else
+            {
+                if (flag && player.human) flag.Disable();
+            }
+        }
+    }
 }
