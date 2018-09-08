@@ -32,6 +32,8 @@ public class HUD : MonoBehaviour {
     public Texture2D selectCursor, leftCursor, rightCursor, upCursor, downCursor;
     public Texture2D[] moveCursors, attackCursors, harvestCursors;
     public GUISkin mouseCursorSkin;
+    private CursorState activeCursorState;
+    private int currentFrame = 0;
 
     //health display
     public Texture2D healthy, damaged, critical;
@@ -75,6 +77,7 @@ public class HUD : MonoBehaviour {
             }
         }
         ResourceManager.SetResourceHealthBarTextures(resourceHealthBarTextures);
+        SetCursorState(CursorState.Select);
     }
 	
 	// Update is called once per frame
@@ -82,7 +85,8 @@ public class HUD : MonoBehaviour {
 		if(player && player.human) {
 			DrawOrdersBar();
 			DrawResourcesBar();
-		}
+            DrawMouseCursor();
+        }
 	}
 	
 	private void DrawOrdersBar() {
@@ -216,10 +220,12 @@ public class HUD : MonoBehaviour {
 			GUI.DrawTexture(new Rect(2 * BUILD_IMAGE_PADDING, topPos, width, height), buildMask);
 		}
 	}
-/*
+
     private void DrawMouseCursor()
     {
-        if (!MouseInBounds())
+        bool mouseOverHud = !MouseInBounds() && activeCursorState != CursorState.PanRight && activeCursorState != CursorState.PanUp;
+
+        if (mouseOverHud)
         {
             Cursor.visible = true;
         }
@@ -233,5 +239,79 @@ public class HUD : MonoBehaviour {
             GUI.Label(cursorPosition, activeCursor);
             GUI.EndGroup();
         }
-    }*/
+    }
+
+    private void UpdateCursorAnimation()
+    {
+        //sequence animation for cursor (based on more than one image for the cursor)
+        //change once per second, loops through array of images
+        if (activeCursorState == CursorState.Move)
+        {
+            currentFrame = (int)Time.time % moveCursors.Length;
+            activeCursor = moveCursors[currentFrame];
+        }
+        else if (activeCursorState == CursorState.Attack)
+        {
+            currentFrame = (int)Time.time % attackCursors.Length;
+            activeCursor = attackCursors[currentFrame];
+        }
+        else if (activeCursorState == CursorState.Harvest)
+        {
+            currentFrame = (int)Time.time % harvestCursors.Length;
+            activeCursor = harvestCursors[currentFrame];
+        }
+    }
+
+    private Rect GetCursorDrawPosition()
+    {
+        //set base position for custom cursor image
+        float leftPos = Input.mousePosition.x;
+        float topPos = Screen.height - Input.mousePosition.y; //screen draw coordinates are inverted
+                                                              //adjust position base on the type of cursor being shown
+        if (activeCursorState == CursorState.PanRight) leftPos = Screen.width - activeCursor.width;
+        else if (activeCursorState == CursorState.PanDown) topPos = Screen.height - activeCursor.height;
+        else if (activeCursorState == CursorState.Move || activeCursorState == CursorState.Select || activeCursorState == CursorState.Harvest)
+        {
+            topPos -= activeCursor.height / 2;
+            leftPos -= activeCursor.width / 2;
+        }
+        return new Rect(leftPos, topPos, activeCursor.width, activeCursor.height);
+    }
+
+    public void SetCursorState(CursorState newState)
+    {
+        activeCursorState = newState;
+        switch (newState)
+        {
+            case CursorState.Select:
+                activeCursor = selectCursor;
+                break;
+            case CursorState.Attack:
+                currentFrame = (int)Time.time % attackCursors.Length;
+                activeCursor = attackCursors[currentFrame];
+                break;
+            case CursorState.Harvest:
+                currentFrame = (int)Time.time % harvestCursors.Length;
+                activeCursor = harvestCursors[currentFrame];
+                break;
+            case CursorState.Move:
+                currentFrame = (int)Time.time % moveCursors.Length;
+                activeCursor = moveCursors[currentFrame];
+                break;
+            case CursorState.PanLeft:
+                activeCursor = leftCursor;
+                break;
+            case CursorState.PanRight:
+                activeCursor = rightCursor;
+                break;
+            case CursorState.PanUp:
+                activeCursor = upCursor;
+                break;
+            case CursorState.PanDown:
+                activeCursor = downCursor;
+                break;
+            default: break;
+        }
+    }
+
 }
