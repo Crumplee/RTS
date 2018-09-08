@@ -8,8 +8,10 @@ public class Building : WorldObject {
 	public float maxBuildProgress;
 	protected Queue< string > buildQueue;
 	private float currentBuildProgress = 0.0f;
+
 	private Vector3 spawnPoint;
     protected Vector3 rallyPoint;
+    public Texture2D rallyPointImage;
 
     protected override void Awake() {
 		base.Awake();
@@ -41,8 +43,8 @@ public class Building : WorldObject {
 		if(buildQueue.Count > 0) {
 			currentBuildProgress += Time.deltaTime * ResourceManager.BuildSpeed;
 			if(currentBuildProgress > maxBuildProgress) {
-				if(player) player.AddUnit(buildQueue.Dequeue(), spawnPoint, transform.rotation);
-				currentBuildProgress = 0.0f;
+                if (player) player.AddUnit(buildQueue.Dequeue(), spawnPoint, rallyPoint, transform.rotation);
+                currentBuildProgress = 0.0f;
 			}
 		}
 	}
@@ -76,6 +78,50 @@ public class Building : WorldObject {
             else
             {
                 if (flag && player.human) flag.Disable();
+            }
+        }
+    }
+
+    public bool hasSpawnPoint()
+    {
+        return spawnPoint != ResourceManager.InvalidPosition && rallyPoint != ResourceManager.InvalidPosition;
+    }
+
+    public override void SetHoverState(GameObject hoverObject)
+    {
+        base.SetHoverState(hoverObject);
+        //only handle input if owned by a human player and currently selected
+        if (player && player.human && currentlySelected)
+        {
+            if (hoverObject.name == "Ground")
+            {
+                if (player.hud.GetPreviousCursorState() == CursorState.RallyPoint) player.hud.SetCursorState(CursorState.RallyPoint);
+            }
+        }
+    }
+
+    public void SetRallyPoint(Vector3 position)
+    {
+        rallyPoint = position;
+        if (player && player.human && currentlySelected)
+        {
+            RallyPoint flag = player.GetComponentInChildren<RallyPoint>();
+            if (flag) flag.transform.localPosition = rallyPoint;
+        }
+    }
+
+    public override void MouseClick(GameObject hitObject, Vector3 hitPoint, Player controller)
+    {
+        base.MouseClick(hitObject, hitPoint, controller);
+        //only handle iput if owned by a human player and currently selected
+        if (player && player.human && currentlySelected)
+        {
+            if (hitObject.name == "Ground")
+            {
+                if ((player.hud.GetCursorState() == CursorState.RallyPoint || player.hud.GetPreviousCursorState() == CursorState.RallyPoint) && hitPoint != ResourceManager.InvalidPosition)
+                {
+                    SetRallyPoint(hitPoint);
+                }
             }
         }
     }
