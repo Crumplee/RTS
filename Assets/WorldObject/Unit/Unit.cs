@@ -31,8 +31,18 @@ public class Unit : WorldObject {
     protected override void OnGUI() {
         base.OnGUI();
     }
-	
-	public override void MouseClick(GameObject hitObject, Vector3 hitPoint, Player controller) {
+
+    public override void SetHoverState(GameObject hoverObject)
+    {
+        base.SetHoverState(hoverObject);
+        //only handle input if owned by a human player and currently selected
+        if (player && player.human && currentlySelected)
+        {
+            if (hoverObject.name == "Ground") player.hud.SetCursorState(CursorState.Move);
+        }
+    }
+
+    public override void MouseClick(GameObject hitObject, Vector3 hitPoint, Player controller) {
 		base.MouseClick(hitObject, hitPoint, controller);
 		//only handle input if owned by a human player and currently selected
 		if(player && player.human && currentlySelected) {

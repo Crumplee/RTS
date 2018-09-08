@@ -107,6 +107,7 @@ public class UserInput : MonoBehaviour {
 	private void MouseActivity() {
 		if(Input.GetMouseButtonDown(0)) LeftMouseClick();
 		else if(Input.GetMouseButtonDown(1)) RightMouseClick();
+        MouseHover();
 	}
 	
 	private void LeftMouseClick() {
@@ -147,4 +148,27 @@ public class UserInput : MonoBehaviour {
 		if(Physics.Raycast(ray, out hit)) return hit.point;
 		return ResourceManager.InvalidPosition;
 	}
+
+    //
+    private void MouseHover()
+    {
+        if (player.hud.MouseInBounds())
+        {
+            GameObject hoverObject = FindHitObject();
+            if (hoverObject)
+            {
+                if (player.SelectedObject) player.SelectedObject.SetHoverState(hoverObject);
+                else if (hoverObject.name != "Ground")
+                {
+                    Player owner = hoverObject.transform.root.GetComponent<Player>();
+                    if (owner)
+                    {
+                        Unit unit = hoverObject.transform.parent.GetComponent<Unit>();
+                        Building building = hoverObject.transform.parent.GetComponent<Building>();
+                        if (owner.username == player.username && (unit || building)) player.hud.SetCursorState(CursorState.Select);
+                    }
+                }
+            }
+        }
+    }
 }
