@@ -6,7 +6,7 @@ public class Worker : Unit
 
     public float capacity;
 
-    private bool harvesting = false, emptying = false;
+    private bool harvesting = false, emptying = false, idle = false;
     private float currentLoad = 0.0f;
     private ResourceType harvestType;
 
@@ -27,7 +27,7 @@ public class Worker : Unit
     protected override void Update()
     {
         base.Update();
-        if (!rotating && !moving)
+        if (!rotating && !moving && !idle)
         {
             if (harvesting || emptying)
             {
@@ -63,6 +63,12 @@ public class Worker : Unit
                 }
             }
         }
+    }
+
+    public override void Init(Building creator)
+    {
+        base.Init(creator);
+        resourceStore = creator;
     }
 
     private void Collect()
@@ -114,6 +120,7 @@ public class Worker : Unit
         {
             if (hitObject.name != "Ground")
             {
+                idle = false;
                 Resource resource = hitObject.transform.parent.GetComponent<Resource>();
                 if (resource && !resource.isEmpty())
                 {
@@ -146,7 +153,7 @@ public class Worker : Unit
 
     private void StopHarvest()
     {
-
+        idle = true;
     }
 
     protected override void DrawSelectionBox(Rect selectBox)

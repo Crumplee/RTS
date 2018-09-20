@@ -52,13 +52,19 @@ public class WorldObject : MonoBehaviour {
 	}
 	
 	public virtual void MouseClick(GameObject hitObject, Vector3 hitPoint, Player controller) {
-		//only handle input if currently selected
-		if(currentlySelected && hitObject && hitObject.name != "Ground") {
-			WorldObject worldObject = hitObject.transform.parent.GetComponent< WorldObject >();
-			//clicked on another selectable object
-			if(worldObject) ChangeSelection(worldObject, controller);
-		}
-	}
+        //only handle input if currently selected
+        if (currentlySelected && hitObject && hitObject.name != "Ground")
+        {
+            WorldObject worldObject = hitObject.transform.parent.GetComponent<WorldObject>();
+            //clicked on another selectable object
+            if (worldObject)
+            {
+                Resource resource = hitObject.transform.parent.GetComponent<Resource>();
+                if (resource && resource.isEmpty()) return;
+                ChangeSelection(worldObject, controller);
+            }
+        }
+    }
 	
 	private void ChangeSelection(WorldObject worldObject, Player controller) {
 		//this should be called by the following line, but there is an outside chance it will not
