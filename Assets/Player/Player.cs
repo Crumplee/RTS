@@ -12,9 +12,16 @@ public class Player : MonoBehaviour {
 	public WorldObject SelectedObject { get; set; }
 	
 	private Dictionary< ResourceType, int > resources;
-	
-	// Use this for initialization
-	void Start () {
+
+    //for building
+    public Material notAllowedMaterial, allowedMaterial;
+
+    private Building tempBuilding;
+    private Unit tempCreator;
+    private bool findingPlacement = false;
+
+    // Use this for initialization
+    void Start () {
 		hud = GetComponentInChildren< HUD >();
 	}
 	
@@ -53,5 +60,33 @@ public class Player : MonoBehaviour {
             unitObject.Init(creator);
             if (spawnPoint != rallyPoint) unitObject.StartMove(rallyPoint);
         }
+    }
+
+    //building
+    public void CreateBuilding(string buildingName, Vector3 buildPoint, Unit creator, Rect playingArea)
+    {
+        GameObject newBuilding = (GameObject)Instantiate(ResourceManager.GetBuilding(buildingName), buildPoint, new Quaternion());
+        tempBuilding = newBuilding.GetComponent<Building>();
+        if (tempBuilding)
+        {
+            tempCreator = creator;
+            findingPlacement = true;
+            tempBuilding.SetTransparentMaterial(notAllowedMaterial, true);
+            tempBuilding.SetColliders(false);
+            tempBuilding.SetPlayingArea(playingArea);
+        }
+        else Destroy(newBuilding);
+    }
+
+    public bool IsFindingBuildingLocation()
+    {
+        return findingPlacement;
+    }
+
+    public void FindBuildingLocation()
+    {
+        Vector3 newLocation = WorkManager.FindHitPoint(Input.mousePosition);
+        newLocation.y = 0;
+        tempBuilding.transform.position = newLocation;
     }
 }
