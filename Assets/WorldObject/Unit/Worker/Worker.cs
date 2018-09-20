@@ -16,12 +16,21 @@ public class Worker : Unit
     public float collectionAmount, depositAmount;
     private float currentDeposit = 0.0f;
 
+    //building
+    public int buildSpeed;
+
+    private Building currentProject;
+    private bool building = false;
+    private float amountBuilt = 0.0f;
+
+
     /*** Game Engine methods, all can be overridden by subclass ***/
 
     protected override void Start()
     {
         base.Start();
         harvestType = ResourceType.Unknown;
+        actions = new string[] { "Castle" };
     }
 
     protected override void Update()
@@ -70,6 +79,7 @@ public class Worker : Unit
         base.Init(creator);
         resourceStore = creator;
     }
+
 
     private void Collect()
     {
@@ -167,5 +177,25 @@ public class Worker : Unit
         float width = 5;
         Texture2D resourceBar = ResourceManager.GetResourceHealthBar(harvestType);
         if (resourceBar) GUI.DrawTexture(new Rect(leftPos, topPos, width, height), resourceBar);
+    }
+
+    //building
+    public void SetBuilding(Building project)
+    {
+        currentProject = project;
+        StartMove(currentProject.transform.position, currentProject.gameObject);
+        amountBuilt = 0.0f;
+        building = true;
+    }
+
+    public override void PerformAction(string actionToPerform)
+    {
+        base.PerformAction(actionToPerform);
+        CreateBuilding(actionToPerform);
+    }
+
+    private void CreateBuilding(string buildingName)
+    {
+
     }
 }
