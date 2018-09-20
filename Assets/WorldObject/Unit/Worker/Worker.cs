@@ -71,6 +71,18 @@ public class Worker : Unit
                     }
                 }
             }
+
+            if (building && currentProject && currentProject.UnderConstruction())
+            {
+                amountBuilt += buildSpeed * Time.deltaTime;
+                int amount = Mathf.FloorToInt(amountBuilt);
+                if (amount > 0)
+                {
+                    amountBuilt -= amount;
+                    currentProject.Construct(amount);
+                    if (!currentProject.UnderConstruction()) building = false;
+                }
+            }
         }
     }
 
@@ -125,13 +137,16 @@ public class Worker : Unit
     public override void MouseClick(GameObject hitObject, Vector3 hitPoint, Player controller)
     {
         base.MouseClick(hitObject, hitPoint, controller);
+        bool doBase = true;
         //only handle input if owned by a human player
         if (player && player.human)
         {
-            if (hitObject.name != "Ground")
+            if (hitObject && hitObject.name != "Ground")
             {
                 idle = false;
                 Resource resource = hitObject.transform.parent.GetComponent<Resource>();
+                Building building = hitObject.transform.parent.GetComponent<Building>();
+
                 if (resource && !resource.isEmpty())
                 {
                     //make sure that we select harvester remains selected
@@ -140,8 +155,17 @@ public class Worker : Unit
                     player.SelectedObject = this;
                     StartHarvest(resource);
                 }
+                if (building)
+                {
+                    if (building.UnderConstruction())
+                    {
+                        SetBuilding(building);
+                        doBase = false;
+                    }
+                }
             }
             else StopHarvest();
+            if (doBase) base.MouseClick(hitObject, hitPoint, controller);
         }
     }
 
@@ -164,6 +188,8 @@ public class Worker : Unit
     private void StopHarvest()
     {
         idle = true;
+        harvesting = false;
+        emptying = false;
     }
 
     protected override void DrawSelectionBox(Rect selectBox)
@@ -179,12 +205,18 @@ public class Worker : Unit
         if (resourceBar) GUI.DrawTexture(new Rect(leftPos, topPos, width, height), resourceBar);
     }
 
+    public override void StartMove(Vector3 destination)
+    {
+        base.StartMove(destination);
+        amountBuilt = 0.0f;
+        building = false;
+    }
+
     //building
-    public void SetBuilding(Building project)
+    public override void SetBuilding(Building project)
     {
         currentProject = project;
         StartMove(currentProject.transform.position, currentProject.gameObject);
-        amountBuilt = 0.0f;
         building = true;
     }
 

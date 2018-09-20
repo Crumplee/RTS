@@ -681,7 +681,7 @@ MonoBehaviour:
   buildings:
   - {fileID: 1276698372022922, guid: 925a80aded24e914e844e17dfa82aaed, type: 2}
   units:
-  - {fileID: 0}
+  - {fileID: 1519123076109064, guid: 3ae79667c9faf154689373aa7b92b99e, type: 2}
   worldObjects: []
   player: {fileID: 0}
 --- !u!4 &1583893156

@@ -82,7 +82,7 @@ public class Unit : WorldObject {
         }
     }
 
-    public void StartMove(Vector3 destination) {
+    public virtual void StartMove(Vector3 destination) {
         destinationTarget = null;
         this.destination = destination;
 		targetRotation = Quaternion.LookRotation (destination - transform.position);

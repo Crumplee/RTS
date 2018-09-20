@@ -13,6 +13,8 @@ public class Building : WorldObject {
     protected Vector3 rallyPoint;
     public Texture2D rallyPointImage;
 
+    private bool needsBuilding = false;
+
     protected override void Awake() {
 		base.Awake();
 		buildQueue = new Queue< string >();
@@ -33,7 +35,8 @@ public class Building : WorldObject {
 	 
 	protected override void OnGUI() {
 		base.OnGUI();
-	}
+        if (needsBuilding) DrawBuildProgress();
+    }
 	
 	protected void CreateUnit(string unitName) {
 		buildQueue.Enqueue(unitName);
@@ -123,6 +126,41 @@ public class Building : WorldObject {
                     SetRallyPoint(hitPoint);
                 }
             }
+        }
+    }
+
+    //building
+    public void StartConstruction()
+    {
+        CalculateBounds();
+        needsBuilding = true;
+        hitPoints = 0;
+    }
+
+    private void DrawBuildProgress()
+    {
+        GUI.skin = ResourceManager.SelectBoxSkin;
+        Rect selectBox = WorkManager.CalculateSelectionBox(selectionBounds, playingArea);
+        //Draw the selection box around the currently selected object, within the bounds of the main draw area
+        GUI.BeginGroup(playingArea);
+        CalculateCurrentHealth(0.5f, 0.99f);
+        DrawHealthBar(selectBox, "Building ...");
+        GUI.EndGroup();
+    }
+
+    public bool UnderConstruction()
+    {
+        return needsBuilding;
+    }
+
+    public void Construct(int amount)
+    {
+        hitPoints += amount;
+        if (hitPoints >= maxHitPoints)
+        {
+            hitPoints = maxHitPoints;
+            needsBuilding = false;
+            RestoreMaterials();
         }
     }
 }

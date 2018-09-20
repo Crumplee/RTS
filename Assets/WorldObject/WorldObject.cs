@@ -30,10 +30,16 @@ public class WorldObject : MonoBehaviour {
 	}
 	 
 	protected virtual void Start () {
-		player = transform.root.GetComponentInChildren< Player >();
-	}
-	 
-	protected virtual void Update () {
+		//player = transform.root.GetComponentInChildren< Player >();
+        SetPlayer();
+    }
+
+    public void SetPlayer()
+    {
+        player = transform.root.GetComponentInChildren<Player>();
+    }
+
+    protected virtual void Update () {
 	 
 	}
 	 
@@ -94,20 +100,29 @@ public class WorldObject : MonoBehaviour {
 	}
 	
     // for display health
+   
+
     protected virtual void DrawSelectionBox(Rect selectBox)
     {
         GUI.Box(selectBox, "");
-        CalculateCurrentHealth();
-        GUI.Label(new Rect(selectBox.x, selectBox.y - 7, selectBox.width * healthPercentage, 5), "", healthStyle);
+        CalculateCurrentHealth(0.35f, 0.65f);
+        DrawHealthBar(selectBox, "");
     }
 
     // calculates the selected object health
-    protected virtual void CalculateCurrentHealth()
+    protected virtual void CalculateCurrentHealth(float lowSplit, float highSplit)
     {
         healthPercentage = (float)hitPoints / (float)maxHitPoints;
-        if (healthPercentage > 0.65f) healthStyle.normal.background = ResourceManager.HealthyTexture;
-        else if (healthPercentage > 0.35f) healthStyle.normal.background = ResourceManager.DamagedTexture;
+        if (healthPercentage > highSplit) healthStyle.normal.background = ResourceManager.HealthyTexture;
+        else if (healthPercentage > lowSplit) healthStyle.normal.background = ResourceManager.DamagedTexture;
         else healthStyle.normal.background = ResourceManager.CriticalTexture;
+    }
+
+    protected void DrawHealthBar(Rect selectBox, string label)
+    {
+        healthStyle.padding.top = -20;
+        healthStyle.fontStyle = FontStyle.Bold;
+        GUI.Label(new Rect(selectBox.x, selectBox.y - 7, selectBox.width * healthPercentage, 5), label, healthStyle);
     }
 
     public bool IsOwnedBy(Player owner) {
@@ -133,6 +148,11 @@ public class WorldObject : MonoBehaviour {
     }
 
     //building 
+
+    public virtual void SetBuilding(Building project)
+    {
+
+    }
 
     public void SetColliders(bool enabled)
     {
