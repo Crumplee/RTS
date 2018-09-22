@@ -8,6 +8,7 @@ public class Resource : WorldObject
     public float capacity;
 
     //Variables accessible by subclass
+    [SerializeField]
     protected float amountLeft;
     protected ResourceType resourceType;
 
@@ -24,8 +25,9 @@ public class Resource : WorldObject
 
     public void Remove(float amount)
     {
+        //need fix
         amountLeft -= amount;
-        if (amountLeft < 0) amountLeft = 0;
+        if (amountLeft <= 0) amountLeft = 0;
     }
 
     public bool isEmpty()

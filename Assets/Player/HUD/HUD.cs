@@ -75,6 +75,12 @@ public class HUD : MonoBehaviour {
         {
             switch (resourceHealthBars[i].name)
             {
+                case "food":
+                    resourceHealthBarTextures.Add(ResourceType.Food, resourceHealthBars[i]);
+                    break;
+                case "wood":
+                    resourceHealthBarTextures.Add(ResourceType.Wood, resourceHealthBars[i]);
+                    break;
                 case "gold":
                     resourceHealthBarTextures.Add(ResourceType.Gold, resourceHealthBars[i]);
                     break;

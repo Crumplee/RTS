@@ -129,7 +129,7 @@ public class Worker : Unit
             if (hoverObject.name != "Ground")
             {
                 Resource resource = hoverObject.transform.parent.GetComponent<Resource>();
-                //if (resource && !resource.isEmpty()) player.hud.SetCursorState(CursorState.Harvest);
+                if (resource && !resource.isEmpty()) player.hud.SetCursorState(CursorState.Harvest);
             }
         }
     }
@@ -202,6 +202,7 @@ public class Worker : Unit
         float topPos = selectBox.y + 2 + (maxHeight - height);
         float width = 5;
         Texture2D resourceBar = ResourceManager.GetResourceHealthBar(harvestType);
+
         if (resourceBar) GUI.DrawTexture(new Rect(leftPos, topPos, width, height), resourceBar);
     }
 

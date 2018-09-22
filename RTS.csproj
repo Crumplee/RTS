@@ -320,6 +320,7 @@
     <Compile Include="Assets\WorldObject\Resource\GoldDeposit\Gold.cs" />
     <Compile Include="Assets\WorldObject\Resource\GoldDeposit\GoldDeposit.cs" />
     <Compile Include="Assets\WorldObject\Resource\Resource.cs" />
+    <Compile Include="Assets\WorldObject\Resource\Tree\Wood.cs" />
     <Compile Include="Assets\WorldObject\Unit\Unit.cs" />
     <Compile Include="Assets\WorldObject\Unit\Units.cs" />
     <Compile Include="Assets\WorldObject\Unit\Worker\Worker.cs" />
