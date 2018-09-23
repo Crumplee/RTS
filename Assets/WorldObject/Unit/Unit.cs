@@ -5,9 +5,9 @@ using RTS;
 
 public class Unit : WorldObject {
  
-	protected bool moving, rotating;
-	 
-	private Vector3 destination;
+	protected bool moving, rotating, idle;
+
+    private Vector3 destination;
 	private Quaternion targetRotation;
 	
 	public float moveSpeed, rotateSpeed;
@@ -20,6 +20,7 @@ public class Unit : WorldObject {
  
     protected override void Start () {
         base.Start();
+        idle = true;
     }
  
     protected override void Update () {

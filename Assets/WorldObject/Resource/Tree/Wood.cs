@@ -19,7 +19,6 @@ public class Wood : Resource
         if (isEmpty())
         {
             Destroy(gameObject);
-            //Debug.Log("wood empty");
         }
     }
 }

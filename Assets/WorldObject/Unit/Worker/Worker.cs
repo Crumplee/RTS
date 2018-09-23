@@ -6,7 +6,7 @@ public class Worker : Unit
 
     public float capacity;
 
-    private bool harvesting = false, emptying = false, idle = false;
+    private bool harvesting = false, emptying = false;
     private float currentLoad = 0.0f;
     private ResourceType harvestType;
 
