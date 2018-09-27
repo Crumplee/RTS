@@ -63,4 +63,10 @@ public class Spearman : Unit
     {
         base.StartMove(destination);
     }
+
+    //attack
+    public override bool CanAttack()
+    {
+        return true;
+    }
 }

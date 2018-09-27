@@ -33,6 +33,7 @@ public class WorldObject : MonoBehaviour {
 	protected virtual void Start () {
 		//player = transform.root.GetComponentInChildren< Player >();
         SetPlayer();
+        if (player) SetTeamColor();
     }
 
     public void SetPlayer()
@@ -133,13 +134,27 @@ public class WorldObject : MonoBehaviour {
 			return false;
 		}
 	}
-
+    
     public virtual void SetHoverState(GameObject hoverObject)
     {
         //only handle input if owned by a human player and currently selected
         if (player && player.human && currentlySelected)
         {
-            if (hoverObject.name != "Ground") player.hud.SetCursorState(CursorState.Select);
+            //something other than the ground is being hovered over
+            if (hoverObject.name != "Ground")
+            {
+                Player owner = hoverObject.transform.root.GetComponent<Player>();
+                Unit unit = hoverObject.transform.parent.GetComponent<Unit>();
+                Building building = hoverObject.transform.parent.GetComponent<Building>();
+                if (owner)
+                { //the object is owned by a player
+                    if (owner.username == player.username) player.hud.SetCursorState(CursorState.Select);
+                    else if (CanAttack()) player.hud.SetCursorState(CursorState.Attack);
+                    else player.hud.SetCursorState(CursorState.Select);
+                }
+                else if (unit || building && CanAttack()) player.hud.SetCursorState(CursorState.Attack);
+                else player.hud.SetCursorState(CursorState.Select);
+            }
         }
     }
 
@@ -187,6 +202,17 @@ public class WorldObject : MonoBehaviour {
     public void SetPlayingArea(Rect playingArea)
     {
         this.playingArea = playingArea;
+    }
+
+    public virtual bool CanAttack()
+    {
+        return false;
+    }
+
+    protected void SetTeamColor()
+    {
+        TeamColor[] teamColors = GetComponentsInChildren<TeamColor>();
+        foreach (TeamColor teamColor in teamColors) teamColor.GetComponent<Renderer>().material.color = player.teamColor;
     }
 
 }

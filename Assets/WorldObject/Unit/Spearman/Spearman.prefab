@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 33279498913257252}
   - component: {fileID: 23714307071737482}
   - component: {fileID: 65753049117718070}
+  - component: {fileID: 114068263536248706}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -618,6 +619,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114068263536248706
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1524561643520578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfbf773d0445404da3bd468f4df2513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114432863776383880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -635,6 +647,12 @@ MonoBehaviour:
   sellValue: 0
   hitPoints: 100
   maxHitPoints: 100
+  selectionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  moving: 0
+  rotating: 0
+  idle: 0
   moveSpeed: 10
   rotateSpeed: 10
 --- !u!135 &135731406930867048

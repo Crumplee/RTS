@@ -170,6 +170,7 @@ public class Building : WorldObject {
             hitPoints = maxHitPoints;
             needsBuilding = false;
             RestoreMaterials();
+            SetTeamColor();
             SetSpawnandRallyPoint();
         }
     }

@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 33517733018651270}
   - component: {fileID: 23401673208137162}
   - component: {fileID: 65337829068303132}
+  - component: {fileID: 114370477254985788}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -207,8 +208,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1519123076109064}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 4319531085096262}
   - {fileID: 4591248990169590}
@@ -544,6 +545,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114370477254985788
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1761009863545240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfbf773d0445404da3bd468f4df2513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114529049458680948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -561,13 +573,19 @@ MonoBehaviour:
   sellValue: 0
   hitPoints: 100
   maxHitPoints: 100
+  selectionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  moving: 0
+  rotating: 0
+  idle: 0
   moveSpeed: 10
   rotateSpeed: 10
   capacity: 20
   resourceStore: {fileID: 0}
   collectionAmount: 5
   depositAmount: 20
-  buildSpeed: 5
+  buildSpeed: 20
 --- !u!135 &135798642315154902
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -19,7 +19,8 @@ public class Player : MonoBehaviour {
     private Building tempBuilding;
     private Unit tempCreator;
     private bool findingPlacement = false;
-
+    
+    public Color teamColor;
     // Use this for initialization
     void Start () {
 		hud = GetComponentInChildren< HUD >();
