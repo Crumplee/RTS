@@ -4,8 +4,10 @@ using UnityEngine;
 using RTS;
 
 public class Unit : WorldObject {
- 
-	protected bool moving, rotating, idle;
+
+
+    [SerializeField]
+    protected bool moving, rotating, idle;
 
     private Vector3 destination;
 	private Quaternion targetRotation;

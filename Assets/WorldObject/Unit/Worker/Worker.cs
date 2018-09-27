@@ -18,7 +18,6 @@ public class Worker : Unit
 
     //building
     public int buildSpeed;
-
     private Building currentProject;
     private bool building = false;
     private float amountBuilt = 0.0f;
@@ -30,7 +29,7 @@ public class Worker : Unit
     {
         base.Start();
         harvestType = ResourceType.Unknown;
-        actions = new string[] { "Castle" };
+        actions = new string[] { "Castle", "Barrack" };
     }
 
     protected override void Update()
@@ -80,7 +79,11 @@ public class Worker : Unit
                 {
                     amountBuilt -= amount;
                     currentProject.Construct(amount);
-                    if (!currentProject.UnderConstruction()) building = false;
+                    if (!currentProject.UnderConstruction())
+                    {
+                        building = false;
+                        idle = true;
+                    }
                 }
             }
         }
@@ -219,6 +222,7 @@ public class Worker : Unit
         currentProject = project;
         StartMove(currentProject.transform.position, currentProject.gameObject);
         building = true;
+        idle = false;
     }
 
     public override void PerformAction(string actionToPerform)

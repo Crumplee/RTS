@@ -109,7 +109,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
-  controlID: 5758
+  controlID: 3282
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 5759
+  controlID: 3283
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 5807
+  controlID: 3284
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -288,7 +288,7 @@ MonoBehaviour:
     width: 788
     height: 343
   m_PersistentViewDataDictionary: {fileID: 0}
-  m_MaximizeOnPlay: 1
+  m_MaximizeOnPlay: 0
   m_Gizmos: 0
   m_Stats: 0
   m_SelectedSizes: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
@@ -369,9 +369,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: c0faffff
-    m_LastClickedID: -1344
-    m_ExpandedIDs: f8f2fdffd2fbffffd4fbffff00000000062e0000de2e0000
+    m_SelectedIDs: eaf8ffff
+    m_LastClickedID: -1814
+    m_ExpandedIDs: e4fbffffe6fbfffff4ffffff00000000800d0000340e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -426,9 +426,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -109.46621, y: -75.65192, z: 83.20603}
+    m_Target: {x: -118.60736, y: -71.2872, z: 72.4687}
     speed: 2
-    m_Value: {x: -109.46621, y: -75.65192, z: 83.20603}
+    m_Value: {x: -118.60736, y: -71.2872, z: 72.4687}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -578,20 +578,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/WorldObject/Building/Barrack
+    - Assets/WorldObject/Unit/Worker
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/WorldObject/Building/Barrack
+  - Assets/WorldObject/Unit/Worker
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Bence\Documents\RTS
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 235}
-    m_SelectedIDs: 3a2d0000
-    m_LastClickedID: 11578
-    m_ExpandedIDs: 00000000102a0000262a0000362a0000d42a0000202c0000702c0000582d000000ca9a3b
+    m_SelectedIDs: 5c0a0000
+    m_LastClickedID: 2652
+    m_ExpandedIDs: 00000000780900008e0900009e0900004c0a0000980b0000e80b0000e20c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -619,7 +619,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000102a0000262a0000362a0000d42a0000202c0000702c0000582d000000ca9a3b
+    m_ExpandedIDs: 00000000780900008e0900009e0900004c0a0000980b0000e80b0000e20c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

@@ -14,8 +14,9 @@ public class WorldObject : MonoBehaviour {
 	protected Player player;
 	protected string[] actions = {};
 	protected bool currentlySelected = false;
-	
-	protected Bounds selectionBounds;
+
+    [SerializeField]
+    protected Bounds selectionBounds;
 
     // health display
     protected GUIStyle healthStyle = new GUIStyle();

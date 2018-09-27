@@ -13,6 +13,9 @@ public class Barrack : Building {
     public override void PerformAction(string actionToPerform)
     {
         base.PerformAction(actionToPerform);
-        CreateUnit(actionToPerform);
+        if (!UnderConstruction())
+        {
+            CreateUnit(actionToPerform);
+        }
     }
 }

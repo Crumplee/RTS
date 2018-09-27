@@ -13,7 +13,10 @@ public class Castle : Building {
 	public override void PerformAction(string actionToPerform)
     {
 		base.PerformAction(actionToPerform);
-		CreateUnit(actionToPerform);
-	}
+        if (!UnderConstruction())
+        {
+            CreateUnit(actionToPerform);
+        }
+    }
 	
 }
