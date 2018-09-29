@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 23911966218679370}
   - component: {fileID: 65954581671561248}
   m_Layer: 0
-  m_Name: Ground
+  m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -660,9 +660,9 @@ MonoBehaviour:
   sellValue: 0
   hitPoints: 200
   maxHitPoints: 200
-  selectionBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
+  weaponRange: 10
+  weaponAimSpeed: 1
+  weaponRechargeTime: 1
   maxBuildProgress: 5
   rallyPointImage: {fileID: 2800000, guid: 6bc265cd42d368c44a529af211999415, type: 3}
 --- !u!114 &114129515113015646

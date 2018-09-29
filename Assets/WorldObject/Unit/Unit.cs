@@ -16,6 +16,9 @@ public class Unit : WorldObject {
 
     private GameObject destinationTarget;
 
+    //attack
+    private Quaternion aimRotation;
+
     protected override void Awake() {
         base.Awake();
     }
@@ -29,6 +32,17 @@ public class Unit : WorldObject {
         base.Update();
 		if(rotating) TurnToTarget();
 		else if(moving) MakeMove();
+        else if (aiming)
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, aimRotation, weaponAimSpeed);
+            CalculateBounds();
+            //sometimes it gets stuck exactly 180 degrees out in the calculation and does nothing, this check fixes that
+            Quaternion inverseAimRotation = new Quaternion(-aimRotation.x, -aimRotation.y, -aimRotation.z, -aimRotation.w);
+            if (transform.rotation == aimRotation || transform.rotation == inverseAimRotation)
+            {
+                aiming = false;
+            }
+        }
     }
  
     protected override void OnGUI() {
@@ -85,7 +99,8 @@ public class Unit : WorldObject {
         }
     }
 
-    public virtual void StartMove(Vector3 destination) {
+    public virtual void StartMove(Vector3 destination)
+    {
         destinationTarget = null;
         this.destination = destination;
 		targetRotation = Quaternion.LookRotation (destination - transform.position);
@@ -99,7 +114,8 @@ public class Unit : WorldObject {
         this.destinationTarget = destinationTarget;
     }
 
-    private void TurnToTarget() {
+    private void TurnToTarget()
+    {
 		transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed);
 		//sometimes it gets stuck exactly 180 degrees out in the calculation and does nothing, this check fixes that
 		Quaternion inverseTargetRotation = new Quaternion(-targetRotation.x, -targetRotation.y, -targetRotation.z, -targetRotation.w);
@@ -113,8 +129,12 @@ public class Unit : WorldObject {
 	
 	private void MakeMove() {
 		transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime * moveSpeed);
-		if(transform.position == destination) moving = false;
-		CalculateBounds();
+        if (transform.position == destination)
+        {
+            moving = false;
+            movingIntoPosition = false; // for attack
+        }
+        CalculateBounds();
 	}
 
     private void CalculateTargetDestination()
@@ -150,6 +170,15 @@ public class Unit : WorldObject {
         destination.y = destinationTarget.transform.position.y;
         // TurnToTarget()  wwont call it again
         destinationTarget = null;
+    }
+
+    //attack
+
+
+    protected override void AimAtTarget()
+    {
+        base.AimAtTarget();
+        aimRotation = Quaternion.LookRotation(target.transform.position - transform.position);
     }
 
 }

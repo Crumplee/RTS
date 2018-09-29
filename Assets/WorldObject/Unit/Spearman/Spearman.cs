@@ -12,10 +12,6 @@ public class Spearman : Unit
     protected override void Update()
     {
         base.Update();
-        if (!rotating && !moving && !idle)
-        {
-            
-        }
     }
     
     

@@ -14,8 +14,7 @@ public class WorldObject : MonoBehaviour {
 	protected Player player;
 	protected string[] actions = {};
 	protected bool currentlySelected = false;
-
-    [SerializeField]
+    
     protected Bounds selectionBounds;
 
     // health display
@@ -25,12 +24,23 @@ public class WorldObject : MonoBehaviour {
 
     private List<Material> oldMaterials = new List<Material>();
 
+    //attack
+    protected WorldObject target = null;
+    protected bool attacking = false;
+    public float weaponRange = 2.0f; // default range
+    protected bool movingIntoPosition = false;
+    protected bool aiming = false;
+    public float weaponAimSpeed = 8.0f;
+    public float weaponRechargeTime = 1.0f;
+    private float currentWeaponChargeTime;
+
     protected virtual void Awake() {
 		selectionBounds = ResourceManager.InvalidBounds;
 		CalculateBounds();
 	}
 	 
-	protected virtual void Start () {
+	protected virtual void Start ()
+    {
 		//player = transform.root.GetComponentInChildren< Player >();
         SetPlayer();
         if (player) SetTeamColor();
@@ -41,9 +51,11 @@ public class WorldObject : MonoBehaviour {
         player = transform.root.GetComponentInChildren<Player>();
     }
 
-    protected virtual void Update () {
-	 
-	}
+    protected virtual void Update ()
+    {
+        currentWeaponChargeTime += Time.deltaTime;
+        if (attacking && !movingIntoPosition && !aiming) PerformAttack();
+    }
 	 
 	protected virtual void OnGUI() {
 		if(currentlySelected) DrawSelection();
@@ -61,8 +73,9 @@ public class WorldObject : MonoBehaviour {
 	public virtual void PerformAction(string actionToPerform) {
 		
 	}
-	
-	public virtual void MouseClick(GameObject hitObject, Vector3 hitPoint, Player controller) {
+
+    public virtual void MouseClick(GameObject hitObject, Vector3 hitPoint, Player controller)
+    {
         //only handle input if currently selected
         if (currentlySelected && hitObject && hitObject.name != "Ground")
         {
@@ -72,12 +85,23 @@ public class WorldObject : MonoBehaviour {
             {
                 Resource resource = hitObject.transform.parent.GetComponent<Resource>();
                 if (resource && resource.isEmpty()) return;
-                ChangeSelection(worldObject, controller);
+                Player owner = hitObject.transform.root.GetComponent<Player>();
+                if (owner)
+                { //the object is controlled by a player
+                    if (player && player.human)
+                    { //this object is controlled by a human player
+                      //start attack if object is not owned by the same player and this object can attack
+                        if (player.username != owner.username && CanAttack()) BeginAttack(worldObject);
+                        else ChangeSelection(worldObject, controller);
+                    }
+                    else ChangeSelection(worldObject, controller);
+                }
+                else ChangeSelection(worldObject, controller);
             }
         }
     }
-	
-	private void ChangeSelection(WorldObject worldObject, Player controller) {
+
+    private void ChangeSelection(WorldObject worldObject, Player controller) {
 		//this should be called by the following line, but there is an outside chance it will not
 		SetSelection(false, playingArea);
 		if(controller.SelectedObject) controller.SelectedObject.SetSelection(false, playingArea);
@@ -204,6 +228,8 @@ public class WorldObject : MonoBehaviour {
         this.playingArea = playingArea;
     }
 
+    //attack
+
     public virtual bool CanAttack()
     {
         return false;
@@ -215,4 +241,91 @@ public class WorldObject : MonoBehaviour {
         foreach (TeamColor teamColor in teamColors) teamColor.GetComponent<Renderer>().material.color = player.teamColor;
     }
 
+    // if the target is close enough, and lock the target
+    protected virtual void BeginAttack(WorldObject target)
+    {
+        this.target = target;
+        if (TargetInRange())
+        {
+            attacking = true;
+            PerformAttack();
+        }
+        else AdjustPosition();
+    }
+
+    // target is in range
+    // docs.unity3d.com/Manual/DirectionDistanceFromOneObjectToAnother.html
+    private bool TargetInRange()
+    {
+        Vector3 targetLocation = target.transform.position;
+        Vector3 direction = targetLocation - transform.position;
+        if (direction.sqrMagnitude < weaponRange * weaponRange)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    // only unit can move and attack
+    private void AdjustPosition()
+    {
+        Unit self = this as Unit;
+        if (self)
+        {
+            movingIntoPosition = true;
+            Vector3 attackPosition = FindNearestAttackPosition();
+            self.StartMove(attackPosition);
+            attacking = true;
+        }
+        else attacking = false;
+    }
+
+    private Vector3 FindNearestAttackPosition()
+    {
+        //building!!!!!!!!!!!!
+        Vector3 targetLocation = target.transform.position;
+        Vector3 direction = targetLocation - transform.position;
+        float targetDistance = direction.magnitude;
+        float distanceToTravel = targetDistance - (0.9f * weaponRange);
+        return Vector3.Lerp(transform.position, targetLocation, distanceToTravel / targetDistance);
+    }
+
+    // check the target still exist, in range
+    private void PerformAttack()
+    {
+        if (!target)
+        {
+            attacking = false;
+            return;
+        }
+        if (!TargetInRange()) AdjustPosition();
+        else if (!TargetInFrontOfWeapon()) AimAtTarget();
+        else if (ReadyToFire()) UseWeapon();
+    }
+
+    private bool TargetInFrontOfWeapon()
+    {
+        Vector3 targetLocation = target.transform.position;
+        Vector3 direction = targetLocation - transform.position;
+        if (direction.normalized == transform.forward.normalized) return true;
+        else return false;
+    }
+
+    protected virtual void AimAtTarget()
+    {
+        //this needs to be specified
+        aiming = true;
+    }
+
+    private bool ReadyToFire()
+    {
+        if (currentWeaponChargeTime >= weaponRechargeTime) return true;
+        return false;
+    }
+
+    protected virtual void UseWeapon()
+    {
+        //this needs to be specified
+        currentWeaponChargeTime = 0.0f;
+    }
 }
