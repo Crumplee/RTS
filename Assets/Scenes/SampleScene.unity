@@ -563,6 +563,7 @@ MonoBehaviour:
   hud: {fileID: 0}
   notAllowedMaterial: {fileID: 2100000, guid: cdcd207e7e20d1a489a96695a9a736e7, type: 2}
   allowedMaterial: {fileID: 2100000, guid: 65c1915feb353c444aaa2db7821a24bf, type: 2}
+  tempBuilding: {fileID: 0}
   teamColor: {r: 0.39215687, g: 0.78431374, b: 0.92156863, a: 0}
 --- !u!114 &391311741
 MonoBehaviour:
@@ -833,7 +834,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: 0.30337554, y: -0.43390182, z: 0.1579273, w: 0.8335176}
-  m_LocalPosition: {x: 5.2, y: 30.7, z: -29.1}
+  m_LocalPosition: {x: 62, y: 30.7, z: -69.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

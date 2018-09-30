@@ -228,6 +228,11 @@ public class Worker : Unit
     public override void PerformAction(string actionToPerform)
     {
         base.PerformAction(actionToPerform);
+        Player player = this.GetComponentInParent<Player>();
+        if (player && player.human)
+        {
+            if (player.tempBuilding) player.CancelBuildingPlacement();
+        }
         CreateBuilding(actionToPerform);
     }
 

@@ -16,7 +16,8 @@ public class Player : MonoBehaviour {
     //for building
     public Material notAllowedMaterial, allowedMaterial;
 
-    private Building tempBuilding;
+    
+    public Building tempBuilding;
     private Unit tempCreator;
     private bool findingPlacement = false;
     
