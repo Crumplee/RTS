@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 681, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
-  controlID: 1958
+  controlID: 1550
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 1959
+  controlID: 1551
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 221}
   m_MaxSize: {x: 8004, y: 4021}
   vertical: 0
-  controlID: 1960
+  controlID: 1552
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,8 +169,8 @@ MonoBehaviour:
     y: 0
     width: 295
     height: 364
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -202,10 +202,10 @@ MonoBehaviour:
     height: 343
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 9c0d0000
-    m_LastClickedID: 3484
-    m_ExpandedIDs: e6fbfffff4ffffff000000009c0d0000ba0d0000
+    scrollPos: {x: 0, y: 60}
+    m_SelectedIDs: 3cfaffff
+    m_LastClickedID: -1476
+    m_ExpandedIDs: 8ef9ffff92f9ffff3cfaffffdefbffff00000000a40d0000c20d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -322,9 +322,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.24529204, y: 0.5215448, z: -0.15962178, w: -0.8014634}
   m_Size:
-    m_Target: 71.45127
+    m_Target: 56.757965
     speed: 2
-    m_Value: 71.45127
+    m_Value: 56.757965
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -466,20 +466,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Player/HUD
+    - Assets/WorldObject/Unit/Spearman
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Player/HUD
+  - Assets/WorldObject/Unit/Spearman
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Bence\Documents\RTS
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 71}
-    m_SelectedIDs: 92090000
-    m_LastClickedID: 2450
-    m_ExpandedIDs: 000000007c09000092090000a20900005a0a0000c40b0000140c00000e0d000000ca9a3b
+    scrollPos: {x: 0, y: 215}
+    m_SelectedIDs: e20c0000
+    m_LastClickedID: 3298
+    m_ExpandedIDs: 00000000840900009a090000aa090000620a0000cc0b00001c0c0000160d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -507,7 +507,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000007c09000092090000a20900005a0a0000c40b0000140c00000e0d000000ca9a3b
+    m_ExpandedIDs: 00000000840900009a090000aa090000620a0000cc0b00001c0c0000160d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -532,8 +532,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 9c0d0000
-    m_LastClickedInstanceID: 3484
+    m_SelectedInstanceIDs: 3cfaffff
+    m_LastClickedInstanceID: -1476
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000000000004e0c0000880c0000020a00000e0a0000940c0000100a0000
     m_RenameOverlay:
@@ -551,7 +551,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 7}
+      m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0

@@ -13,8 +13,8 @@ public class Spearman : Unit
     {
         base.Update();
     }
-    
-    
+
+
     /* Public Methods */
 
     public override void SetHoverState(GameObject hoverObject)
@@ -41,9 +41,9 @@ public class Spearman : Unit
             if (hitObject && hitObject.name != "Ground")
             {
                 idle = false;
-                
+
             }
-            
+
             if (doBase) base.MouseClick(hitObject, hitPoint, controller);
         }
     }
@@ -64,5 +64,13 @@ public class Spearman : Unit
     public override bool CanAttack()
     {
         return true;
+    }
+
+    protected override void UseWeapon()
+    {
+        base.UseWeapon();
+        Weapon spear = this.GetComponentInChildren<Weapon>();
+        spear.SetTarget(target);
+        spear.InflictDamage();
     }
 }

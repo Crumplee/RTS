@@ -1216,6 +1216,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114432863776383880, guid: 58f077ec46b967d4c8e23eda4295640b,
+        type: 2}
+      propertyPath: weaponRechargeTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58f077ec46b967d4c8e23eda4295640b, type: 2}
   m_IsPrefabAsset: 0
@@ -2892,6 +2897,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4794860945170394, guid: e5049628cdc85734287b8ca25edec006,
     type: 2}
   m_PrefabInternal: {fileID: 1885057131}
+--- !u!1 &1927990865 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1404959606105750, guid: 58f077ec46b967d4c8e23eda4295640b,
+    type: 2}
+  m_PrefabInternal: {fileID: 779239578}
+--- !u!114 &1927990870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1927990865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e2916399701b9f4cbb9b7de8db36e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 1
+  damage: 10
 --- !u!1001 &1938886398
 Prefab:
   m_ObjectHideFlags: 0

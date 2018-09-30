@@ -31,7 +31,7 @@ public class WorldObject : MonoBehaviour {
     protected bool movingIntoPosition = false;
     protected bool aiming = false;
     public float weaponAimSpeed = 8.0f;
-    public float weaponRechargeTime = 1.0f;
+    public float weaponRechargeTime = 2.0f;
     private float currentWeaponChargeTime;
 
     protected virtual void Awake() {
@@ -327,5 +327,11 @@ public class WorldObject : MonoBehaviour {
     {
         //this needs to be specified
         currentWeaponChargeTime = 0.0f;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        hitPoints -= damage;
+        if (hitPoints <= 0) Destroy(gameObject);
     }
 }
