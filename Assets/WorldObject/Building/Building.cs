@@ -135,6 +135,7 @@ public class Building : WorldObject {
     {
         CalculateBounds();
         needsBuilding = true;
+        this.GetComponentInParent<Player>().tempBuilding = null;
         hitPoints = 0;
     }
 

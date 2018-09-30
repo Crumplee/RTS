@@ -573,16 +573,17 @@ MonoBehaviour:
   sellValue: 0
   hitPoints: 100
   maxHitPoints: 100
-  selectionBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
+  weaponRange: 2
+  weaponAimSpeed: 8
+  weaponRechargeTime: 2
   moving: 0
   rotating: 0
   idle: 0
   moveSpeed: 10
   rotateSpeed: 10
   capacity: 20
-  resourceStore: {fileID: 0}
+  resourceStore: {fileID: 114710023805904094, guid: 925a80aded24e914e844e17dfa82aaed,
+    type: 2}
   collectionAmount: 5
   depositAmount: 20
   buildSpeed: 20
