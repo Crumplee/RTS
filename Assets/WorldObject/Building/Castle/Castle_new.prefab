@@ -868,11 +868,12 @@ MonoBehaviour:
   sellValue: 0
   hitPoints: 0
   maxHitPoints: 0
-  selectionBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
+  weaponRange: 2
+  weaponAimSpeed: 8
+  weaponRechargeTime: 2
   maxBuildProgress: 0
   rallyPointImage: {fileID: 0}
+  population: 0
 --- !u!114 &114963123598964118
 MonoBehaviour:
   m_ObjectHideFlags: 1

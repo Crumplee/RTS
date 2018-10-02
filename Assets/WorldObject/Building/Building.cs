@@ -29,7 +29,6 @@ public class Building : WorldObject {
 	 
 	protected override void Start () {
 		base.Start();
-        player.AddResource(ResourceType.Population, population);
     }
 	 
 	protected override void Update () {
@@ -182,6 +181,7 @@ public class Building : WorldObject {
             RestoreMaterials();
             SetTeamColor();
             SetSpawnandRallyPoint();
+            player.AddResource(ResourceType.Population, population);
         }
     }
 }

@@ -319,6 +319,8 @@
     <Compile Include="Assets\WorldObject\Building\Buildings.cs" />
     <Compile Include="Assets\WorldObject\Building\Castle\Castle.cs" />
     <Compile Include="Assets\WorldObject\Building\House\House.cs" />
+    <Compile Include="Assets\WorldObject\Resource\Farm\FarmBuilding.cs" />
+    <Compile Include="Assets\WorldObject\Resource\Farm\FarmResource.cs" />
     <Compile Include="Assets\WorldObject\Resource\GoldDeposit\Gold.cs" />
     <Compile Include="Assets\WorldObject\Resource\GoldDeposit\GoldDeposit.cs" />
     <Compile Include="Assets\WorldObject\Resource\Resource.cs" />

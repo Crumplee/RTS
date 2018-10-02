@@ -29,7 +29,7 @@ public class Worker : Unit
     {
         base.Start();
         harvestType = ResourceType.Unknown;
-        actions = new string[] { "Castle", "Barrack" };
+        actions = new string[] { "Castle", "Barrack", "House", "Farm" };
     }
 
     protected override void Update()

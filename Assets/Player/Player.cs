@@ -31,6 +31,7 @@ public class Player : MonoBehaviour {
 	void Awake () {
 		resources = InitResourceList();
         currentPopulation = 0;
+        AddResource(ResourceType.Population, 10);
 	}
 	
 	// Update is called once per frame

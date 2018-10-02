@@ -2373,6 +2373,48 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4794860945170394, guid: e5049628cdc85734287b8ca25edec006,
     type: 2}
   m_PrefabInternal: {fileID: 1218434956}
+--- !u!1001 &1488298775
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2005970770}
+    m_Modifications:
+    - target: {fileID: 4711103916777914, guid: b771ec82690ea8246913ee2f2adad691, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4711103916777914, guid: b771ec82690ea8246913ee2f2adad691, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4711103916777914, guid: b771ec82690ea8246913ee2f2adad691, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4711103916777914, guid: b771ec82690ea8246913ee2f2adad691, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4711103916777914, guid: b771ec82690ea8246913ee2f2adad691, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4711103916777914, guid: b771ec82690ea8246913ee2f2adad691, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4711103916777914, guid: b771ec82690ea8246913ee2f2adad691, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4711103916777914, guid: b771ec82690ea8246913ee2f2adad691, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b771ec82690ea8246913ee2f2adad691, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!4 &1503423378 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4918234106788176, guid: 58f077ec46b967d4c8e23eda4295640b,
@@ -2501,6 +2543,8 @@ MonoBehaviour:
   - {fileID: 1276698372022922, guid: 925a80aded24e914e844e17dfa82aaed, type: 2}
   - {fileID: 1868051568754486, guid: 45c978d15f8c26342b6c02299cbd276c, type: 2}
   - {fileID: 1864024751671374, guid: c40b24a5af3131a4f836203a7feb1648, type: 2}
+  - {fileID: 1998238954935930, guid: ea343ab338a49fd4f957ce4f79033a0e, type: 2}
+  - {fileID: 1076199795147052, guid: b771ec82690ea8246913ee2f2adad691, type: 2}
   units:
   - {fileID: 1519123076109064, guid: 3ae79667c9faf154689373aa7b92b99e, type: 2}
   - {fileID: 1802499784765536, guid: 58f077ec46b967d4c8e23eda4295640b, type: 2}
@@ -3188,7 +3232,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4537544730437674, guid: 925a80aded24e914e844e17dfa82aaed, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 925a80aded24e914e844e17dfa82aaed, type: 2}
@@ -3494,6 +3538,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4794860945170394, guid: e5049628cdc85734287b8ca25edec006,
     type: 2}
   m_PrefabInternal: {fileID: 1971880297}
+--- !u!4 &1992630815 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4711103916777914, guid: b771ec82690ea8246913ee2f2adad691,
+    type: 2}
+  m_PrefabInternal: {fileID: 1488298775}
 --- !u!1 &2005970769
 GameObject:
   m_ObjectHideFlags: 0
@@ -3522,6 +3571,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1992630815}
   - {fileID: 2065566162}
   - {fileID: 1460218122}
   m_Father: {fileID: 430821395}
@@ -3627,7 +3677,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4347270923452880, guid: 45c978d15f8c26342b6c02299cbd276c, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114054279213358026, guid: 45c978d15f8c26342b6c02299cbd276c,
         type: 2}
