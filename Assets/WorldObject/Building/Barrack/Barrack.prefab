@@ -665,6 +665,7 @@ MonoBehaviour:
   weaponRechargeTime: 1
   maxBuildProgress: 5
   rallyPointImage: {fileID: 2800000, guid: 6bc265cd42d368c44a529af211999415, type: 3}
+  population: 5
 --- !u!114 &114129515113015646
 MonoBehaviour:
   m_ObjectHideFlags: 1

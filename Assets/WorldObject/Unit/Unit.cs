@@ -26,6 +26,7 @@ public class Unit : WorldObject {
     protected override void Start () {
         base.Start();
         idle = true;
+        player.ModifycurrentPopulation(1);
     }
  
     protected override void Update () {
@@ -47,6 +48,12 @@ public class Unit : WorldObject {
  
     protected override void OnGUI() {
         base.OnGUI();
+    }
+
+    public void Destroy()
+    {
+        player.ModifycurrentPopulation(-1);
+        Destroy(this);
     }
 
     public virtual void Init(Building creator)

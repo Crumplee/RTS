@@ -55,6 +55,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4216903442965714}
+  - component: {fileID: 114235223985809210}
   m_Layer: 0
   m_Name: House
   m_TagString: Untagged
@@ -211,3 +212,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114235223985809210
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1998238954935930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4b5fae3e4da1584093f8a545021624a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectName: 
+  buildImage: {fileID: 0}
+  cost: 0
+  sellValue: 0
+  hitPoints: 0
+  maxHitPoints: 0
+  weaponRange: 2
+  weaponAimSpeed: 8
+  weaponRechargeTime: 2
+  maxBuildProgress: 0
+  rallyPointImage: {fileID: 0}
+  population: 5

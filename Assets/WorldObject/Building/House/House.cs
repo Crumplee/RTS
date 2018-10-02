@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class House : MonoBehaviour {
+public class House : Building {
 
-	// Use this for initialization
-	void Start () {
-		
+    // Use this for initialization
+    protected override void Start () {
+        base.Start();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    protected override void Update () {
 		
 	}
 }

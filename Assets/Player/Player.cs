@@ -12,6 +12,7 @@ public class Player : MonoBehaviour {
 	public WorldObject SelectedObject { get; set; }
 	
 	private Dictionary< ResourceType, int > resources;
+    private int currentPopulation;
 
     //for building
     public Material notAllowedMaterial, allowedMaterial;
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour {
 	
 	void Awake () {
 		resources = InitResourceList();
+        currentPopulation = 0;
 	}
 	
 	// Update is called once per frame
@@ -50,7 +52,8 @@ public class Player : MonoBehaviour {
 		list.Add(ResourceType.Food, 100);
 		list.Add(ResourceType.Wood, 100);
 		list.Add(ResourceType.Gold, 100);
-		return list;
+        list.Add(ResourceType.Population, 0);
+        return list;
 	}
 	
 	public void AddResource(ResourceType type, int amount) {
@@ -152,5 +155,15 @@ public class Player : MonoBehaviour {
         Destroy(tempBuilding.gameObject);
         tempBuilding = null;
         tempCreator = null;
+    }
+
+    public void ModifycurrentPopulation(int amount)
+    {
+        currentPopulation += amount;
+    }
+
+    public int GetcurrentPopulation()
+    {
+        return currentPopulation;
     }
 }

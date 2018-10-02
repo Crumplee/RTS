@@ -15,6 +15,8 @@ public class Building : WorldObject {
 
     private bool needsBuilding = false;
 
+    public int population;
+
     protected override void Awake() {
 		base.Awake();
 		buildQueue = new Queue< string >();
@@ -27,7 +29,8 @@ public class Building : WorldObject {
 	 
 	protected override void Start () {
 		base.Start();
-	}
+        player.AddResource(ResourceType.Population, population);
+    }
 	 
 	protected override void Update () {
 		base.Update();
@@ -38,8 +41,14 @@ public class Building : WorldObject {
 		base.OnGUI();
         if (needsBuilding) DrawBuildProgress();
     }
-	
-	protected void CreateUnit(string unitName) {
+
+    public void Destroy()
+    {
+        player.ModifycurrentPopulation(-population);
+        Destroy(this);
+    }
+
+    protected void CreateUnit(string unitName) {
 		buildQueue.Enqueue(unitName);
 	}
 	

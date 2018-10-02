@@ -10,8 +10,8 @@ public class HUD : MonoBehaviour {
 	private Player player;
 	private const int ORDERS_BAR_WIDTH = 180, RESOURCE_BAR_HEIGHT = 40;
 	private const int SELECTION_NAME_HEIGHT = 15;
-	
-	private Dictionary< ResourceType, int > resourceValues;
+
+	public Dictionary< ResourceType, int > resourceValues;
 	private const int ICON_WIDTH = 32, ICON_HEIGHT = 32, TEXT_WIDTH = 128, TEXT_HEIGHT = 32;
 	public Texture2D[] resources;
 	private Dictionary< ResourceType, Texture2D > resourceImages;
@@ -65,6 +65,10 @@ public class HUD : MonoBehaviour {
 					resourceImages.Add(ResourceType.Gold, resources[i]);
 					resourceValues.Add(ResourceType.Gold, 0);
 					break;
+                case "Population":
+                    resourceImages.Add(ResourceType.Population, resources[i]);
+                    resourceValues.Add(ResourceType.Population, 0);
+                    break;
 				default: break;
 			}
 		}
@@ -142,8 +146,11 @@ public class HUD : MonoBehaviour {
 		iconLeft += TEXT_WIDTH;
 		textLeft += TEXT_WIDTH;
 		DrawResourceIcon(ResourceType.Gold, iconLeft, textLeft, topPos);
-		
-		GUI.EndGroup();
+        iconLeft += TEXT_WIDTH;
+        textLeft += TEXT_WIDTH;
+        DrawResourceIcon(ResourceType.Population, iconLeft, textLeft, topPos);
+
+        GUI.EndGroup();
 	}
 	
 	public bool MouseInBounds() {
@@ -165,7 +172,9 @@ public class HUD : MonoBehaviour {
 	
 	private void DrawResourceIcon(ResourceType type, int iconLeft, int textLeft, int topPos) {
 		Texture2D icon = resourceImages[type];
-		string text = resourceValues[type].ToString(); // + "/" + resourceLimits[type].ToString();
+        string text = "";
+        if (type == ResourceType.Population) text = player.GetcurrentPopulation() + "/" ;
+		text += resourceValues[type].ToString(); // + "/" + resourceLimits[type].ToString();
 		GUI.DrawTexture(new Rect(iconLeft, topPos, ICON_WIDTH, ICON_HEIGHT), icon);
 		GUI.Label (new Rect(textLeft, topPos, TEXT_WIDTH, TEXT_HEIGHT), text);
 	}
