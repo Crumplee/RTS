@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using RTS;
 
-public class FarmResource : Resource {
+public class FarmResource : Resource
+{
 
     // Use this for initialization
-    protected override void Start ()
+    protected override void Start()
     {
         base.Start();
         resourceType = ResourceType.Food;
@@ -14,7 +15,7 @@ public class FarmResource : Resource {
     }
 
     // Update is called once per frame
-    protected override void Update ()
+    protected override void Update()
     {
         base.Update();
         if (isEmpty())

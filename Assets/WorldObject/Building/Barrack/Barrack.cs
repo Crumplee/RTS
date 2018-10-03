@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Barrack : Building {
+public class Barrack : Building
+{
 
     protected override void Start()
     {

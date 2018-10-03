@@ -6,15 +6,16 @@ using RTS;
 
 public class Wood : Resource
 {
-    
-    protected override void Start ()
+
+    protected override void Start()
     {
         base.Start();
         resourceType = ResourceType.Wood;
         amountLeft = capacity;
     }
-    
-    protected override void Update () {
+
+    protected override void Update()
+    {
         base.Update();
         if (isEmpty())
         {

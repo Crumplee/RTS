@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FarmBuilding : Building {
+public class FarmBuilding : Building
+{
 
-	// Use this for initialization
-	protected override void Start () {
+    // Use this for initialization
+    protected override void Start()
+    {
         base.Start();
-	}
+    }
 
     // Update is called once per frame
-    protected override void Update () {
-		
-	}
+    protected override void Update()
+    {
+
+    }
 }

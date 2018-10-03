@@ -3,36 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using RTS;
 
-public class Unit : WorldObject {
+public class Unit : WorldObject
+{
 
 
     [SerializeField]
     protected bool moving, rotating, idle;
 
     private Vector3 destination;
-	private Quaternion targetRotation;
-	
-	public float moveSpeed, rotateSpeed;
+    private Quaternion targetRotation;
+
+    public float moveSpeed, rotateSpeed;
 
     private GameObject destinationTarget;
 
     //attack
     private Quaternion aimRotation;
 
-    protected override void Awake() {
+    protected override void Awake()
+    {
         base.Awake();
     }
- 
-    protected override void Start () {
+
+    protected override void Start()
+    {
         base.Start();
         idle = true;
         player.ModifycurrentPopulation(1);
     }
- 
-    protected override void Update () {
+
+    protected override void Update()
+    {
         base.Update();
-		if(rotating) TurnToTarget();
-		else if(moving) MakeMove();
+        if (rotating) TurnToTarget();
+        else if (moving) MakeMove();
         else if (aiming)
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, aimRotation, weaponAimSpeed);
@@ -45,15 +49,17 @@ public class Unit : WorldObject {
             }
         }
     }
- 
-    protected override void OnGUI() {
+
+    protected override void OnGUI()
+    {
         base.OnGUI();
     }
 
-    public void Destroy()
+    public override void DestroyObject()
     {
+        base.DestroyObject();
         player.ModifycurrentPopulation(-1);
-        Destroy(this);
+        Destroy(gameObject);
     }
 
     public virtual void Init(Building creator)
@@ -110,10 +116,10 @@ public class Unit : WorldObject {
     {
         destinationTarget = null;
         this.destination = destination;
-		targetRotation = Quaternion.LookRotation (destination - transform.position);
-		rotating = true;
-		moving = false;
-	}
+        targetRotation = Quaternion.LookRotation(destination - transform.position);
+        rotating = true;
+        moving = false;
+    }
 
     public void StartMove(Vector3 destination, GameObject destinationTarget)
     {
@@ -123,26 +129,28 @@ public class Unit : WorldObject {
 
     private void TurnToTarget()
     {
-		transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed);
-		//sometimes it gets stuck exactly 180 degrees out in the calculation and does nothing, this check fixes that
-		Quaternion inverseTargetRotation = new Quaternion(-targetRotation.x, -targetRotation.y, -targetRotation.z, -targetRotation.w);
-		if(transform.rotation == targetRotation || transform.rotation == inverseTargetRotation) {
-			rotating = false;
-			moving = true;
-		}
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed);
+        //sometimes it gets stuck exactly 180 degrees out in the calculation and does nothing, this check fixes that
+        Quaternion inverseTargetRotation = new Quaternion(-targetRotation.x, -targetRotation.y, -targetRotation.z, -targetRotation.w);
+        if (transform.rotation == targetRotation || transform.rotation == inverseTargetRotation)
+        {
+            rotating = false;
+            moving = true;
+        }
         //CalculateBounds();
         if (destinationTarget) CalculateTargetDestination();
     }
-	
-	private void MakeMove() {
-		transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime * moveSpeed);
+
+    private void MakeMove()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime * moveSpeed);
         if (transform.position == destination)
         {
             moving = false;
             movingIntoPosition = false; // for attack
         }
         CalculateBounds();
-	}
+    }
 
     private void CalculateTargetDestination()
     {
