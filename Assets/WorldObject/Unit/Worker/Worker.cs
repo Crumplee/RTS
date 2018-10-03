@@ -233,7 +233,8 @@ public class Worker : Unit
         {
             if (player.tempBuilding) player.CancelBuildingPlacement();
         }
-        CreateBuilding(actionToPerform);
+        if (ResourceManager.CanCreateObject(player, "Building", actionToPerform))
+            CreateBuilding(actionToPerform);
     }
 
     private void CreateBuilding(string buildingName)

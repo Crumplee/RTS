@@ -56,9 +56,9 @@ public class Player : MonoBehaviour
     private Dictionary<ResourceType, int> InitResourceList()
     {
         Dictionary<ResourceType, int> list = new Dictionary<ResourceType, int>();
-        list.Add(ResourceType.Food, 100);
-        list.Add(ResourceType.Wood, 100);
-        list.Add(ResourceType.Gold, 100);
+        list.Add(ResourceType.Food, 1000);
+        list.Add(ResourceType.Wood, 1000);
+        list.Add(ResourceType.Gold, 1000);
         list.Add(ResourceType.Population, 0);
         return list;
     }
@@ -74,6 +74,11 @@ public class Player : MonoBehaviour
         {
             resources[resourceCost.Key] -= resourceCost.Value;
         }
+    }
+    
+    public int GetResource(ResourceType type)
+    {
+        return resources[type];
     }
 
     public void AddUnit(string unitName, Vector3 spawnPoint, Vector3 rallyPoint, Quaternion rotation, Building creator)
@@ -161,6 +166,7 @@ public class Player : MonoBehaviour
         if (buildings) tempBuilding.transform.parent = buildings.transform;
         tempBuilding.SetPlayer();
         tempBuilding.SetColliders(true);
+        ReduceResources(tempBuilding.GetCosts());
         tempCreator.SetBuilding(tempBuilding);
         tempBuilding.StartConstruction();
     }
@@ -182,4 +188,5 @@ public class Player : MonoBehaviour
     {
         return currentPopulation;
     }
+
 }

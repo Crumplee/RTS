@@ -57,6 +57,7 @@ public class Building : WorldObject
 
     protected void CreateUnit(string unitName)
     {
+        player.ReduceResources(ResourceManager.GetUnit(unitName).GetComponent<WorldObject>().GetCosts());
         buildQueue.Enqueue(unitName);
     }
 
@@ -159,6 +160,7 @@ public class Building : WorldObject
         needsBuilding = true;
         this.GetComponentInParent<Player>().tempBuilding = null;
         hitPoints = 0;
+
     }
 
     private void DrawBuildProgress()
@@ -196,6 +198,7 @@ public class Building : WorldObject
             SetTeamColor();
             SetSpawnandRallyPoint();
             player.AddResource(ResourceType.Population, population);
+            if (gameObject.tag == "Farm") gameObject.GetComponent<FarmResource>().enabled = true;
         }
     }
 }

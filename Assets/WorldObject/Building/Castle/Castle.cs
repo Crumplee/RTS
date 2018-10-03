@@ -17,7 +17,7 @@ public class Castle : Building
         base.PerformAction(actionToPerform);
         if (!UnderConstruction())
         {
-            CreateUnit(actionToPerform);
+            if (ResourceManager.CanCreateObject(player, "Unit", actionToPerform)) CreateUnit(actionToPerform);
         }
     }
 

@@ -16,6 +16,8 @@ public class WorldObject : MonoBehaviour
     protected string[] actions = { };
     protected bool currentlySelected = false;
 
+    public int foodCost, woodCost, goldCost, populationCost;
+
     protected Bounds selectionBounds;
 
     // health display
@@ -43,7 +45,6 @@ public class WorldObject : MonoBehaviour
 
     protected virtual void Start()
     {
-        //player = transform.root.GetComponentInChildren< Player >();
         SetPlayer();
         if (player) SetTeamColor();
     }
@@ -352,5 +353,16 @@ public class WorldObject : MonoBehaviour
     public virtual void DestroyObject()
     {
 
+    }
+
+    public Dictionary<ResourceType, int> GetCosts()
+    {
+        Dictionary<ResourceType, int> costList = new Dictionary<ResourceType, int>();
+        costList.Add(ResourceType.Food, foodCost);
+        costList.Add(ResourceType.Wood, woodCost);
+        costList.Add(ResourceType.Gold, goldCost);
+        costList.Add(ResourceType.Population, populationCost);
+
+        return costList;
     }
 }

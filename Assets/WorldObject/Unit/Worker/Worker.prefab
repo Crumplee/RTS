@@ -569,10 +569,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Worker
   buildImage: {fileID: 2800000, guid: d7d0b86a476e5524c93ca1d994a7b1d1, type: 3}
-  cost: 0
-  sellValue: 0
   hitPoints: 100
   maxHitPoints: 100
+  foodCost: 100
+  woodCost: 0
+  goldCost: 0
+  populationCost: 0
   weaponRange: 2
   weaponAimSpeed: 8
   weaponRechargeTime: 2

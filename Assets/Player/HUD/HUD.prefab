@@ -63,6 +63,7 @@ MonoBehaviour:
   buttonClick: {fileID: 2800000, guid: d7d9618e2fda39447a1e40ecfba14dab, type: 3}
   buildFrame: {fileID: 2800000, guid: e5d3ceac6211e9d4da9b1d7224b3a4e3, type: 3}
   buildMask: {fileID: 2800000, guid: 1e332fccb172110419df445d2f359b29, type: 3}
+  deleteImage: {fileID: 2800000, guid: 5a063abb9d63bef42ae339f1815507cf, type: 3}
   activeCursor: {fileID: 0}
   selectCursor: {fileID: 2800000, guid: 9d12c8bba6263214889f26e2dd1ef924, type: 3}
   leftCursor: {fileID: 2800000, guid: 72508e10fde99964991f97955100da40, type: 3}

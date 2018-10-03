@@ -83,5 +83,31 @@ namespace RTS
         {
             resourceHealthBarTextures = images;
         }
+
+
+        public static bool CanCreateObject(Player player, string type, string action)
+        {
+            WorldObject wo = null;
+
+            switch (type)
+            {
+                case "Building":
+                    wo = GetBuilding(action).GetComponent<WorldObject>();
+                    break;
+                case "Unit":
+                    wo = GetUnit(action).GetComponent<WorldObject>();
+                    break;
+                default:
+                    break;
+            }
+
+
+            if (wo.foodCost <= player.GetResource(ResourceType.Food) &&
+                wo.woodCost <= player.GetResource(ResourceType.Wood) &&
+                wo.goldCost <= player.GetResource(ResourceType.Gold) &&
+                wo.populationCost <= player.GetResource(ResourceType.Population)) return true;
+
+            return false;
+        }
     }
 }

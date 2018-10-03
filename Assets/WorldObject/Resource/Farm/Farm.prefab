@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4711103916777914}
   - component: {fileID: 114339896011952062}
-  - component: {fileID: 114949689283715876}
+  - component: {fileID: 114465322776546340}
   m_Layer: 0
   m_Name: Farm
   m_TagString: Untagged
@@ -140,17 +140,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Farm
   buildImage: {fileID: 2800000, guid: 9f80a7729e5d8694b943fe423700192b, type: 3}
-  cost: 0
-  sellValue: 0
   hitPoints: 100
   maxHitPoints: 100
+  foodCost: 0
+  woodCost: 100
+  goldCost: 0
+  populationCost: 0
   weaponRange: 0
   weaponAimSpeed: 0
   weaponRechargeTime: 0
   maxBuildProgress: 0
   rallyPointImage: {fileID: 0}
   population: 0
---- !u!114 &114949689283715876
+--- !u!114 &114465322776546340
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,12 +165,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Farm
   buildImage: {fileID: 0}
-  cost: 0
-  sellValue: 0
   hitPoints: 100
   maxHitPoints: 100
-  weaponRange: 0
-  weaponAimSpeed: 0
-  weaponRechargeTime: 0
+  foodCost: 0
+  woodCost: 0
+  goldCost: 0
+  populationCost: 0
+  weaponRange: 2
+  weaponAimSpeed: 8
+  weaponRechargeTime: 2
   capacity: 1000
   amountLeft: 0
