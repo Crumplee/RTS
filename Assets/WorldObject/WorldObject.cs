@@ -268,6 +268,12 @@ public class WorldObject : MonoBehaviour
         else AdjustPosition();
     }
 
+    protected virtual void StopAttack()
+    {
+        this.target = null;
+        attacking = false;
+    }
+
     // target is in range
     // docs.unity3d.com/Manual/DirectionDistanceFromOneObjectToAnother.html
     private bool TargetInRange()

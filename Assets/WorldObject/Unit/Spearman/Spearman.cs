@@ -41,7 +41,6 @@ public class Spearman : Unit
             if (hitObject && hitObject.name != "Ground")
             {
                 idle = false;
-
             }
 
             if (doBase) base.MouseClick(hitObject, hitPoint, controller);

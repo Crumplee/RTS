@@ -107,6 +107,7 @@ public class Unit : WorldObject
                 float y = hitPoint.y + player.SelectedObject.transform.position.y;
                 float z = hitPoint.z;
                 Vector3 destination = new Vector3(x, y, z);
+                StopAttack();
                 StartMove(destination);
             }
         }

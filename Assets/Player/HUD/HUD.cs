@@ -381,7 +381,9 @@ public class HUD : MonoBehaviour
             case CursorState.RallyPoint:
                 activeCursor = rallyPointCursor;
                 break;
-            default: break;
+            default:
+                activeCursor = null;
+                break;
         }
     }
 
