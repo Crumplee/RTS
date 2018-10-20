@@ -121,6 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4208688295675256}
   - component: {fileID: 114448928972548918}
+  - component: {fileID: 114662061267325034}
   m_Layer: 0
   m_Name: HUD
   m_TagString: Untagged
@@ -349,6 +350,8 @@ MonoBehaviour:
   hud: {fileID: 0}
   notAllowedMaterial: {fileID: 2100000, guid: cdcd207e7e20d1a489a96695a9a736e7, type: 2}
   allowedMaterial: {fileID: 2100000, guid: 65c1915feb353c444aaa2db7821a24bf, type: 2}
+  tempBuilding: {fileID: 0}
+  teamColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114220960781447944
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -393,6 +396,7 @@ MonoBehaviour:
   buttonClick: {fileID: 2800000, guid: d7d9618e2fda39447a1e40ecfba14dab, type: 3}
   buildFrame: {fileID: 2800000, guid: e5d3ceac6211e9d4da9b1d7224b3a4e3, type: 3}
   buildMask: {fileID: 2800000, guid: 1e332fccb172110419df445d2f359b29, type: 3}
+  deleteImage: {fileID: 0}
   activeCursor: {fileID: 0}
   selectCursor: {fileID: 2800000, guid: 9d12c8bba6263214889f26e2dd1ef924, type: 3}
   leftCursor: {fileID: 2800000, guid: 72508e10fde99964991f97955100da40, type: 3}
@@ -430,6 +434,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb027446321d5e4e9f36be38e6d2f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114662061267325034
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1943726460154864}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2016a99ea7fecb4b8e364bdf95a5e15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mySkin: {fileID: 11400000, guid: d127c73c3c848e4409ce709b2d6b52cc, type: 2}
+  header: {fileID: 2800000, guid: 1a305dd42f58aac44a8b5e6fb2409b81, type: 3}
 --- !u!114 &114822989175058194
 MonoBehaviour:
   m_ObjectHideFlags: 1

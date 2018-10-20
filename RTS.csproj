@@ -306,6 +306,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Menu\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Player\HUD\HUD.cs" />
     <Compile Include="Assets\Player\Player.cs" />
     <Compile Include="Assets\Player\RallyPoint\RallyPoint.cs" />

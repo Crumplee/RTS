@@ -287,7 +287,7 @@ public class HUD : MonoBehaviour
     {
         bool mouseOverHud = !MouseInBounds() && activeCursorState != CursorState.PanRight && activeCursorState != CursorState.PanUp;
 
-        if (mouseOverHud)
+        if (mouseOverHud || ResourceManager.MenuOpen)
         {
             Cursor.visible = true;
         }
