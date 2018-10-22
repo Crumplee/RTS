@@ -1,17 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using RTS;
 
-public class PauseMenu : MonoBehaviour
+public class PauseMenu : Menu
 {
 
-    public GUISkin mySkin;
-    public Texture2D header;
-
     private Player player;
-    private string[] buttons = { "Resume", "Exit Game" };
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         player = transform.root.GetComponent<Player>();
     }
 
@@ -20,55 +18,38 @@ public class PauseMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)) Resume();
     }
 
-    void OnGUI()
+    protected override void SetButtons()
     {
-        GUI.skin = mySkin;
+        buttons = new string[] { "Resume", "Exit Game" };
+    }
 
-        float groupLeft = Screen.width / 2 - ResourceManager.MenuWidth / 2;
-        float groupTop = Screen.height / 2 - ResourceManager.PauseMenuHeight / 2;
-        GUI.BeginGroup(new Rect(groupLeft, groupTop, ResourceManager.MenuWidth, ResourceManager.PauseMenuHeight));
-
-        //background box
-        GUI.Box(new Rect(0, 0, ResourceManager.MenuWidth, ResourceManager.PauseMenuHeight), "");
-        //header image
-        GUI.DrawTexture(new Rect(ResourceManager.Padding, ResourceManager.Padding, ResourceManager.HeaderWidth, ResourceManager.HeaderHeight), header);
-
-        //menu buttons
-        float leftPos = ResourceManager.MenuWidth / 2 - ResourceManager.ButtonWidth / 2;
-        float topPos = 2 * ResourceManager.Padding + header.height;
-        for (int i = 0; i < buttons.Length; i++)
+    protected override void HandleButton(string text)
+    {
+        switch (text)
         {
-            if (i > 0) topPos += ResourceManager.ButtonHeight + ResourceManager.Padding;
-            if (GUI.Button(new Rect(leftPos, topPos, ResourceManager.ButtonWidth, ResourceManager.ButtonHeight), buttons[i]))
-            {
-                switch (buttons[i])
-                {
-                    case "Resume":
-                        Resume();
-                        break;
-                    case "Exit Game":
-                        ExitGame();
-                        break;
-                    default:
-                        break;
-                }
-            }
+            case "Resume":
+                Resume();
+                break;
+            case "Exit Game":
+                ReturnToMainMenu();
+                break;
+            default:
+                break;
         }
-
-        GUI.EndGroup();
     }
 
     private void Resume()
     {
-        Time.timeScale = 1.0f; //start time
+        Time.timeScale = 1.0f; //stop time
         GetComponent<PauseMenu>().enabled = false;
         if (player) player.GetComponent<UserInput>().enabled = true;
         Cursor.visible = false;
         ResourceManager.MenuOpen = false;
     }
 
-    private void ExitGame()
+    private void ReturnToMainMenu()
     {
-        Application.Quit();
+        SceneManager.LoadScene("MainMenu");
+        Cursor.visible = true;
     }
 }
