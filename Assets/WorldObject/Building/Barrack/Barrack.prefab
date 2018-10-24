@@ -147,6 +147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4347270923452880}
   - component: {fileID: 114054279213358026}
+  - component: {fileID: 208436046373492586}
   m_Layer: 0
   m_Name: Barrack
   m_TagString: Untagged
@@ -679,3 +680,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cfbf773d0445404da3bd468f4df2513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!208 &208436046373492586
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1868051568754486}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 8, y: 4, z: 7}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 5.5, y: 4, z: 0}
+  m_TimeToStationary: 0.5

@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using RTS;
 
 public class Unit : WorldObject
 {
-
+    public NavMeshAgent agent;
 
     [SerializeField]
     protected bool moving, rotating, idle;
@@ -35,8 +36,10 @@ public class Unit : WorldObject
     protected override void Update()
     {
         base.Update();
-        if (rotating) TurnToTarget();
-        else if (moving) MakeMove();
+
+        //if (rotating) TurnToTarget();
+        //else 
+        if (moving) MakeMove();
         else if (aiming)
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, aimRotation, weaponAimSpeed);
@@ -117,9 +120,9 @@ public class Unit : WorldObject
     {
         destinationTarget = null;
         this.destination = destination;
-        targetRotation = Quaternion.LookRotation(destination - transform.position);
-        rotating = true;
-        moving = false;
+        //targetRotation = Quaternion.LookRotation(destination - transform.position);
+        //rotating = true;
+        moving = true;
     }
 
     public void StartMove(Vector3 destination, GameObject destinationTarget)
@@ -144,7 +147,9 @@ public class Unit : WorldObject
 
     private void MakeMove()
     {
-        transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime * moveSpeed);
+        //transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime * moveSpeed);
+        agent.SetDestination(destination);
+
         if (transform.position == destination)
         {
             moving = false;

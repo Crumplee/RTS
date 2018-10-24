@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33788965895713952}
   - component: {fileID: 23900558260164756}
   - component: {fileID: 135798642315154902}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 33310470418028980}
   - component: {fileID: 23239792635341574}
   - component: {fileID: 65255233060231764}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RH
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 33793244619698736}
   - component: {fileID: 23976036413946420}
   - component: {fileID: 65779994960564552}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4709820891010136}
   - component: {fileID: 114529049458680948}
-  m_Layer: 0
+  - component: {fileID: 195304710027666104}
+  m_Layer: 9
   m_Name: Worker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +93,7 @@ GameObject:
   - component: {fileID: 33669453501519900}
   - component: {fileID: 23706932217422798}
   - component: {fileID: 65190866856054106}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +112,7 @@ GameObject:
   - component: {fileID: 23401673208137162}
   - component: {fileID: 65337829068303132}
   - component: {fileID: 114370477254985788}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +130,7 @@ GameObject:
   - component: {fileID: 33360694188945814}
   - component: {fileID: 23465689448418312}
   - component: {fileID: 65369138345334844}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -578,6 +579,7 @@ MonoBehaviour:
   weaponRange: 2
   weaponAimSpeed: 8
   weaponRechargeTime: 2
+  agent: {fileID: 195304710027666104}
   moving: 0
   rotating: 0
   idle: 0
@@ -589,6 +591,8 @@ MonoBehaviour:
   collectionAmount: 5
   depositAmount: 20
   buildSpeed: 20
+  currentProject: {fileID: 0}
+  building: 0
 --- !u!135 &135798642315154902
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -601,3 +605,24 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &195304710027666104
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1519123076109064}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 10
+  m_Acceleration: 1000
+  avoidancePriority: 50
+  m_AngularSpeed: 360
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

@@ -18,7 +18,9 @@ public class Worker : Unit
 
     //building
     public int buildSpeed;
+    [SerializeField]
     private Building currentProject;
+    [SerializeField]
     private bool building = false;
     private float amountBuilt = 0.0f;
 
@@ -35,7 +37,7 @@ public class Worker : Unit
     protected override void Update()
     {
         base.Update();
-        if (!rotating && !moving && !idle)
+        if (!rotating && !moving)// && !idle)
         {
             if (harvesting || emptying)
             {
@@ -82,7 +84,7 @@ public class Worker : Unit
                     if (!currentProject.UnderConstruction())
                     {
                         building = false;
-                        idle = true;
+                        //idle = true;
                     }
                 }
             }
@@ -146,7 +148,7 @@ public class Worker : Unit
         {
             if (hitObject && hitObject.name != "Ground")
             {
-                idle = false;
+                //idle = false;
                 Resource resource = hitObject.transform.parent.GetComponent<Resource>();
                 Building building = hitObject.transform.parent.GetComponent<Building>();
 
@@ -190,7 +192,7 @@ public class Worker : Unit
 
     private void StopHarvest()
     {
-        idle = true;
+        //idle = true;
         harvesting = false;
         emptying = false;
     }
@@ -222,7 +224,7 @@ public class Worker : Unit
         currentProject = project;
         StartMove(currentProject.transform.position, currentProject.gameObject);
         building = true;
-        idle = false;
+        //idle = false;
     }
 
     public override void PerformAction(string actionToPerform)
