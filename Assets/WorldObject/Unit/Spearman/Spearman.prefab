@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 4918234106788176}
   - component: {fileID: 114432863776383880}
   - component: {fileID: 195493112649148496}
-  - component: {fileID: 65901935076194628}
+  - component: {fileID: 208247621732253652}
   m_Layer: 9
   m_Name: Spearman
   m_TagString: Untagged
@@ -255,7 +255,7 @@ Transform:
   m_GameObject: {fileID: 1802499784765536}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7000002, y: 0.7, z: 0.7000002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4504508184044084}
   - {fileID: 4742944638448416}
@@ -621,18 +621,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65901935076194628
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1802499784765536}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114068263536248706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -670,6 +658,7 @@ MonoBehaviour:
   moving: 0
   rotating: 0
   idle: 1
+  destination: {x: 0, y: 0, z: 0}
   moveSpeed: 10
   rotateSpeed: 10
 --- !u!135 &135731406930867048
@@ -718,3 +707,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!208 &208247621732253652
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1802499784765536}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.75, y: 1, z: 0.75}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5

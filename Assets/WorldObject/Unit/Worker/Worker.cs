@@ -41,8 +41,6 @@ public class Worker : Unit
         {
             if (harvesting || emptying)
             {
-                //Arms[] arms = GetComponentsInChildren<Arms>();
-                //foreach (Arms arm in arms) arm.renderer.enabled = true;
                 if (harvesting)
                 {
                     Collect();
@@ -54,7 +52,8 @@ public class Worker : Unit
                         harvesting = false;
                         emptying = true;
                         //foreach (Arms arm in arms) arm.renderer.enabled = false;
-                        StartMove(resourceStore.transform.position, resourceStore.gameObject);
+                        //StartMove(resourceStore.transform.position, resourceStore.gameObject);
+                        StartMove(resourceStore.spawnPoint, resourceStore.gameObject);
                     }
                 }
                 else
@@ -72,7 +71,7 @@ public class Worker : Unit
                     }
                 }
             }
-
+            
             if (building && currentProject && currentProject.UnderConstruction())
             {
                 amountBuilt += buildSpeed * Time.deltaTime;
@@ -173,9 +172,9 @@ public class Worker : Unit
             if (doBase) base.MouseClick(hitObject, hitPoint, controller);
         }
     }
+    
 
-    /* Private Methods */
-
+   
     private void StartHarvest(Resource resource)
     {
         resourceDeposit = resource;

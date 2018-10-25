@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23331767172010824}
   - component: {fileID: 65899510664013640}
   - component: {fileID: 114004102629366886}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gold (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 23321733186683066}
   - component: {fileID: 65145407026028340}
   - component: {fileID: 114975647256186408}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gold (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 23038228225544920}
   - component: {fileID: 65271988943519092}
   - component: {fileID: 114024074130528100}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gold (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 23866568045192912}
   - component: {fileID: 65480022666749120}
   - component: {fileID: 114589535939220968}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gold (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 23023678155271082}
   - component: {fileID: 65794656910377454}
   - component: {fileID: 114540148507882864}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gold (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 23928313943039330}
   - component: {fileID: 65965011683314406}
   - component: {fileID: 114952538756002438}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gold (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 23157987960474658}
   - component: {fileID: 65247800933888252}
   - component: {fileID: 114506951463418590}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gold (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 23988991185644556}
   - component: {fileID: 65486141340822902}
   - component: {fileID: 114625881392624342}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gold (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 23987955408805320}
   - component: {fileID: 65800533004574274}
   - component: {fileID: 114011672313613198}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gold (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 23089136866359470}
   - component: {fileID: 65413486275343524}
   - component: {fileID: 114977031441796000}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gold (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4853230069618506}
   - component: {fileID: 114293804913378682}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GoldDeposit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 23103966283238590}
   - component: {fileID: 65138946225889502}
   - component: {fileID: 114478895911195354}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gold (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 23693070320733478}
   - component: {fileID: 65248504258705868}
   - component: {fileID: 114831584450929432}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gold (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 23392349099200006}
   - component: {fileID: 65858367951259228}
   - component: {fileID: 114720342512993658}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gold (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 23804964659579360}
   - component: {fileID: 65841665983093812}
   - component: {fileID: 114271169661864048}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gold (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 23743073134623900}
   - component: {fileID: 65621115047420994}
   - component: {fileID: 114810901829180962}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gold (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 23863764865331598}
   - component: {fileID: 65588175659027500}
   - component: {fileID: 114816188313442208}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gold (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 23943656382652852}
   - component: {fileID: 65048047522208040}
   - component: {fileID: 114148470957139556}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gold (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 23969214933397616}
   - component: {fileID: 65242414143854820}
   - component: {fileID: 114588966104966082}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gold (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: 23593393151149682}
   - component: {fileID: 65613233025982978}
   - component: {fileID: 114031999428278826}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gold (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -400,7 +400,7 @@ GameObject:
   - component: {fileID: 23971121716359862}
   - component: {fileID: 65880266763461666}
   - component: {fileID: 114605643733578632}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gold (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 23975406396748254}
   - component: {fileID: 65310483089156226}
   - component: {fileID: 114861619650155202}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gold (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -438,7 +438,7 @@ GameObject:
   - component: {fileID: 23460501462625362}
   - component: {fileID: 65478076651554556}
   - component: {fileID: 114837799367449548}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gold (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2033,11 +2033,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: 
   buildImage: {fileID: 0}
-  cost: 0
-  sellValue: 0
   hitPoints: 0
   maxHitPoints: 0
+  foodCost: 0
+  woodCost: 0
+  goldCost: 0
+  populationCost: 0
+  weaponRange: 2
+  weaponAimSpeed: 8
+  weaponRechargeTime: 2
   capacity: 2000
+  amountLeft: 0
 --- !u!114 &114478895911195354
 MonoBehaviour:
   m_ObjectHideFlags: 1

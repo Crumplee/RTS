@@ -5,12 +5,12 @@ using RTS;
 
 public class Building : WorldObject
 {
-
+    
     public float maxBuildProgress;
     protected Queue<string> buildQueue;
     private float currentBuildProgress = 0.0f;
 
-    private Vector3 spawnPoint;
+    public Vector3 spawnPoint;
     protected Vector3 rallyPoint;
     public Texture2D rallyPointImage;
 
@@ -27,6 +27,10 @@ public class Building : WorldObject
         float spawnZ = selectionBounds.center.z + transform.forward.z + selectionBounds.extents.z + transform.forward.z * 10;
         spawnPoint = new Vector3(spawnX, 0.0f, spawnZ);
         rallyPoint = spawnPoint;
+
+
+
+
     }
 
     protected override void Start()

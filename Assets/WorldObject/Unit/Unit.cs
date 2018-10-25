@@ -11,6 +11,7 @@ public class Unit : WorldObject
     [SerializeField]
     protected bool moving, rotating, idle;
 
+    [SerializeField]
     private Vector3 destination;
     private Quaternion targetRotation;
 
@@ -29,7 +30,7 @@ public class Unit : WorldObject
     protected override void Start()
     {
         base.Start();
-        idle = true;
+        //idle = true;
         player.ModifycurrentPopulation(1);
     }
 
@@ -122,8 +123,14 @@ public class Unit : WorldObject
         this.destination = destination;
         //targetRotation = Quaternion.LookRotation(destination - transform.position);
         //rotating = true;
+
+        gameObject.GetComponent<NavMeshObstacle>().enabled = false;
+        gameObject.GetComponent<NavMeshAgent>().enabled = true;
+        agent.SetDestination(destination);
         moving = true;
     }
+
+    //TODO szar az egész
 
     public void StartMove(Vector3 destination, GameObject destinationTarget)
     {
@@ -148,14 +155,38 @@ public class Unit : WorldObject
     private void MakeMove()
     {
         //transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime * moveSpeed);
-        agent.SetDestination(destination);
-
+        /*
         if (transform.position == destination)
         {
             moving = false;
             movingIntoPosition = false; // for attack
         }
+        */
+        if (!agent.pathPending)
+        {
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    moving = false;
+                    gameObject.GetComponent<NavMeshAgent>().enabled = false;
+                    gameObject.GetComponent<NavMeshObstacle>().enabled = true;
+                    movingIntoPosition = false; // for attack
+                }
+            }
+        }
         CalculateBounds();
+    }
+
+    protected bool DestinationTargetInRange(WorldObject target)
+    {
+        Vector3 targetLocation = target.transform.position;
+        Vector3 direction = targetLocation - transform.position;
+        if (direction.sqrMagnitude < 100)
+        {
+            return true;
+        }
+        return false;
     }
 
     private void CalculateTargetDestination()
