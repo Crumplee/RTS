@@ -154,10 +154,18 @@ public class Worker : Unit
                 if (resource && !resource.isEmpty())
                 {
                     //make sure that we select harvester remains selected
-                    if (player.SelectedObject) player.SelectedObject.SetSelection(false, playingArea);
-                    SetSelection(true, playingArea);
-                    player.SelectedObject = this;
-                    StartHarvest(resource);
+                    if (resource.GetResourceType() == ResourceType.Food && !resource.CanHarvest)
+                    {
+
+                    }
+                    else
+                    {
+                        if (player.SelectedObject) player.SelectedObject.SetSelection(false, playingArea);
+                        SetSelection(true, playingArea);
+                        player.SelectedObject = this;
+                        StartHarvest(resource);
+                    }
+
                 }
                 if (building)
                 {
@@ -178,6 +186,9 @@ public class Worker : Unit
     private void StartHarvest(Resource resource)
     {
         resourceDeposit = resource;
+
+        if (resource.GetResourceType() == ResourceType.Food) resource.CanHarvest = false;
+
         StartMove(resource.transform.position, resource.gameObject);
         //we can only collect one resource at a time, other resources are lost
         if (harvestType == ResourceType.Unknown || harvestType != resource.GetResourceType())
@@ -194,6 +205,7 @@ public class Worker : Unit
         //idle = true;
         harvesting = false;
         emptying = false;
+        if (resourceDeposit && resourceDeposit.GetResourceType() == ResourceType.Food) resourceDeposit.CanHarvest = true;
     }
 
     protected override void DrawSelectionBox(Rect selectBox)

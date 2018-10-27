@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23471675415519944}
   - component: {fileID: 65808743885501718}
   - component: {fileID: 114321937714830084}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Roof
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 33707838415664482}
   - component: {fileID: 23911966218679370}
   - component: {fileID: 65954581671561248}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 33165012362727888}
   - component: {fileID: 23836796528286002}
   - component: {fileID: 65755072690153224}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RFwall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 33647194492333516}
   - component: {fileID: 23132951582218322}
   - component: {fileID: 65841618611287704}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 33366903854081434}
   - component: {fileID: 23503764867718206}
   - component: {fileID: 65984409237858018}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LFwall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 33833903542795642}
   - component: {fileID: 23645054962102854}
   - component: {fileID: 65214998940324990}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RSwall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 33268193984749354}
   - component: {fileID: 23059529553027368}
   - component: {fileID: 65019720956143746}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LSwall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 4347270923452880}
   - component: {fileID: 114054279213358026}
   - component: {fileID: 208436046373492586}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Barrack
   m_TagString: Untagged
   m_Icon: {fileID: 0}

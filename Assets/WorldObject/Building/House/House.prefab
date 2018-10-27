@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23663390707358170}
   - component: {fileID: 65668036831854300}
   - component: {fileID: 114764754364948816}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Roof
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 33366904114297164}
   - component: {fileID: 23199373062539612}
   - component: {fileID: 65706562848816780}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 4216903442965714}
   - component: {fileID: 114235223985809210}
   - component: {fileID: 208734403807794820}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: House
   m_TagString: Untagged
   m_Icon: {fileID: 0}

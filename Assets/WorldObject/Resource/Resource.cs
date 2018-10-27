@@ -4,6 +4,8 @@ using RTS;
 public class Resource : WorldObject
 {
 
+    private bool canHarvest;
+
     //Public variables
     public float capacity;
 
@@ -19,6 +21,7 @@ public class Resource : WorldObject
         base.Start();
         amountLeft = capacity;
         resourceType = ResourceType.Unknown;
+        CanHarvest = true;
     }
 
     /*** Public methods ***/
@@ -44,5 +47,18 @@ public class Resource : WorldObject
     {
         healthPercentage = amountLeft / capacity;
         healthStyle.normal.background = ResourceManager.GetResourceHealthBar(resourceType);
+    }
+    
+    public bool CanHarvest
+    {
+        get
+        {
+            return canHarvest;
+        }
+
+        set
+        {
+            canHarvest = value;
+        }
     }
 }

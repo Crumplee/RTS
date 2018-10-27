@@ -5,7 +5,7 @@ using RTS;
 
 public class FarmResource : Resource
 {
-
+    
     // Use this for initialization
     protected override void Start()
     {

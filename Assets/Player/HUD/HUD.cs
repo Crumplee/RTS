@@ -13,7 +13,7 @@ public class HUD : MonoBehaviour
     private const int SELECTION_NAME_HEIGHT = 15;
 
     public Dictionary<ResourceType, int> resourceValues;
-    private const int ICON_WIDTH = 32, ICON_HEIGHT = 32, TEXT_WIDTH = 128, TEXT_HEIGHT = 32;
+    private const int ICON_WIDTH = 32, ICON_HEIGHT = 32, TEXT_WIDTH = 128, TEXT_HEIGHT = 48;
     public Texture2D[] resources;
     private Dictionary<ResourceType, Texture2D> resourceImages;
 
@@ -137,7 +137,7 @@ public class HUD : MonoBehaviour
         }
         if (!selectionName.Equals(""))
         {
-            int leftPos = BUILD_IMAGE_WIDTH + SCROLL_BAR_WIDTH / 2 + 16;
+            int leftPos = BUILD_IMAGE_WIDTH + SCROLL_BAR_WIDTH / 2 + 64;
             int topPos = buildAreaHeight + BUTTON_SPACING;
             GUI.Label(new Rect(leftPos, topPos, ORDERS_BAR_WIDTH, SELECTION_NAME_HEIGHT), selectionName);
         }
@@ -405,7 +405,6 @@ public class HUD : MonoBehaviour
                     SetCursorState(CursorState.RallyPoint);
                 else
                 {
-                    //dirty hack to ensure toggle between RallyPoint and not works ...
                     SetCursorState(CursorState.PanRight);
                     SetCursorState(CursorState.Select);
                 }

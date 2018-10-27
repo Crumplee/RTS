@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4537544730437674}
   - component: {fileID: 114710023805904094}
   - component: {fileID: 208760437926168184}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Castle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 33558456386775832}
   - component: {fileID: 23654595694971580}
   - component: {fileID: 65568839315444694}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Corner3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 33105964079940124}
   - component: {fileID: 23569759342548614}
   - component: {fileID: 65590933571199284}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Corner2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 33992029385707290}
   - component: {fileID: 23199303735589152}
   - component: {fileID: 65358519710428806}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Corner4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 33036459396550034}
   - component: {fileID: 23662470115397096}
   - component: {fileID: 65600918570524762}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Corner1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 23326880337565728}
   - component: {fileID: 65818687925386630}
   - component: {fileID: 114667518970671714}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GroundFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
