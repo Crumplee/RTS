@@ -5,7 +5,6 @@ using RTS;
 
 public class Building : WorldObject
 {
-    
     public float maxBuildProgress;
     protected Queue<string> buildQueue;
     private float currentBuildProgress = 0.0f;

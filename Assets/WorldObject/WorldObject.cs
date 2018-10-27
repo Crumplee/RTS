@@ -30,12 +30,14 @@ public class WorldObject : MonoBehaviour
     //attack
     protected WorldObject target = null;
     protected bool attacking = false;
-    public float weaponRange = 2.0f; // default range
+    public float weaponRange = 1.0f;
     protected bool movingIntoPosition = false;
     protected bool aiming = false;
     public float weaponAimSpeed = 8.0f;
     public float weaponRechargeTime = 2.0f;
     private float currentWeaponChargeTime;
+
+    public float objectRange = 0.0f;
 
     protected virtual void Awake()
     {
@@ -280,7 +282,7 @@ public class WorldObject : MonoBehaviour
     {
         Vector3 targetLocation = target.transform.position;
         Vector3 direction = targetLocation - transform.position;
-        if (direction.sqrMagnitude < weaponRange * weaponRange)
+        if (direction.sqrMagnitude < weaponRange * weaponRange + target.objectRange * target.objectRange)
         {
             return true;
         }
