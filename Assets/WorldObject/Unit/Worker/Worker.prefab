@@ -580,6 +580,7 @@ MonoBehaviour:
   weaponRange: 2
   weaponAimSpeed: 8
   weaponRechargeTime: 2
+  objectRange: 0
   agent: {fileID: 195304710027666104}
   moving: 0
   rotating: 0
