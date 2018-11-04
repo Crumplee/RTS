@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using RTS;
 
-public class WorldObject : MonoBehaviour
+public class WorldObject : NetworkBehaviour
 {
 
     protected Rect playingArea = new Rect(0.0f, 0.0f, 0.0f, 0.0f);
@@ -12,6 +13,7 @@ public class WorldObject : MonoBehaviour
     public Texture2D buildImage;
     public int hitPoints, maxHitPoints;
 
+    [SerializeField]
     protected Player player;
     protected string[] actions = { };
     protected bool currentlySelected = false;

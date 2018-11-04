@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using RTS;
 
-public class Player : MonoBehaviour
+public class Player : NetworkBehaviour
 {
-
     public string username;
     public bool human;
     public HUD hud;
@@ -28,6 +28,16 @@ public class Player : MonoBehaviour
     void Start()
     {
         hud = GetComponentInChildren<HUD>();
+        /*
+        NetworkTransformChild u = gameObject.AddComponent<NetworkTransformChild>();
+        
+        Units units = GetComponentInChildren<Units>();
+        GameObject newUnit = (GameObject)Instantiate(ResourceManager.GetUnit("Worker"));
+        newUnit.transform.parent = units.transform;
+        Unit unitObject = newUnit.GetComponent<Unit>();
+        u.target = newUnit.transform;
+        u.enabled = true;
+        */
     }
 
     void Awake()
@@ -35,6 +45,11 @@ public class Player : MonoBehaviour
         resources = InitResourceList();
         currentPopulation = 0;
         AddResource(ResourceType.Population, 10);
+    }
+
+    public override void OnStartLocalPlayer()
+    {
+        
     }
 
     // Update is called once per frame
@@ -51,7 +66,11 @@ public class Player : MonoBehaviour
             }
         }
     }
-
+    /*
+    public bool IsLocalPlayer()
+    {
+        return this.isLocalPlayer;
+    }*/
 
     private Dictionary<ResourceType, int> InitResourceList()
     {
@@ -80,28 +99,34 @@ public class Player : MonoBehaviour
     {
         return resources[type];
     }
-
-    public void AddUnit(string unitName, Vector3 spawnPoint, Vector3 rallyPoint, Quaternion rotation, Building creator)
+    [Command]
+    public void CmdAddUnit(string unitName, Vector3 spawnPoint, Vector3 rallyPoint, Quaternion rotation/*, Building creator*/)
     {
         Units units = GetComponentInChildren<Units>();
         GameObject newUnit = (GameObject)Instantiate(ResourceManager.GetUnit(unitName), spawnPoint, rotation);
         newUnit.transform.parent = units.transform;
         Unit unitObject = newUnit.GetComponent<Unit>();
+
+        NetworkServer.Spawn(newUnit);
+
+        //ResourceManager.MakeNetworkObject(this, newUnit);
+
         if (unitObject)
         {
-            unitObject.Init(creator);
+            //unitObject.Init(creator);
             if (spawnPoint != rallyPoint) unitObject.StartMove(rallyPoint);
         }
     }
 
     //building
-    public void CreateBuilding(string buildingName, Vector3 buildPoint, Unit creator, Rect playingArea)
+    [Command]
+    public void CmdCreateBuilding(string buildingName, Vector3 buildPoint/*, Unit creator*/, Rect playingArea)
     {
         GameObject newBuilding = (GameObject)Instantiate(ResourceManager.GetBuilding(buildingName), buildPoint, new Quaternion());
         tempBuilding = newBuilding.GetComponent<Building>();
         if (tempBuilding)
         {
-            tempCreator = creator;
+            //tempCreator = creator;
             findingPlacement = true;
             tempBuilding.SetTransparentMaterial(notAllowedMaterial, true);
             tempBuilding.SetColliders(false);

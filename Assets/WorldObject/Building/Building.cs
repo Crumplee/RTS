@@ -71,7 +71,7 @@ public class Building : WorldObject
             currentBuildProgress += Time.deltaTime * ResourceManager.BuildSpeed;
             if (currentBuildProgress > maxBuildProgress)
             {
-                if (player) player.AddUnit(buildQueue.Dequeue(), spawnPoint, rallyPoint, transform.rotation, this);
+                if (player) player.CmdAddUnit(buildQueue.Dequeue(), spawnPoint, rallyPoint, transform.rotation/*, this*/);
                 currentBuildProgress = 0.0f;
             }
         }

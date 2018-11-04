@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 
 namespace RTS
 {
@@ -124,5 +125,15 @@ namespace RTS
         public static float HeaderWidth { get { return headerWidth; } }
         public static float TextHeight { get { return textHeight; } }
         public static float Padding { get { return padding; } }
+
+        //network
+
+        public static void MakeNetworkObject(Player player, GameObject obj)
+        {
+            NetworkTransformChild netTransChild = player.transform.gameObject.AddComponent<NetworkTransformChild>();
+            
+            netTransChild.target = obj.transform;
+            netTransChild.enabled = true;
+        }
     }
 }

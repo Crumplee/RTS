@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 using RTS;
 
 public class Unit : WorldObject
@@ -94,6 +95,12 @@ public class Unit : WorldObject
 
     public override void MouseClick(GameObject hitObject, Vector3 hitPoint, Player controller)
     {
+        /*
+        if (!this.GetComponentInParent<Player>().IsLocalPlayer())
+        {
+            return;
+        }*/
+
         base.MouseClick(hitObject, hitPoint, controller);
         //only handle input if owned by a human player and currently selected
         if (player && player.human && currentlySelected)
