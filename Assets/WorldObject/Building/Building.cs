@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using RTS;
 
 public class Building : WorldObject
@@ -26,15 +27,13 @@ public class Building : WorldObject
         float spawnZ = selectionBounds.center.z + transform.forward.z + selectionBounds.extents.z + transform.forward.z * 10;
         spawnPoint = new Vector3(spawnX, 0.0f, spawnZ);
         rallyPoint = spawnPoint;
-
-
-
-
+        gameObject.GetComponent<NavMeshObstacle>().enabled = true;
     }
 
     protected override void Start()
     {
         base.Start();
+
     }
 
     protected override void Update()
@@ -163,7 +162,6 @@ public class Building : WorldObject
         needsBuilding = true;
         this.GetComponentInParent<Player>().tempBuilding = null;
         hitPoints = 0;
-
     }
 
     private void DrawBuildProgress()

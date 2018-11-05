@@ -20,6 +20,7 @@ public class Player : NetworkBehaviour
 
 
     public Building tempBuilding;
+    [SerializeField]
     private Unit tempCreator;
     private bool findingPlacement = false;
 
@@ -119,14 +120,13 @@ public class Player : NetworkBehaviour
     }
 
     //building
-    [Command]
-    public void CmdCreateBuilding(string buildingName, Vector3 buildPoint/*, Unit creator*/, Rect playingArea)
+    public void CreateBuilding(string buildingName, Vector3 buildPoint, Unit creator, Rect playingArea)
     {
         GameObject newBuilding = (GameObject)Instantiate(ResourceManager.GetBuilding(buildingName), buildPoint, new Quaternion());
         tempBuilding = newBuilding.GetComponent<Building>();
         if (tempBuilding)
         {
-            //tempCreator = creator;
+            tempCreator = creator;
             findingPlacement = true;
             tempBuilding.SetTransparentMaterial(notAllowedMaterial, true);
             tempBuilding.SetColliders(false);
@@ -184,11 +184,16 @@ public class Player : NetworkBehaviour
         return canPlace;
     }
 
-    public void StartConstruction()
+    [Command]
+    public void CmdStartConstruction()
     {
         findingPlacement = false;
         Buildings buildings = GetComponentInChildren<Buildings>();
         if (buildings) tempBuilding.transform.parent = buildings.transform;
+
+        GameObject newbuilding = tempBuilding.gameObject;
+        NetworkServer.Spawn(newbuilding);
+        
         tempBuilding.SetPlayer();
         tempBuilding.SetColliders(true);
         ReduceResources(tempBuilding.GetCosts());

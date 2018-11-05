@@ -229,7 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: House
   buildImage: {fileID: 2800000, guid: 8b035da7dbcd23848976edc689a7017c, type: 3}
-  hitPoints: 100
+  hitPoints: 0
   maxHitPoints: 100
   player: {fileID: 0}
   foodCost: 0
@@ -314,7 +314,7 @@ NavMeshObstacle:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1998238954935930}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Shape: 1
   m_Extents: {x: 2, y: 2.5, z: 2}
