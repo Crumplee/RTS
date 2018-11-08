@@ -148,6 +148,8 @@ GameObject:
   - component: {fileID: 4347270923452880}
   - component: {fileID: 114054279213358026}
   - component: {fileID: 208436046373492586}
+  - component: {fileID: 114559851242187102}
+  - component: {fileID: 114879080590167592}
   m_Layer: 11
   m_Name: Barrack
   m_TagString: Untagged
@@ -659,6 +661,8 @@ MonoBehaviour:
   buildImage: {fileID: 2800000, guid: 02cc5e8355170994ca9be1db8eb6fdb5, type: 3}
   hitPoints: 200
   maxHitPoints: 200
+  player: {fileID: 0}
+  actions: []
   foodCost: 0
   woodCost: 100
   goldCost: 0
@@ -682,6 +686,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cfbf773d0445404da3bd468f4df2513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114559851242187102
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1868051568754486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 69
+    i1: 201
+    i2: 120
+    i3: 209
+    i4: 95
+    i5: 140
+    i6: 38
+    i7: 52
+    i8: 43
+    i9: 108
+    i10: 2
+    i11: 41
+    i12: 156
+    i13: 189
+    i14: 39
+    i15: 108
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &114879080590167592
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1868051568754486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!208 &208436046373492586
 NavMeshObstacle:
   m_ObjectHideFlags: 1

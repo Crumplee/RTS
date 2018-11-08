@@ -210,6 +210,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4853230069618506}
   - component: {fileID: 114293804913378682}
+  - component: {fileID: 114353534889571848}
+  - component: {fileID: 114560213179390030}
   m_Layer: 10
   m_Name: GoldDeposit
   m_TagString: Untagged
@@ -2035,6 +2037,8 @@ MonoBehaviour:
   buildImage: {fileID: 0}
   hitPoints: 0
   maxHitPoints: 0
+  player: {fileID: 0}
+  actions: []
   foodCost: 0
   woodCost: 0
   goldCost: 0
@@ -2042,8 +2046,41 @@ MonoBehaviour:
   weaponRange: 2
   weaponAimSpeed: 8
   weaponRechargeTime: 2
+  objectRange: 0
   capacity: 2000
   amountLeft: 0
+--- !u!114 &114353534889571848
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1344894081362194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 73
+    i1: 190
+    i2: 158
+    i3: 33
+    i4: 52
+    i5: 75
+    i6: 16
+    i7: 84
+    i8: 90
+    i9: 4
+    i10: 152
+    i11: 58
+    i12: 203
+    i13: 90
+    i14: 9
+    i15: 221
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114478895911195354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2077,6 +2114,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9041b25937231f047af213df11e727a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114560213179390030
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1344894081362194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!114 &114588966104966082
 MonoBehaviour:
   m_ObjectHideFlags: 1

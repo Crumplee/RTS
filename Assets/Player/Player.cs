@@ -67,11 +67,11 @@ public class Player : NetworkBehaviour
             }
         }
     }
-    /*
+    
     public bool IsLocalPlayer()
     {
         return this.isLocalPlayer;
-    }*/
+    }
 
     private Dictionary<ResourceType, int> InitResourceList()
     {
@@ -80,6 +80,7 @@ public class Player : NetworkBehaviour
         list.Add(ResourceType.Wood, 1000);
         list.Add(ResourceType.Gold, 1000);
         list.Add(ResourceType.Population, 0);
+        
         return list;
     }
 
@@ -109,6 +110,8 @@ public class Player : NetworkBehaviour
         Unit unitObject = newUnit.GetComponent<Unit>();
 
         NetworkServer.Spawn(newUnit);
+
+        //ClientRpc function
 
         //ResourceManager.MakeNetworkObject(this, newUnit);
 

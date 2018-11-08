@@ -15,6 +15,7 @@ public class WorldObject : NetworkBehaviour
 
     [SerializeField]
     protected Player player;
+    [SerializeField]    
     protected string[] actions = { };
     protected bool currentlySelected = false;
 

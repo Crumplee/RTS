@@ -105,8 +105,8 @@ public class HUD : MonoBehaviour
     {
         if (player && player.human)
         {
-            DrawOrdersBar();
             DrawResourcesBar();
+            DrawOrdersBar();
             DrawMouseCursor();
         }
     }
@@ -120,10 +120,11 @@ public class HUD : MonoBehaviour
         if (player.SelectedObject)
         {
             selectionName = player.SelectedObject.objectName;
-            if (player.SelectedObject.IsOwnedBy(player))
+            if (player.SelectedObject.GetComponentInParent<Player>().IsLocalPlayer())
             {
                 //reset slider value if the selected object has changed
                 if (lastSelection && lastSelection != player.SelectedObject) sliderValue = 0.0f;
+
                 DrawActions(player.SelectedObject.GetActions());
                 //store the current selection
                 lastSelection = player.SelectedObject;
@@ -162,7 +163,6 @@ public class HUD : MonoBehaviour
         iconLeft += TEXT_WIDTH;
         textLeft += TEXT_WIDTH;
         DrawResourceIcon(ResourceType.Population, iconLeft, textLeft, topPos);
-
         GUI.EndGroup();
     }
 
@@ -215,12 +215,16 @@ public class HUD : MonoBehaviour
             int row = i / 2;
             Rect pos = GetButtonPos(row, column);
             Texture2D action = ResourceManager.GetBuildImage(actions[i]);
+
             if (action)
             {
                 //create the button and handle the click of that button
                 if (GUI.Button(pos, action))
                 {
-                    if (player.SelectedObject) player.SelectedObject.PerformAction(actions[i]);
+                    if (player.SelectedObject)
+                    {
+                        player.SelectedObject.PerformAction(actions[i]);
+                    }
                 }
             }
         }
@@ -382,7 +386,7 @@ public class HUD : MonoBehaviour
                 activeCursor = rallyPointCursor;
                 break;
             default:
-                activeCursor = null;
+                activeCursor = selectCursor;
                 break;
         }
     }

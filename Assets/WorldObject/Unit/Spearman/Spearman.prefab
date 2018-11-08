@@ -131,6 +131,8 @@ GameObject:
   - component: {fileID: 114432863776383880}
   - component: {fileID: 195493112649148496}
   - component: {fileID: 208247621732253652}
+  - component: {fileID: 114226761886231970}
+  - component: {fileID: 114194686448090752}
   m_Layer: 9
   m_Name: Spearman
   m_TagString: Untagged
@@ -632,6 +634,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cfbf773d0445404da3bd468f4df2513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114194686448090752
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1802499784765536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
+--- !u!114 &114226761886231970
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1802499784765536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 88
+    i1: 240
+    i2: 119
+    i3: 236
+    i4: 70
+    i5: 185
+    i6: 103
+    i7: 212
+    i8: 200
+    i9: 226
+    i10: 62
+    i11: 218
+    i12: 66
+    i13: 149
+    i14: 100
+    i15: 11
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114432863776383880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -647,6 +702,8 @@ MonoBehaviour:
   buildImage: {fileID: 2800000, guid: 02cc5e8355170994ca9be1db8eb6fdb5, type: 3}
   hitPoints: 100
   maxHitPoints: 100
+  player: {fileID: 0}
+  actions: []
   foodCost: 100
   woodCost: 100
   goldCost: 0
@@ -654,6 +711,7 @@ MonoBehaviour:
   weaponRange: 2
   weaponAimSpeed: 8
   weaponRechargeTime: 2
+  objectRange: 0
   agent: {fileID: 195493112649148496}
   moving: 0
   rotating: 0

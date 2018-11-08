@@ -57,6 +57,8 @@ GameObject:
   - component: {fileID: 4794860945170394}
   - component: {fileID: 114427089370601852}
   - component: {fileID: 114689327272080240}
+  - component: {fileID: 114135482397838984}
+  - component: {fileID: 114893251774497156}
   m_Layer: 0
   m_Name: Wood
   m_TagString: Untagged
@@ -189,6 +191,38 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1296162400393372}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114135482397838984
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1426173911471630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 229
+    i1: 4
+    i2: 150
+    i3: 40
+    i4: 205
+    i5: 200
+    i6: 87
+    i7: 52
+    i8: 40
+    i9: 123
+    i10: 140
+    i11: 162
+    i12: 94
+    i13: 222
+    i14: 192
+    i15: 6
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114427089370601852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -204,6 +238,8 @@ MonoBehaviour:
   buildImage: {fileID: 0}
   hitPoints: 0
   maxHitPoints: 0
+  player: {fileID: 0}
+  actions: []
   foodCost: 0
   woodCost: 0
   goldCost: 0
@@ -211,6 +247,7 @@ MonoBehaviour:
   weaponRange: 2
   weaponAimSpeed: 8
   weaponRechargeTime: 2
+  objectRange: 0
   capacity: 100
   amountLeft: 0
 --- !u!114 &114689327272080240
@@ -228,6 +265,27 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!114 &114893251774497156
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1426173911471630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!135 &135712966754165016
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -95,13 +95,14 @@ public class Unit : WorldObject
 
     public override void MouseClick(GameObject hitObject, Vector3 hitPoint, Player controller)
     {
-        /*
+
+        base.MouseClick(hitObject, hitPoint, controller);
+
         if (!this.GetComponentInParent<Player>().IsLocalPlayer())
         {
             return;
-        }*/
+        }
 
-        base.MouseClick(hitObject, hitPoint, controller);
         //only handle input if owned by a human player and currently selected
         if (player && player.human && currentlySelected)
         {

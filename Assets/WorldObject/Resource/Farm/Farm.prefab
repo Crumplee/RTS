@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4711103916777914}
   - component: {fileID: 114339896011952062}
   - component: {fileID: 114465322776546340}
+  - component: {fileID: 114289720910088184}
+  - component: {fileID: 114360702892852102}
   m_Layer: 0
   m_Name: Farm
   m_TagString: Farm
@@ -127,6 +129,38 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114289720910088184
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1076199795147052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 183
+    i1: 113
+    i2: 236
+    i3: 130
+    i4: 105
+    i5: 14
+    i6: 168
+    i7: 36
+    i8: 105
+    i9: 19
+    i10: 238
+    i11: 47
+    i12: 42
+    i13: 218
+    i14: 214
+    i15: 145
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114339896011952062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -142,6 +176,8 @@ MonoBehaviour:
   buildImage: {fileID: 2800000, guid: 9f80a7729e5d8694b943fe423700192b, type: 3}
   hitPoints: 100
   maxHitPoints: 100
+  player: {fileID: 0}
+  actions: []
   foodCost: 0
   woodCost: 100
   goldCost: 0
@@ -149,9 +185,32 @@ MonoBehaviour:
   weaponRange: 0
   weaponAimSpeed: 0
   weaponRechargeTime: 0
+  objectRange: 0
   maxBuildProgress: 0
+  spawnPoint: {x: 0, y: 0, z: 0}
   rallyPointImage: {fileID: 0}
   population: 0
+--- !u!114 &114360702892852102
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1076199795147052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!114 &114465322776546340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -167,6 +226,8 @@ MonoBehaviour:
   buildImage: {fileID: 0}
   hitPoints: 100
   maxHitPoints: 100
+  player: {fileID: 0}
+  actions: []
   foodCost: 0
   woodCost: 0
   goldCost: 0
@@ -174,5 +235,6 @@ MonoBehaviour:
   weaponRange: 2
   weaponAimSpeed: 8
   weaponRechargeTime: 2
+  objectRange: 0
   capacity: 1000
   amountLeft: 0
