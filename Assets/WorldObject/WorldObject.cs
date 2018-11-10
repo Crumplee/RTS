@@ -59,6 +59,11 @@ public class WorldObject : NetworkBehaviour
         player = transform.root.GetComponentInChildren<Player>();
     }
 
+    public Player GetPlayer()
+    {
+        return player;
+    }
+
     protected virtual void Update()
     {
         currentWeaponChargeTime += Time.deltaTime;

@@ -843,6 +843,7 @@ MonoBehaviour:
   hitPoints: 500
   maxHitPoints: 500
   player: {fileID: 0}
+  actions: []
   foodCost: 0
   woodCost: 500
   goldCost: 200

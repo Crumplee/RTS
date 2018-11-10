@@ -139,7 +139,7 @@ public class UserInput : MonoBehaviour
         {
             if (player.IsFindingBuildingLocation())
             {
-                if (player.CanPlaceBuilding()) player.CmdStartConstruction();
+                if (player.CanPlaceBuilding()) player.ConfirmConstruction();
             }
             else
             {

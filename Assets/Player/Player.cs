@@ -18,7 +18,6 @@ public class Player : NetworkBehaviour
     //for building
     public Material notAllowedMaterial, allowedMaterial;
 
-
     public Building tempBuilding;
     [SerializeField]
     private Unit tempCreator;
@@ -46,6 +45,10 @@ public class Player : NetworkBehaviour
         resources = InitResourceList();
         currentPopulation = 0;
         AddResource(ResourceType.Population, 10);
+        /*
+        gameObject.transform.GetChild(1).gameObject.AddComponent<NetworkIdentity>();
+        gameObject.transform.GetChild(2).gameObject.AddComponent<NetworkIdentity>();
+        */
     }
 
     public override void OnStartLocalPlayer()
@@ -110,16 +113,19 @@ public class Player : NetworkBehaviour
         Unit unitObject = newUnit.GetComponent<Unit>();
 
         NetworkServer.Spawn(newUnit);
-
-        //ClientRpc function
-
-        //ResourceManager.MakeNetworkObject(this, newUnit);
+        RpcSyncUnit(newUnit, this.gameObject);
 
         if (unitObject)
         {
             //unitObject.Init(creator);
             if (spawnPoint != rallyPoint) unitObject.StartMove(rallyPoint);
         }
+    }
+
+    [ClientRpc]
+    public void RpcSyncUnit(GameObject unit, GameObject parent)
+    {
+        unit.transform.parent = parent.transform.Find("Units");
     }
 
     //building
@@ -187,21 +193,67 @@ public class Player : NetworkBehaviour
         return canPlace;
     }
 
-    [Command]
-    public void CmdStartConstruction()
+    
+    public void ConfirmConstruction()
     {
         findingPlacement = false;
+        /*
         Buildings buildings = GetComponentInChildren<Buildings>();
         if (buildings) tempBuilding.transform.parent = buildings.transform;
-
-        GameObject newbuilding = tempBuilding.gameObject;
-        NetworkServer.Spawn(newbuilding);
         
+        GameObject newbuilding = tempBuilding.gameObject;
+        */
+        CmdStartConstruction(tempBuilding.objectName, tempBuilding.transform.position, tempBuilding.transform.rotation, tempCreator.GetComponent<NetworkIdentity>().netId);
+        Destroy(tempBuilding.gameObject);
+        tempBuilding = null;
+
+        /*
         tempBuilding.SetPlayer();
         tempBuilding.SetColliders(true);
         ReduceResources(tempBuilding.GetCosts());
         tempCreator.SetBuilding(tempBuilding);
         tempBuilding.StartConstruction();
+        */
+    }    
+
+    [Command]
+    public void CmdStartConstruction(string buildingName, Vector3 position, Quaternion rotation, NetworkInstanceId id)
+    {
+        Buildings buildings = GetComponentInChildren<Buildings>();
+        GameObject newbuilding = (GameObject)Instantiate(ResourceManager.GetBuilding(buildingName), position, rotation);
+        newbuilding.transform.parent = buildings.transform;
+
+        GameObject creator = ClientScene.FindLocalObject(id);
+
+        NetworkServer.Spawn(newbuilding);
+        RpcSyncBuilding(newbuilding, this.gameObject, creator);
+        /*
+        tempBuilding.SetPlayer();
+        tempBuilding.SetColliders(true);
+        ReduceResources(tempBuilding.GetCosts());
+        tempCreator.SetBuilding(tempBuilding);
+        tempBuilding.StartConstruction();
+        */
+    }
+
+    [ClientRpc]
+    public void RpcSyncBuilding(GameObject newbuilding, GameObject parent, GameObject tempCreator)
+    {
+        newbuilding.transform.parent = parent.GetComponentInChildren<Buildings>().transform;
+        Building b = newbuilding.GetComponent<Building>();
+        Player p = parent.GetComponent<Player>();
+        
+        b.SetPlayer();
+        b.SetColliders(true);
+        p.ReduceResources(b.GetCosts());
+        tempCreator.GetComponent<Unit>().SetBuilding(b);
+        b.StartConstruction();
+        
+    }
+
+    public Unit GetTempCreator()
+    {
+        return tempCreator;
     }
 
     public void CancelBuildingPlacement()
