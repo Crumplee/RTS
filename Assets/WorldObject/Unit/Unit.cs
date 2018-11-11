@@ -18,7 +18,7 @@ public class Unit : WorldObject
 
     public float moveSpeed, rotateSpeed;
 
-    private GameObject destinationTarget;
+    //private GameObject destinationTarget;
 
     //attack
     private Quaternion aimRotation;
@@ -120,14 +120,16 @@ public class Unit : WorldObject
                 float z = hitPoint.z;
                 Vector3 destination = new Vector3(x, y, z);
                 StopAttack();
-                StartMove(destination);
+                //StartMove(destination);
+                player.CmdStartMove(destination, this.gameObject.GetComponent<NetworkIdentity>().netId);
             }
         }
     }
+    
 
     public virtual void StartMove(Vector3 destination)
     {
-        destinationTarget = null;
+        //destinationTarget = null;
         this.destination = destination;
         //targetRotation = Quaternion.LookRotation(destination - transform.position);
         //rotating = true;
@@ -140,12 +142,15 @@ public class Unit : WorldObject
 
     //TODO szar az egész
 
+    //elvilge nem kell
+    /*
     public void StartMove(Vector3 destination, GameObject destinationTarget)
     {
         StartMove(destination);
-        this.destinationTarget = destinationTarget;
-    }
+        //this.destinationTarget = destinationTarget;
+    }*/
 
+    /*
     private void TurnToTarget()
     {
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed);
@@ -158,7 +163,7 @@ public class Unit : WorldObject
         }
         //CalculateBounds();
         if (destinationTarget) CalculateTargetDestination();
-    }
+    }*/
 
     private void MakeMove()
     {
@@ -196,7 +201,7 @@ public class Unit : WorldObject
         }
         return false;
     }
-
+    /*
     private void CalculateTargetDestination()
     {
         //calculate number of unit vectors from unit centre to unit edge of bounds
@@ -230,7 +235,7 @@ public class Unit : WorldObject
         destination.y = destinationTarget.transform.position.y;
         // TurnToTarget()  wwont call it again
         destinationTarget = null;
-    }
+    }*/
 
     //attack
 

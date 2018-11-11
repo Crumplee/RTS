@@ -274,4 +274,17 @@ public class Player : NetworkBehaviour
         return currentPopulation;
     }
 
+    [Command]
+    public void CmdStartMove(Vector3 destination, NetworkInstanceId id)
+    {
+        GameObject unit = ClientScene.FindLocalObject(id);
+        RpcStartMove(destination, unit);
+    }
+
+    [ClientRpc]
+    public void RpcStartMove(Vector3 destination, GameObject unit)
+    {
+        unit.GetComponent<Unit>().StartMove(destination);
+    }
+
 }

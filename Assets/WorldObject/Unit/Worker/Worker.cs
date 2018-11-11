@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using RTS;
 
 public class Worker : Unit
@@ -53,7 +54,8 @@ public class Worker : Unit
                         emptying = true;
                         //foreach (Arms arm in arms) arm.renderer.enabled = false;
                         //StartMove(resourceStore.transform.position, resourceStore.gameObject);
-                        StartMove(resourceStore.spawnPoint, resourceStore.gameObject);
+                        //StartMove(resourceStore.spawnPoint);
+                        player.CmdStartMove(resourceStore.spawnPoint, this.gameObject.GetComponent<NetworkIdentity>().netId);
                     }
                 }
                 else
@@ -66,7 +68,8 @@ public class Worker : Unit
                         if (!resourceDeposit.isEmpty())
                         {
                             harvesting = true;
-                            StartMove(resourceDeposit.transform.position, resourceDeposit.gameObject);
+                            //StartMove(resourceDeposit.transform.position);
+                            player.CmdStartMove(resourceDeposit.transform.position, this.gameObject.GetComponent<NetworkIdentity>().netId);
                         }
                     }
                 }
@@ -189,7 +192,8 @@ public class Worker : Unit
 
         if (resource.GetResourceType() == ResourceType.Food) resource.CanHarvest = false;
 
-        StartMove(resource.transform.position, resource.gameObject);
+        //StartMove(resource.transform.position);
+        player.CmdStartMove(resource.transform.position, this.gameObject.GetComponent<NetworkIdentity>().netId);
         //we can only collect one resource at a time, other resources are lost
         if (harvestType == ResourceType.Unknown || harvestType != resource.GetResourceType())
         {
@@ -233,7 +237,8 @@ public class Worker : Unit
     public override void SetBuilding(Building project)
     {
         currentProject = project;
-        StartMove(currentProject.transform.position, currentProject.gameObject);
+        //StartMove(currentProject.transform.position);
+        player.CmdStartMove(currentProject.transform.position, this.gameObject.GetComponent<NetworkIdentity>().netId);
         building = true;
         //idle = false;
     }
