@@ -625,13 +625,13 @@ MonoBehaviour:
   moveSpeed: 10
   rotateSpeed: 10
   capacity: 20
-  resourceStore: {fileID: 114710023805904094, guid: 925a80aded24e914e844e17dfa82aaed,
-    type: 2}
+  harvesting: 0
+  emptying: 0
+  resourceStore: {fileID: 0}
   collectionAmount: 5
   depositAmount: 20
   buildSpeed: 20
   currentProject: {fileID: 0}
-  building: 0
 --- !u!114 &114674613718344060
 MonoBehaviour:
   m_ObjectHideFlags: 1

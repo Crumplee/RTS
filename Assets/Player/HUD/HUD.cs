@@ -103,7 +103,7 @@ public class HUD : MonoBehaviour
     // Update is called once per frame
     void OnGUI()
     {
-        if (player && player.human)
+        if (player.IsLocalPlayer())
         {
             DrawResourcesBar();
             DrawOrdersBar();
@@ -120,7 +120,8 @@ public class HUD : MonoBehaviour
         if (player.SelectedObject)
         {
             selectionName = player.SelectedObject.objectName;
-            if (player.SelectedObject.GetComponentInParent<Player>().IsLocalPlayer())
+            Player p = player.SelectedObject.GetComponentInParent<Player>();
+            if (p && p.IsLocalPlayer()) // !!!
             {
                 //reset slider value if the selected object has changed
                 if (lastSelection && lastSelection != player.SelectedObject) sliderValue = 0.0f;

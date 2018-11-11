@@ -6,7 +6,7 @@ public class Worker : Unit
 {
 
     public float capacity;
-
+    [SerializeField]
     private bool harvesting = false, emptying = false;
     private float currentLoad = 0.0f;
     private ResourceType harvestType;
@@ -21,7 +21,6 @@ public class Worker : Unit
     public int buildSpeed;
     [SerializeField]
     private Building currentProject;
-    [SerializeField]
     private bool building = false;
     private float amountBuilt = 0.0f;
 
@@ -33,6 +32,7 @@ public class Worker : Unit
         base.Start();
         harvestType = ResourceType.Unknown;
         actions = new string[] { "Castle", "Barrack", "House", "Farm" };
+        Init();
     }
 
     protected override void Update()
@@ -93,10 +93,10 @@ public class Worker : Unit
         }
     }
 
-    public override void Init(Building creator)
+    public override void Init()
     {
-        base.Init(creator);
-        resourceStore = creator;
+        base.Init();
+        resourceStore = player.GetComponentInChildren<Castle>();
     }
 
 
@@ -166,7 +166,8 @@ public class Worker : Unit
                         if (player.SelectedObject) player.SelectedObject.SetSelection(false, playingArea);
                         SetSelection(true, playingArea);
                         player.SelectedObject = this;
-                        StartHarvest(resource);
+                        //StartHarvest(resource);
+                        player.CmdStartHarvest(resource.GetComponent<NetworkIdentity>().netId, this.gameObject.GetComponent<NetworkIdentity>().netId);
                     }
 
                 }
@@ -186,7 +187,7 @@ public class Worker : Unit
     
 
    
-    private void StartHarvest(Resource resource)
+    public void StartHarvest(Resource resource)
     {
         resourceDeposit = resource;
 
@@ -204,7 +205,7 @@ public class Worker : Unit
         emptying = false;
     }
 
-    private void StopHarvest()
+    public void StopHarvest()
     {
         //idle = true;
         harvesting = false;
@@ -237,8 +238,8 @@ public class Worker : Unit
     public override void SetBuilding(Building project)
     {
         currentProject = project;
-        //StartMove(currentProject.transform.position);
-        player.CmdStartMove(currentProject.transform.position, this.gameObject.GetComponent<NetworkIdentity>().netId);
+        StartMove(currentProject.transform.position);
+        //player.CmdStartMove(currentProject.transform.position, this.gameObject.GetComponent<NetworkIdentity>().netId);
         building = true;
         //idle = false;
     }

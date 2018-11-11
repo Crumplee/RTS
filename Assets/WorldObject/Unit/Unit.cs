@@ -67,7 +67,7 @@ public class Unit : WorldObject
         Destroy(gameObject);
     }
 
-    public virtual void Init(Building creator)
+    public virtual void Init()
     {
         //specific initialization for a unit can be specified here
     }

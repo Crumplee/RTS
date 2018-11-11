@@ -287,4 +287,33 @@ public class Player : NetworkBehaviour
         unit.GetComponent<Unit>().StartMove(destination);
     }
 
+    [Command]
+    public void CmdStartHarvest(NetworkInstanceId resourceId, NetworkInstanceId unitId)
+    {
+        GameObject resource = ClientScene.FindLocalObject(resourceId);
+        GameObject unit = ClientScene.FindLocalObject(unitId);
+        RpcStartHarvest(resource, unit);
+    }
+
+    [ClientRpc]
+    public void RpcStartHarvest(GameObject resource, GameObject unit)
+    {
+        Worker w = unit.GetComponent<Worker>();
+        Resource r = resource.GetComponent<Resource>();
+        w.StartHarvest(r);
+    }
+
+    [Command]
+    public void CmdStopHarvest(NetworkInstanceId unitId)
+    {
+        GameObject unit = ClientScene.FindLocalObject(unitId);
+        RpcStopHarvest(unit);
+    }
+
+    [ClientRpc]
+    public void RpcStopHarvest(GameObject unit)
+    {
+        Worker w = unit.GetComponent<Worker>();
+        w.StopHarvest();
+    }
 }
