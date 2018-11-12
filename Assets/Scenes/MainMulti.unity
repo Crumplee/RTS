@@ -1843,6 +1843,7 @@ MonoBehaviour:
   units:
   - {fileID: 1519123076109064, guid: 3ae79667c9faf154689373aa7b92b99e, type: 2}
   - {fileID: 1802499784765536, guid: 58f077ec46b967d4c8e23eda4295640b, type: 2}
+  - {fileID: 0}
   worldObjects: []
   player: {fileID: 0}
 --- !u!4 &1583893156

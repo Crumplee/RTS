@@ -9,7 +9,7 @@ public class Barrack : Building
     protected override void Start()
     {
         base.Start();
-        actions = new string[] { "Spearman" };
+        actions = new string[] { "Spearman", "Swordsman" };
     }
 
     public override void PerformAction(string actionToPerform)

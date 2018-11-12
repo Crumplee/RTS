@@ -6,7 +6,7 @@ public class Weapon : MonoBehaviour
     public float velocity = 1;
     public int damage = 1;
 
-    private float range = 1;
+    public float range = 1;
     private WorldObject target;
 
     void Update()

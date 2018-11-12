@@ -701,6 +701,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 1
   damage: 10
+  range: 1
 --- !u!114 &114432863776383880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -723,10 +724,10 @@ MonoBehaviour:
   goldCost: 0
   populationCost: 0
   attacking: 0
-  weaponRange: 2
+  weaponRange: 3
   weaponAimSpeed: 8
   weaponRechargeTime: 2
-  objectRange: 0
+  objectRange: 1
   agent: {fileID: 195493112649148496}
   moving: 0
   rotating: 0

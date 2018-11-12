@@ -613,10 +613,11 @@ MonoBehaviour:
   woodCost: 0
   goldCost: 0
   populationCost: 0
+  attacking: 0
   weaponRange: 2
   weaponAimSpeed: 8
   weaponRechargeTime: 2
-  objectRange: 0
+  objectRange: 1
   agent: {fileID: 195304710027666104}
   moving: 0
   rotating: 0

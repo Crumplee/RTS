@@ -268,7 +268,6 @@ public class WorldObject : NetworkBehaviour
     public virtual void BeginAttack(WorldObject target)
     {
         this.target = target;
-        Debug.Log(TargetInRange());
         if (TargetInRange())
         {
             attacking = true;
@@ -355,7 +354,6 @@ public class WorldObject : NetworkBehaviour
     protected virtual void UseWeapon()
     {
         //this needs to be specified
-        Debug.Log("usewaeponwo");
         currentWeaponChargeTime = 0.0f;
     }
 
