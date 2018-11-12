@@ -110,22 +110,22 @@ public class Player : NetworkBehaviour
         Units units = GetComponentInChildren<Units>();
         GameObject newUnit = (GameObject)Instantiate(ResourceManager.GetUnit(unitName), spawnPoint, rotation);
         newUnit.transform.parent = units.transform;
-        Unit unitObject = newUnit.GetComponent<Unit>();
 
         NetworkServer.Spawn(newUnit);
-        RpcSyncUnit(newUnit, this.gameObject);
-
-        if (unitObject)
-        {
-            //unitObject.Init(creator);
-            if (spawnPoint != rallyPoint) unitObject.StartMove(rallyPoint);
-        }
+        RpcSyncUnit(newUnit, this.gameObject, spawnPoint, rallyPoint);        
     }
 
     [ClientRpc]
-    public void RpcSyncUnit(GameObject unit, GameObject parent)
+    public void RpcSyncUnit(GameObject unit, GameObject parent, Vector3 spawnPoint, Vector3 rallyPoint)
     {
-        unit.transform.parent = parent.transform.Find("Units");
+        unit.transform.parent = parent.GetComponentInChildren<Units>().transform;
+
+        Unit unitObject = unit.GetComponent<Unit>();
+
+        if (unitObject)
+        {
+            if (spawnPoint != rallyPoint) unitObject.StartMove(rallyPoint);
+        }
     }
 
     //building

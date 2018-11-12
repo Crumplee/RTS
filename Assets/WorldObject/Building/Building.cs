@@ -22,18 +22,19 @@ public class Building : WorldObject
     {
         base.Awake();
         buildQueue = new Queue<string>();
-
+        /*
         float spawnX = selectionBounds.center.x + transform.forward.x * selectionBounds.extents.x + transform.forward.x * 10;
         float spawnZ = selectionBounds.center.z + transform.forward.z + selectionBounds.extents.z + transform.forward.z * 10;
         spawnPoint = new Vector3(spawnX, 0.0f, spawnZ);
-        rallyPoint = spawnPoint;
-        gameObject.GetComponent<NavMeshObstacle>().enabled = true;
+        */
     }
 
     protected override void Start()
     {
         base.Start();
 
+        spawnPoint = GetComponentInChildren<SpawnPoint>().GetPoint();
+        rallyPoint = spawnPoint;
     }
 
     protected override void Update()
