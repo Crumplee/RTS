@@ -32,6 +32,7 @@ public class WorldObject : NetworkBehaviour
 
     //attack
     protected WorldObject target = null;
+    [SerializeField]
     protected bool attacking = false;
     public float weaponRange = 1.0f;
     protected bool movingIntoPosition = false;
@@ -103,14 +104,11 @@ public class WorldObject : NetworkBehaviour
                 Resource resource = hitObject.transform.parent.GetComponent<Resource>();
                 if (resource && resource.isEmpty()) return;
                 Player owner = hitObject.transform.root.GetComponent<Player>();
-                if (owner)
-                { //the object is controlled by a player
-                    if (player && player.human)
-                    { //this object is controlled by a human player
-                      //start attack if object is not owned by the same player and this object can attack
-                        if (player.username != owner.username && CanAttack()) BeginAttack(worldObject);
-                        else ChangeSelection(worldObject, controller);
-                    }
+                if (owner && this.GetComponentInParent<Player>().IsLocalPlayer())
+                {
+                    //start attack if object is not owned by the same player and this object can attack
+                    if (player.username != owner.username && CanAttack())
+                        player.CmdBeginAttack(worldObject.GetComponent<NetworkIdentity>().netId, this.gameObject.GetComponent<NetworkIdentity>().netId);
                     else ChangeSelection(worldObject, controller);
                 }
                 else ChangeSelection(worldObject, controller);
@@ -267,9 +265,10 @@ public class WorldObject : NetworkBehaviour
     }
 
     // if the target is close enough, and lock the target
-    protected virtual void BeginAttack(WorldObject target)
+    public virtual void BeginAttack(WorldObject target)
     {
         this.target = target;
+        Debug.Log(TargetInRange());
         if (TargetInRange())
         {
             attacking = true;
@@ -278,7 +277,7 @@ public class WorldObject : NetworkBehaviour
         else AdjustPosition();
     }
 
-    protected virtual void StopAttack()
+    public virtual void StopAttack()
     {
         this.target = null;
         attacking = false;
@@ -313,7 +312,6 @@ public class WorldObject : NetworkBehaviour
 
     private Vector3 FindNearestAttackPosition()
     {
-        //building!!!!!!!!!!!!
         Vector3 targetLocation = target.transform.position;
         Vector3 direction = targetLocation - transform.position;
         float targetDistance = direction.magnitude;
@@ -357,6 +355,7 @@ public class WorldObject : NetworkBehaviour
     protected virtual void UseWeapon()
     {
         //this needs to be specified
+        Debug.Log("usewaeponwo");
         currentWeaponChargeTime = 0.0f;
     }
 

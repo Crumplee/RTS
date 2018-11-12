@@ -68,6 +68,7 @@ public class Spearman : Unit
     protected override void UseWeapon()
     {
         base.UseWeapon();
+        Debug.Log("spearusing");
         Weapon spear = this.GetComponentInChildren<Weapon>();
         spear.SetTarget(target);
         spear.InflictDamage();

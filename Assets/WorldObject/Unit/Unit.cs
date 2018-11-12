@@ -95,9 +95,8 @@ public class Unit : WorldObject
 
     public override void MouseClick(GameObject hitObject, Vector3 hitPoint, Player controller)
     {
-
         base.MouseClick(hitObject, hitPoint, controller);
-
+        
         if (!this.GetComponentInParent<Player>().IsLocalPlayer())
         {
             return;
@@ -119,7 +118,7 @@ public class Unit : WorldObject
                 float y = hitPoint.y + player.SelectedObject.transform.position.y;
                 float z = hitPoint.z;
                 Vector3 destination = new Vector3(x, y, z);
-                StopAttack();
+                player.CmdStopAttack(this.gameObject.GetComponent<NetworkIdentity>().netId);
                 //StartMove(destination);
                 player.CmdStartMove(destination, this.gameObject.GetComponent<NetworkIdentity>().netId);
             }

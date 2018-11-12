@@ -316,4 +316,34 @@ public class Player : NetworkBehaviour
         Worker w = unit.GetComponent<Worker>();
         w.StopHarvest();
     }
+
+    [Command]
+    public void CmdBeginAttack(NetworkInstanceId targetId, NetworkInstanceId attackerId)
+    {
+        GameObject target = ClientScene.FindLocalObject(targetId);
+        GameObject attacker = ClientScene.FindLocalObject(attackerId);
+        RpcBeginAttack(target, attacker);
+    }
+
+    [ClientRpc]
+    public void RpcBeginAttack(GameObject target, GameObject attacker)
+    {
+        WorldObject a = attacker.GetComponent<WorldObject>();
+        WorldObject t = target.GetComponent<WorldObject>();
+        a.BeginAttack(t);
+    }
+
+    [Command]
+    public void CmdStopAttack(NetworkInstanceId attackerId)
+    {
+        GameObject attacker = ClientScene.FindLocalObject(attackerId);
+        RpcStopAttack(attacker);
+    }
+
+    [ClientRpc]
+    public void RpcStopAttack(GameObject attacker)
+    {
+        WorldObject a = attacker.GetComponent<WorldObject>();
+        a.StopAttack();
+    }
 }
