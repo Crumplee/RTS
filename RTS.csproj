@@ -323,6 +323,9 @@
     <Compile Include="Assets\Player\UserInput.cs" />
     <Compile Include="Assets\Resources\GameObjectList.cs" />
     <Compile Include="Assets\RTS\Enums.cs" />
+    <Compile Include="Assets\RTS\Point\BuildingPoint.cs" />
+    <Compile Include="Assets\RTS\Point\SpawnPoint.cs" />
+    <Compile Include="Assets\RTS\Point\WorldPoint.cs" />
     <Compile Include="Assets\RTS\ResourceManager.cs" />
     <Compile Include="Assets\RTS\WorkManager.cs" />
     <Compile Include="Assets\WorldObject\Building\Barrack\Barrack.cs" />

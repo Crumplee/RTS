@@ -1835,7 +1835,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildings:
-  - {fileID: 1276698372022922, guid: 925a80aded24e914e844e17dfa82aaed, type: 2}
   - {fileID: 1868051568754486, guid: 45c978d15f8c26342b6c02299cbd276c, type: 2}
   - {fileID: 1864024751671374, guid: c40b24a5af3131a4f836203a7feb1648, type: 2}
   - {fileID: 1998238954935930, guid: ea343ab338a49fd4f957ce4f79033a0e, type: 2}
