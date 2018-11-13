@@ -724,7 +724,7 @@ MonoBehaviour:
   player: {fileID: 0}
   actions: []
   foodCost: 0
-  woodCost: 100
+  woodCost: 150
   goldCost: 0
   populationCost: 0
   attacking: 0
@@ -734,6 +734,7 @@ MonoBehaviour:
   objectRange: 8.5
   maxBuildProgress: 5
   spawnPoint: {x: 0, y: 0, z: 0}
+  buildingPoint: {x: 0, y: 0, z: 0}
   rallyPointImage: {fileID: 2800000, guid: 6bc265cd42d368c44a529af211999415, type: 3}
   population: 0
 --- !u!114 &114248925039425240
@@ -813,7 +814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 1
-  m_SendInterval: 0.1
+  m_SendInterval: 0
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0

@@ -12,6 +12,7 @@ public class Building : WorldObject
 
     public Vector3 spawnPoint;
     protected Vector3 rallyPoint;
+    public Vector3 buildingPoint;
     public Texture2D rallyPointImage;
 
     private bool needsBuilding = false;
@@ -32,9 +33,6 @@ public class Building : WorldObject
     protected override void Start()
     {
         base.Start();
-
-        spawnPoint = GetComponentInChildren<SpawnPoint>().GetPoint();
-        rallyPoint = spawnPoint;
     }
 
     protected override void Update()
@@ -56,6 +54,14 @@ public class Building : WorldObject
         resourceCosts.Add(ResourceType.Population, population);
         player.ReduceResources(resourceCosts);
         Destroy(gameObject);
+    }
+
+    public void CreatePoints()
+    {
+        Debug.Log(GetComponentInChildren<SpawnPoint>().GetPoint());
+        spawnPoint = GetComponentInChildren<SpawnPoint>().GetPoint();
+        buildingPoint = GetComponentInChildren<BuildingPoint>().GetPoint();
+        rallyPoint = spawnPoint;
     }
 
     protected void CreateUnit(string unitName)

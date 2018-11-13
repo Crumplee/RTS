@@ -226,14 +226,8 @@ public class Player : NetworkBehaviour
         GameObject creator = ClientScene.FindLocalObject(id);
 
         NetworkServer.Spawn(newbuilding);
+        
         RpcSyncBuilding(newbuilding, this.gameObject, creator);
-        /*
-        tempBuilding.SetPlayer();
-        tempBuilding.SetColliders(true);
-        ReduceResources(tempBuilding.GetCosts());
-        tempCreator.SetBuilding(tempBuilding);
-        tempBuilding.StartConstruction();
-        */
     }
 
     [ClientRpc]
@@ -242,11 +236,12 @@ public class Player : NetworkBehaviour
         newbuilding.transform.parent = parent.GetComponentInChildren<Buildings>().transform;
         Building b = newbuilding.GetComponent<Building>();
         Player p = parent.GetComponent<Player>();
+        Unit u = tempCreator.GetComponent<Unit>();
         
         b.SetPlayer();
         b.SetColliders(true);
         p.ReduceResources(b.GetCosts());
-        tempCreator.GetComponent<Unit>().SetBuilding(b);
+        u.SetBuilding(b);
         b.StartConstruction();
         
     }

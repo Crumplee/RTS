@@ -238,7 +238,8 @@ public class Worker : Unit
     public override void SetBuilding(Building project)
     {
         currentProject = project;
-        StartMove(currentProject.transform.position);
+        //StartMove(currentProject.transform.position);
+        StartMove(currentProject.GetComponentInChildren<BuildingPoint>().GetPoint());
         //player.CmdStartMove(currentProject.transform.position, this.gameObject.GetComponent<NetworkIdentity>().netId);
         building = true;
         //idle = false;
