@@ -33,6 +33,9 @@ public class Building : WorldObject
     protected override void Start()
     {
         base.Start();
+        spawnPoint = GetComponentInChildren<SpawnPoint>().GetPoint();
+        buildingPoint = GetComponentInChildren<BuildingPoint>().GetPoint();
+        rallyPoint = spawnPoint;
     }
 
     protected override void Update()
@@ -54,14 +57,6 @@ public class Building : WorldObject
         resourceCosts.Add(ResourceType.Population, population);
         player.ReduceResources(resourceCosts);
         Destroy(gameObject);
-    }
-
-    public void CreatePoints()
-    {
-        Debug.Log(GetComponentInChildren<SpawnPoint>().GetPoint());
-        spawnPoint = GetComponentInChildren<SpawnPoint>().GetPoint();
-        buildingPoint = GetComponentInChildren<BuildingPoint>().GetPoint();
-        rallyPoint = spawnPoint;
     }
 
     protected void CreateUnit(string unitName)
@@ -190,9 +185,7 @@ public class Building : WorldObject
 
     private void SetSpawnandRallyPoint()
     {
-        float spawnX = selectionBounds.center.x + transform.forward.x * selectionBounds.extents.x + transform.forward.x * 10;
-        float spawnZ = selectionBounds.center.z + transform.forward.z + selectionBounds.extents.z + transform.forward.z * 10;
-        spawnPoint = new Vector3(spawnX, 0.0f, spawnZ);
+        spawnPoint = GetComponentInChildren<SpawnPoint>().GetPoint();
         rallyPoint = spawnPoint;
     }
 
