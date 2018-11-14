@@ -38,6 +38,16 @@ public class Player : NetworkBehaviour
         u.target = newUnit.transform;
         u.enabled = true;
         */
+        foreach (SpawnInfo si in Resources.FindObjectsOfTypeAll(typeof (SpawnInfo)) as SpawnInfo[])
+        {
+            if (si.transform.position == this.transform.position)
+            {
+                username = si.userName;
+                teamColor = si.color;
+            }
+        }
+        
+
     }
 
     void Awake()

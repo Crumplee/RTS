@@ -320,6 +320,7 @@
     <Compile Include="Assets\Player\HUD\HUD.cs" />
     <Compile Include="Assets\Player\Player.cs" />
     <Compile Include="Assets\Player\RallyPoint\RallyPoint.cs" />
+    <Compile Include="Assets\Player\SpawnInfo.cs" />
     <Compile Include="Assets\Player\UserInput.cs" />
     <Compile Include="Assets\Resources\GameObjectList.cs" />
     <Compile Include="Assets\RTS\Enums.cs" />
