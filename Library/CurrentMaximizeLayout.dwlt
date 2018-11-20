@@ -20,10 +20,10 @@ MonoBehaviour:
     y: 30
     width: 1366
     height: 635
-  m_MinSize: {x: 683, y: 342}
-  m_MaxSize: {x: 12008, y: 8042}
+  m_MinSize: {x: 681, y: 342}
+  m_MaxSize: {x: 12006, y: 8042}
   vertical: 0
-  controlID: 11882
+  controlID: 4627
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -123,10 +123,10 @@ MonoBehaviour:
     y: 0
     width: 1082
     height: 635
-  m_MinSize: {x: 406, y: 342}
-  m_MaxSize: {x: 8006, y: 8042}
+  m_MinSize: {x: 404, y: 342}
+  m_MaxSize: {x: 8004, y: 8042}
   vertical: 1
-  controlID: 11883
+  controlID: 4628
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -147,10 +147,10 @@ MonoBehaviour:
     y: 0
     width: 1082
     height: 357
-  m_MinSize: {x: 406, y: 221}
-  m_MaxSize: {x: 8006, y: 4021}
+  m_MinSize: {x: 404, y: 221}
+  m_MaxSize: {x: 8004, y: 4021}
   vertical: 0
-  controlID: 11884
+  controlID: 4629
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -205,7 +205,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: c6aceaff3aadeaffb6aeeaff64b9eaff7cb9eaffc478ebffd6b3ecff42b4ecffbeb5ecfff819edff7a1aedfff61bedffe6ebf0ff44edf0ffa2edf0ffb8f0f0ffbaf0f0ffda7af7ffbea1f7ffacb7f7ff1eb8f7ff94b9f7ff5ec9f8ff64cbf9ffeacbf9ff66cdf9ffe6fbffff000000007643000090460000
+    m_ExpandedIDs: ae8ef8ff268ff8ffa290f8fff6aaf8ff74abf8fff0acf8ff06adf8ffa244f9ffbc44f9ff4a5ffbff4ad6fcff6c05ffffda05ffff5607ffffe6fbffff0000000066a201002cce0100844e0200
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -288,9 +288,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 105.54443, y: 9.602722, z: -38.374115}
+    m_Target: {x: 34.449768, y: 128.29333, z: 44.571136}
     speed: 2
-    m_Value: {x: 105.54443, y: 9.602722, z: -38.374115}
+    m_Value: {x: 34.449768, y: 128.29333, z: 44.571136}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -318,13 +318,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.2525888, y: 0.7178196, z: -0.32185566, w: -0.56333196}
+    m_Target: {x: -0.20215291, y: 0.6243756, z: -0.17179643, w: -0.73469406}
     speed: 2
-    m_Value: {x: -0.2525888, y: 0.7178196, z: -0.3218557, w: -0.563332}
+    m_Value: {x: -0.2021529, y: 0.6243755, z: -0.17179643, w: -0.734694}
   m_Size:
-    m_Target: 538.2511
+    m_Target: 529.19495
     speed: 2
-    m_Value: 538.2511
+    m_Value: 529.19495
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -466,20 +466,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/WorldObject/Resource/Tree
+    - Assets/WorldObject/Building/Castle
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/WorldObject/Resource/Tree
+  - Assets/WorldObject/Building/Castle
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Bence\Documents\RTS
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 324}
-    m_SelectedIDs: b4090000
-    m_LastClickedID: 2484
-    m_ExpandedIDs: 00000000a8090000c0090000c4090000d0090000960a0000220c0000760c00009c0d000000ca9a3b
+    scrollPos: {x: 0, y: 276}
+    m_SelectedIDs: 900c0000
+    m_LastClickedID: 3216
+    m_ExpandedIDs: 00000000aa090000c2090000c6090000d2090000960a0000360c0000440c00009a0c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -507,7 +507,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a8090000c0090000c4090000d0090000960a0000220c0000760c00009c0d000000ca9a3b
+    m_ExpandedIDs: 00000000aa090000c2090000c6090000d2090000960a0000360c0000440c00009a0c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -532,10 +532,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: ba6a0800
-    m_LastClickedInstanceID: 551610
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c62300004e0c0000880c0000020a00000e0a0000940c0000100a0000120a0000000000002a0a00002c0a0000360c0000a80a0000
+    m_ExpandedInstanceIDs: c62300004e0c0000880c0000020a00000e0a0000940c0000100a0000120a0000000000002a0a00002c0a0000360c0000a80a00000e0d0000340a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

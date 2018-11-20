@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.AI;
 using RTS;
 
 public class Player : NetworkBehaviour
@@ -46,8 +47,9 @@ public class Player : NetworkBehaviour
                 teamColor = si.color;
             }
         }
-        
 
+        //GetComponentInChildren<Castle>().GetComponent<NavMeshObstacle>().enabled = true;       
+        Camera.main.transform.position = new Vector3(this.transform.position.x + 30, Camera.main.transform.position.y, this.transform.position.z - 20);
     }
 
     void Awake()
@@ -252,8 +254,7 @@ public class Player : NetworkBehaviour
         b.SetColliders(true);
         p.ReduceResources(b.GetCosts());
         u.SetBuilding(b);
-        b.StartConstruction();
-        
+        b.StartConstruction();        
     }
 
     public Unit GetTempCreator()
