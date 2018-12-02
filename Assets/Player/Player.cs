@@ -25,20 +25,10 @@ public class Player : NetworkBehaviour
     private bool findingPlacement = false;
 
     public Color teamColor;
-    // Use this for initialization
+
     void Start()
     {
         hud = GetComponentInChildren<HUD>();
-        /*
-        NetworkTransformChild u = gameObject.AddComponent<NetworkTransformChild>();
-        
-        Units units = GetComponentInChildren<Units>();
-        GameObject newUnit = (GameObject)Instantiate(ResourceManager.GetUnit("Worker"));
-        newUnit.transform.parent = units.transform;
-        Unit unitObject = newUnit.GetComponent<Unit>();
-        u.target = newUnit.transform;
-        u.enabled = true;
-        */
         foreach (SpawnInfo si in Resources.FindObjectsOfTypeAll(typeof (SpawnInfo)) as SpawnInfo[])
         {
             if (si.transform.position == this.transform.position)
@@ -47,9 +37,10 @@ public class Player : NetworkBehaviour
                 teamColor = si.color;
             }
         }
-
-        //GetComponentInChildren<Castle>().GetComponent<NavMeshObstacle>().enabled = true;       
-        Camera.main.transform.position = new Vector3(this.transform.position.x + 30, Camera.main.transform.position.y, this.transform.position.z - 20);
+        
+        GameObject.Find("NetworkManager").GetComponent<NetworkManagerHUD>().enabled = false;
+        
+        if (isLocalPlayer) Camera.main.transform.position = new Vector3(this.transform.position.x + 30, Camera.main.transform.position.y, this.transform.position.z - 20);
     }
 
     void Awake()
@@ -68,10 +59,10 @@ public class Player : NetworkBehaviour
         
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        if (human)
+        if (human && IsLocalPlayer())
         {
             hud.SetResourceValues(resources);
             if (findingPlacement)
@@ -116,6 +107,7 @@ public class Player : NetworkBehaviour
     {
         return resources[type];
     }
+
     [Command]
     public void CmdAddUnit(string unitName, Vector3 spawnPoint, Vector3 rallyPoint, Quaternion rotation/*, Building creator*/)
     {

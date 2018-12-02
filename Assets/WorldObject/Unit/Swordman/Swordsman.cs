@@ -12,8 +12,31 @@ public class Swordsman : Unit
     protected override void Update()
     {
         base.Update();
+        if (attacking && !movingIntoPosition && !aiming) AnimateAttack();
     }
 
+    private void AnimateAttack()
+    {
+        int frame = (int)Time.time % 2;
+        GameObject att1 = null;
+        GameObject att2 = null;
+        foreach (Transform child in transform)
+        {
+            if (child.name == "Attack1") att1 = child.gameObject;
+            if (child.name == "Attack2") att2 = child.gameObject;
+        }
+        if (frame == 0)
+        {
+            att1.SetActive(true);
+            att2.SetActive(false);
+        }
+        else
+        {
+            att2.SetActive(true);
+            att1.SetActive(false);
+        }
+            
+    }
 
     /* Public Methods */
 

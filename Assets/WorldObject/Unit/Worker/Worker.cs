@@ -86,6 +86,14 @@ public class Worker : Unit
                     if (!currentProject.UnderConstruction())
                     {
                         building = false;
+                        /*
+                        GameObject o = currentProject.transform.gameObject;
+                        if (o.tag == "Farm")
+                        {
+                            Resource resource = o.GetComponent<Resource>();
+                            player.CmdStartHarvest(resource.GetComponent<NetworkIdentity>().netId, this.gameObject.GetComponent<NetworkIdentity>().netId); ;
+
+                        }*/
                         //idle = true;
                     }
                 }

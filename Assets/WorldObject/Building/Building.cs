@@ -164,7 +164,8 @@ public class Building : WorldObject
         needsBuilding = true;
         this.GetComponentInParent<Player>().tempBuilding = null;
         hitPoints = 0;
-        GetComponent<NavMeshObstacle>().enabled = true;
+        NavMeshObstacle nmo = GetComponent<NavMeshObstacle>();
+        if (nmo) nmo.enabled = true;
     }
 
     private void DrawBuildProgress()

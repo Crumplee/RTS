@@ -61,7 +61,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1108132246367002
 GameObject:
   m_ObjectHideFlags: 1
@@ -1551,10 +1551,10 @@ MonoBehaviour:
   deleteImage: {fileID: 2800000, guid: 5a063abb9d63bef42ae339f1815507cf, type: 3}
   activeCursor: {fileID: 0}
   selectCursor: {fileID: 2800000, guid: 9d12c8bba6263214889f26e2dd1ef924, type: 3}
-  leftCursor: {fileID: 2800000, guid: 72508e10fde99964991f97955100da40, type: 3}
-  rightCursor: {fileID: 2800000, guid: b7c392030dd01564bb5fb5848bafc27e, type: 3}
-  upCursor: {fileID: 2800000, guid: 41aa6fe8950bfed45bc2153d6090ce13, type: 3}
-  downCursor: {fileID: 2800000, guid: 23e4c53d05d9e0446a53d7c394f17392, type: 3}
+  leftCursor: {fileID: 2800000, guid: 9a36bbd282219a740904d0a4c2b2fa94, type: 3}
+  rightCursor: {fileID: 2800000, guid: c4237a864966ca943a385c13442eba90, type: 3}
+  upCursor: {fileID: 2800000, guid: 732e747e7db41314e874b60e64cf11ae, type: 3}
+  downCursor: {fileID: 2800000, guid: 3eaef8aea0e9b1046a14568c09280cb8, type: 3}
   moveCursors:
   - {fileID: 2800000, guid: c147768aa9b602a4c941c3abb5f1a79e, type: 3}
   - {fileID: 2800000, guid: 80df47168167b3442a8aa193b0010abc, type: 3}

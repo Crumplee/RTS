@@ -120,6 +120,8 @@ public class HUD : MonoBehaviour
         if (player.SelectedObject)
         {
             selectionName = player.SelectedObject.objectName;
+
+
             Player p = player.SelectedObject.GetComponentInParent<Player>();
             if (p && p.IsLocalPlayer()) // !!!
             {
@@ -137,13 +139,14 @@ public class HUD : MonoBehaviour
                 }
             }
         }
+        /*
         if (!selectionName.Equals(""))
         {
             int leftPos = BUILD_IMAGE_WIDTH + SCROLL_BAR_WIDTH / 2 + 64;
             int topPos = buildAreaHeight + BUTTON_SPACING;
             GUI.Label(new Rect(leftPos, topPos, ORDERS_BAR_WIDTH, SELECTION_NAME_HEIGHT), selectionName);
         }
-
+        */
         GUI.EndGroup();
     }
 
@@ -194,7 +197,9 @@ public class HUD : MonoBehaviour
         if (type == ResourceType.Population) text = player.GetcurrentPopulation() + "/";
         text += resourceValues[type].ToString(); // + "/" + resourceLimits[type].ToString();
         GUI.DrawTexture(new Rect(iconLeft, topPos, ICON_WIDTH, ICON_HEIGHT), icon);
-        GUI.Label(new Rect(textLeft, topPos, TEXT_WIDTH, TEXT_HEIGHT), text);
+        GUIStyle guis = new GUIStyle();
+        guis.normal.textColor = Color.black;
+        GUI.Label(new Rect(textLeft, topPos, TEXT_WIDTH, TEXT_HEIGHT), text, guis);
     }
 
     private void DrawActions(string[] actions)
@@ -402,6 +407,7 @@ public class HUD : MonoBehaviour
         int topPos = buildAreaHeight - BUILD_IMAGE_HEIGHT / 2;
         int width = BUILD_IMAGE_WIDTH / 2;
         int height = BUILD_IMAGE_HEIGHT / 2;
+        /*
         if (building.hasSpawnPoint())
         {
             if (GUI.Button(new Rect(leftPos, topPos, width, height), building.rallyPointImage))
@@ -414,7 +420,7 @@ public class HUD : MonoBehaviour
                     SetCursorState(CursorState.Select);
                 }
             }
-        }
+        }*/
     }
 
     public CursorState GetPreviousCursorState()

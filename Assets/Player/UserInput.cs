@@ -108,7 +108,7 @@ public class UserInput : MonoBehaviour
 
         if (Input.GetKeyDown("space"))
         {
-            Camera.main.transform.position = new Vector3(player.transform.position.x+30, Camera.main.transform.position.y, player.transform.position.z-20);
+            if (player.isLocalPlayer) Camera.main.transform.position = new Vector3(player.transform.position.x+30, Camera.main.transform.position.y, player.transform.position.z-20);
         }
     }
 
