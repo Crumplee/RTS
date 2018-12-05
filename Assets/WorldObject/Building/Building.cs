@@ -36,7 +36,7 @@ public class Building : WorldObject
     protected override void Update()
     {
         base.Update();
-        ProcesstrainQueue();
+        ProcessTrainQueue();
     }
 
     protected override void OnGUI()
@@ -60,9 +60,8 @@ public class Building : WorldObject
         trainQueue.Enqueue(unitName);
     }
 
-    protected void ProcesstrainQueue()
+    protected void ProcessTrainQueue()
     {
-        Debug.Log(trainQueue);
         if (trainQueue.Count > 0)
         {
             currentTrainProgress += Time.deltaTime * ResourceManager.BuildSpeed;

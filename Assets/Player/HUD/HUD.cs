@@ -275,16 +275,16 @@ public class HUD : MonoBehaviour
             Rect buildPos = new Rect(BUILD_IMAGE_PADDING, topPos, BUILD_IMAGE_WIDTH, BUILD_IMAGE_HEIGHT);
             GUI.DrawTexture(buildPos, ResourceManager.GetObjectImage(buildQueue[i]));
             GUI.DrawTexture(buildPos, buildFrame);
-            topPos += BUILD_IMAGE_PADDING;
-            float width = BUILD_IMAGE_WIDTH - 2 * BUILD_IMAGE_PADDING;
-            float height = BUILD_IMAGE_HEIGHT - 2 * BUILD_IMAGE_PADDING;
+            //topPos += BUILD_IMAGE_PADDING;
+            float width = BUILD_IMAGE_WIDTH;
+            float height = BUILD_IMAGE_HEIGHT;
             if (i == 0)
             {
                 //shrink the build mask on the item currently being built to give an idea of progress
                 topPos += height * buildPercentage;
                 height *= (1 - buildPercentage);
             }
-            GUI.DrawTexture(new Rect(2 * BUILD_IMAGE_PADDING, topPos, width, height), buildMask);
+            GUI.DrawTexture(new Rect(BUILD_IMAGE_PADDING, topPos, width, height), buildMask);
         }
     }
 
