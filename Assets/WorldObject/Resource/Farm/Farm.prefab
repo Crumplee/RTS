@@ -1172,11 +1172,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectName: Farm
-  buildImage: {fileID: 2800000, guid: 9f80a7729e5d8694b943fe423700192b, type: 3}
+  objectImage: {fileID: 2800000, guid: 9f80a7729e5d8694b943fe423700192b, type: 3}
   hitPoints: 100
   maxHitPoints: 100
   player: {fileID: 0}
-  actions: []
   foodCost: 0
   woodCost: 100
   goldCost: 0
@@ -1224,11 +1223,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectName: Farm
-  buildImage: {fileID: 0}
+  objectImage: {fileID: 0}
   hitPoints: 100
   maxHitPoints: 100
   player: {fileID: 0}
-  actions: []
   foodCost: 0
   woodCost: 0
   goldCost: 0

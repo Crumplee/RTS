@@ -781,15 +781,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectName: Worker
-  buildImage: {fileID: 2800000, guid: d7d0b86a476e5524c93ca1d994a7b1d1, type: 3}
+  objectImage: {fileID: 2800000, guid: d7d0b86a476e5524c93ca1d994a7b1d1, type: 3}
   hitPoints: 100
   maxHitPoints: 100
   player: {fileID: 0}
-  actions: []
   foodCost: 100
   woodCost: 0
   goldCost: 0
-  populationCost: 0
+  populationCost: 1
   attacking: 0
   weaponRange: 2
   weaponAimSpeed: 8
@@ -797,11 +796,7 @@ MonoBehaviour:
   objectRange: 1
   agent: {fileID: 195304710027666104}
   moving: 0
-  rotating: 0
-  idle: 0
   destination: {x: 0, y: 0, z: 0}
-  moveSpeed: 10
-  rotateSpeed: 10
   capacity: 20
   harvesting: 0
   emptying: 0

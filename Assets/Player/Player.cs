@@ -8,7 +8,6 @@ using RTS;
 public class Player : NetworkBehaviour
 {
     public string username;
-    public bool human;
     public HUD hud;
 
     public WorldObject SelectedObject { get; set; }
@@ -62,7 +61,7 @@ public class Player : NetworkBehaviour
 
     void Update()
     {
-        if (human && IsLocalPlayer())
+        if (IsLocalPlayer())
         {
             hud.SetResourceValues(resources);
             if (findingPlacement)
@@ -99,7 +98,10 @@ public class Player : NetworkBehaviour
     {
         foreach (KeyValuePair<ResourceType, int> resourceCost in resourceCosts)
         {
-            resources[resourceCost.Key] -= resourceCost.Value;
+            if (resourceCost.Key == ResourceType.Population)
+                currentPopulation += resourceCost.Value;
+            else 
+                resources[resourceCost.Key] -= resourceCost.Value;
         }
     }
     

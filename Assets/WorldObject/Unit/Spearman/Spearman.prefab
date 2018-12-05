@@ -891,15 +891,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectName: Spearman
-  buildImage: {fileID: 2800000, guid: 02cc5e8355170994ca9be1db8eb6fdb5, type: 3}
+  objectImage: {fileID: 2800000, guid: 02cc5e8355170994ca9be1db8eb6fdb5, type: 3}
   hitPoints: 100
   maxHitPoints: 100
   player: {fileID: 0}
-  actions: []
   foodCost: 100
   woodCost: 100
   goldCost: 0
-  populationCost: 0
+  populationCost: 1
   attacking: 0
   weaponRange: 3
   weaponAimSpeed: 8
@@ -907,11 +906,7 @@ MonoBehaviour:
   objectRange: 1
   agent: {fileID: 195493112649148496}
   moving: 0
-  rotating: 0
-  idle: 1
   destination: {x: 0, y: 0, z: 0}
-  moveSpeed: 10
-  rotateSpeed: 10
 --- !u!135 &135019346540336736
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -73,17 +73,17 @@ public class GameObjectList : MonoBehaviour
         return player;
     }
 
-    public Texture2D GetBuildImage(string name)
+    public Texture2D GetobjectImage(string name)
     {
         for (int i = 0; i < buildings.Length; i++)
         {
             Building building = buildings[i].GetComponent<Building>();
-            if (building && building.name == name) return building.buildImage;
+            if (building && building.name == name) return building.objectImage;
         }
         for (int i = 0; i < units.Length; i++)
         {
             Unit unit = units[i].GetComponent<Unit>();
-            if (unit && unit.name == name) return unit.buildImage;
+            if (unit && unit.name == name) return unit.objectImage;
         }
         return null;
     }

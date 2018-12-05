@@ -718,11 +718,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectName: Barrack
-  buildImage: {fileID: 2800000, guid: 02cc5e8355170994ca9be1db8eb6fdb5, type: 3}
+  objectImage: {fileID: 2800000, guid: 02cc5e8355170994ca9be1db8eb6fdb5, type: 3}
   hitPoints: 200
   maxHitPoints: 200
   player: {fileID: 0}
-  actions: []
   foodCost: 0
   woodCost: 150
   goldCost: 0
@@ -732,7 +731,7 @@ MonoBehaviour:
   weaponAimSpeed: 1
   weaponRechargeTime: 1
   objectRange: 8.5
-  maxBuildProgress: 5
+  maxTrainProgress: 12
   spawnPoint: {x: 0, y: 0, z: 0}
   buildingPoint: {x: 0, y: 0, z: 0}
   rallyPointImage: {fileID: 2800000, guid: 6bc265cd42d368c44a529af211999415, type: 3}

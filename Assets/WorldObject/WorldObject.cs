@@ -10,7 +10,7 @@ public class WorldObject : NetworkBehaviour
     protected Rect playingArea = new Rect(0.0f, 0.0f, 0.0f, 0.0f);
 
     public string objectName;
-    public Texture2D buildImage;
+    public Texture2D objectImage;
     public int hitPoints, maxHitPoints;
 
     [SerializeField]
@@ -187,7 +187,7 @@ public class WorldObject : NetworkBehaviour
     public virtual void SetHoverState(GameObject hoverObject)
     {
         //only handle input if owned by a human player and currently selected
-        if (player && player.human && currentlySelected)
+        if (player && currentlySelected)
         {
             //something other than the ground is being hovered over
             if (hoverObject.name != "Ground")

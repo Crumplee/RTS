@@ -38,7 +38,7 @@ public class Worker : Unit
     protected override void Update()
     {
         base.Update();
-        if (!rotating && !moving)// && !idle)
+        if (!moving)
         {
             if (harvesting || emptying)
             {
@@ -139,7 +139,7 @@ public class Worker : Unit
     {
         base.SetHoverState(hoverObject);
         //only handle input if owned by a human player and currently selected
-        if (player && player.human && currentlySelected)
+        if (player && currentlySelected)
         {
             if (hoverObject.name != "Ground")
             {
@@ -154,7 +154,7 @@ public class Worker : Unit
         base.MouseClick(hitObject, hitPoint, controller);
         bool doBase = true;
         //only handle input if owned by a human player
-        if (player && player.human)
+        if (player)
         {
             if (hitObject && hitObject.name != "Ground")
             {
@@ -257,7 +257,7 @@ public class Worker : Unit
     {
         base.PerformAction(actionToPerform);
         Player player = this.GetComponentInParent<Player>();
-        if (player && player.human)
+        if (player)
         {
             if (player.tempBuilding) player.CancelBuildingPlacement();
         }

@@ -31,7 +31,7 @@ namespace RTS
         private static Bounds invalidBounds = new Bounds(new Vector3(-99999, -99999, -99999), new Vector3(0, 0, 0));
         public static Bounds InvalidBounds { get { return invalidBounds; } }
 
-        public static int BuildSpeed { get { return 2; } }
+        public static int BuildSpeed { get { return 1; } }
 
         private static GameObjectList gameObjectList;
 
@@ -60,9 +60,9 @@ namespace RTS
             return gameObjectList.GetPlayerObject();
         }
 
-        public static Texture2D GetBuildImage(string name)
+        public static Texture2D GetObjectImage(string name)
         {
-            return gameObjectList.GetBuildImage(name);
+            return gameObjectList.GetobjectImage(name);
         }
 
         // for health display

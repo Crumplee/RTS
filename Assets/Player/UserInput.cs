@@ -7,17 +7,15 @@ public class UserInput : MonoBehaviour
 {
 
     private Player player;
-
-    // Use this for initialization
+    
     void Start()
     {
         player = transform.root.GetComponent<Player>();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        if (player.human && player.IsLocalPlayer())
+        if (player.IsLocalPlayer())
         {
             if (Input.GetKeyDown(KeyCode.Escape)) OpenPauseMenu();
             MoveCamera();
@@ -148,6 +146,7 @@ public class UserInput : MonoBehaviour
             {
                 GameObject hitObject = WorkManager.GetHitObject(Input.mousePosition);
                 Vector3 hitPoint = WorkManager.GetHitPoint(Input.mousePosition);
+
                 if (hitObject && hitPoint != ResourceManager.InvalidPosition)
                 {
                     if (player.SelectedObject) player.SelectedObject.MouseClick(hitObject, hitPoint, player);
@@ -183,7 +182,7 @@ public class UserInput : MonoBehaviour
         }
     }
 
-    //
+    
     private void MouseHover()
     {
         if (player.hud.MouseInBounds())

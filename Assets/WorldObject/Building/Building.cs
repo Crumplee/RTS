@@ -6,9 +6,9 @@ using RTS;
 
 public class Building : WorldObject
 {
-    public float maxBuildProgress;
-    protected Queue<string> buildQueue;
-    private float currentBuildProgress = 0.0f;
+    public float maxTrainProgress;
+    protected Queue<string> trainQueue;
+    private float currentTrainProgress = 0.0f;
 
     public Vector3 spawnPoint;
     protected Vector3 rallyPoint;
@@ -22,12 +22,7 @@ public class Building : WorldObject
     protected override void Awake()
     {
         base.Awake();
-        buildQueue = new Queue<string>();
-        /*
-        float spawnX = selectionBounds.center.x + transform.forward.x * selectionBounds.extents.x + transform.forward.x * 10;
-        float spawnZ = selectionBounds.center.z + transform.forward.z + selectionBounds.extents.z + transform.forward.z * 10;
-        spawnPoint = new Vector3(spawnX, 0.0f, spawnZ);
-        */
+        trainQueue = new Queue<string>();
     }
 
     protected override void Start()
@@ -41,7 +36,7 @@ public class Building : WorldObject
     protected override void Update()
     {
         base.Update();
-        ProcessBuildQueue();
+        ProcesstrainQueue();
     }
 
     protected override void OnGUI()
@@ -62,33 +57,34 @@ public class Building : WorldObject
     protected void CreateUnit(string unitName)
     {
         player.ReduceResources(ResourceManager.GetUnit(unitName).GetComponent<WorldObject>().GetCosts());
-        buildQueue.Enqueue(unitName);
+        trainQueue.Enqueue(unitName);
     }
 
-    protected void ProcessBuildQueue()
+    protected void ProcesstrainQueue()
     {
-        if (buildQueue.Count > 0)
+        Debug.Log(trainQueue);
+        if (trainQueue.Count > 0)
         {
-            currentBuildProgress += Time.deltaTime * ResourceManager.BuildSpeed;
-            if (currentBuildProgress > maxBuildProgress)
+            currentTrainProgress += Time.deltaTime * ResourceManager.BuildSpeed;
+            if (currentTrainProgress > maxTrainProgress)
             {
-                if (player) player.CmdAddUnit(buildQueue.Dequeue(), spawnPoint, rallyPoint, transform.rotation/*, this*/);
-                currentBuildProgress = 0.0f;
+                if (player) player.CmdAddUnit(trainQueue.Dequeue(), spawnPoint, rallyPoint, transform.rotation/*, this*/);
+                currentTrainProgress = 0.0f;
             }
         }
     }
 
-    public string[] getBuildQueueValues()
+    public string[] getTrainQueueValues()
     {
-        string[] values = new string[buildQueue.Count];
+        string[] values = new string[trainQueue.Count];
         int pos = 0;
-        foreach (string unit in buildQueue) values[pos++] = unit;
+        foreach (string unit in trainQueue) values[pos++] = unit;
         return values;
     }
 
-    public float getBuildPercentage()
+    public float getTrainPercentage()
     {
-        return currentBuildProgress / maxBuildProgress;
+        return currentTrainProgress / maxTrainProgress;
     }
 
     public override void SetSelection(bool selected, Rect playingArea)
@@ -99,7 +95,7 @@ public class Building : WorldObject
             RallyPoint flag = player.GetComponentInChildren<RallyPoint>();
             if (selected)
             {
-                if (flag && player.human && spawnPoint != ResourceManager.InvalidPosition && rallyPoint != ResourceManager.InvalidPosition)
+                if (flag && spawnPoint != ResourceManager.InvalidPosition && rallyPoint != ResourceManager.InvalidPosition)
                 {
                     flag.transform.localPosition = rallyPoint;
                     flag.transform.forward = transform.forward;
@@ -108,7 +104,7 @@ public class Building : WorldObject
             }
             else
             {
-                if (flag && player.human) flag.Disable();
+                if (flag) flag.Disable();
             }
         }
     }
@@ -122,7 +118,7 @@ public class Building : WorldObject
     {
         base.SetHoverState(hoverObject);
         //only handle input if owned by a human player and currently selected
-        if (player && player.human && currentlySelected)
+        if (player && currentlySelected)
         {
             if (hoverObject.name == "Ground")
             {
@@ -134,7 +130,7 @@ public class Building : WorldObject
     public void SetRallyPoint(Vector3 position)
     {
         rallyPoint = position;
-        if (player && player.human && currentlySelected)
+        if (player && currentlySelected)
         {
             RallyPoint flag = player.GetComponentInChildren<RallyPoint>();
             if (flag) flag.transform.localPosition = rallyPoint;
@@ -145,7 +141,7 @@ public class Building : WorldObject
     {
         base.MouseClick(hitObject, hitPoint, controller);
         //only handle iput if owned by a human player and currently selected
-        if (player && player.human && currentlySelected)
+        if (player && currentlySelected)
         {
             if (hitObject.name == "Ground")
             {

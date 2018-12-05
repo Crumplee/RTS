@@ -1302,7 +1302,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   username: 
-  human: 1
   hud: {fileID: 0}
   notAllowedMaterial: {fileID: 2100000, guid: cdcd207e7e20d1a489a96695a9a736e7, type: 2}
   allowedMaterial: {fileID: 2100000, guid: 65c1915feb353c444aaa2db7821a24bf, type: 2}
@@ -1367,11 +1366,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectName: Castle
-  buildImage: {fileID: 2800000, guid: 3c5ca80b7bcb1a04098a500e04982fc6, type: 3}
+  objectImage: {fileID: 2800000, guid: 3c5ca80b7bcb1a04098a500e04982fc6, type: 3}
   hitPoints: 500
   maxHitPoints: 500
   player: {fileID: 0}
-  actions: []
   foodCost: 0
   woodCost: 500
   goldCost: 200
@@ -1381,7 +1379,7 @@ MonoBehaviour:
   weaponAimSpeed: 8
   weaponRechargeTime: 2
   objectRange: 10.5
-  maxBuildProgress: 5
+  maxTrainProgress: 8
   spawnPoint: {x: 0, y: 0, z: 0}
   buildingPoint: {x: 0, y: 0, z: 0}
   rallyPointImage: {fileID: 2800000, guid: 6bc265cd42d368c44a529af211999415, type: 3}

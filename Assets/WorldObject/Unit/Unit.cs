@@ -10,15 +10,10 @@ public class Unit : WorldObject
     public NavMeshAgent agent;
 
     [SerializeField]
-    protected bool moving, rotating, idle;
+    protected bool moving;
 
     [SerializeField]
     private Vector3 destination;
-    private Quaternion targetRotation;
-
-    public float moveSpeed, rotateSpeed;
-
-    //private GameObject destinationTarget;
 
     //attack
     private Quaternion aimRotation;
@@ -31,17 +26,15 @@ public class Unit : WorldObject
     protected override void Start()
     {
         base.Start();
-        //idle = true;
-        player.ModifycurrentPopulation(1);
+        //player.ModifycurrentPopulation(populationCost);
     }
 
     protected override void Update()
     {
         base.Update();
-
-        //if (rotating) TurnToTarget();
-        //else 
-        if (moving) MakeMove();
+        
+        if (moving)
+            Move();
         else if (aiming)
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, aimRotation, weaponAimSpeed);
@@ -63,21 +56,21 @@ public class Unit : WorldObject
     public override void DestroyObject()
     {
         base.DestroyObject();
-        player.ModifycurrentPopulation(-1);
+        player.ModifycurrentPopulation(-populationCost);
         Destroy(gameObject);
     }
 
     public virtual void Init()
     {
-        //specific initialization for a unit can be specified here
+        
     }
 
 
     public override void SetHoverState(GameObject hoverObject)
     {
         base.SetHoverState(hoverObject);
-        //only handle input if owned by a human player and currently selected
-        if (player && player.human && currentlySelected)
+
+        if (player && currentlySelected)
         {
             bool moveHover = false;
             if (hoverObject.name == "Ground")
@@ -102,8 +95,7 @@ public class Unit : WorldObject
             return;
         }
 
-        //only handle input if owned by a human player and currently selected
-        if (player && player.human && currentlySelected)
+        if (player && currentlySelected)
         {
             bool clickedOnEmptyResource = false;
             if (hitObject.transform.parent)
@@ -114,12 +106,11 @@ public class Unit : WorldObject
             if ((hitObject.name == "Ground" || clickedOnEmptyResource) && hitPoint != ResourceManager.InvalidPosition)
             {
                 float x = hitPoint.x;
-                //makes sure that the unit stays on top of the surface it is on
                 float y = hitPoint.y + player.SelectedObject.transform.position.y;
                 float z = hitPoint.z;
                 Vector3 destination = new Vector3(x, y, z);
                 player.CmdStopAttack(this.gameObject.GetComponent<NetworkIdentity>().netId);
-                //StartMove(destination);
+
                 player.CmdStartMove(destination, this.gameObject.GetComponent<NetworkIdentity>().netId);
             }
         }
@@ -128,10 +119,7 @@ public class Unit : WorldObject
 
     public virtual void StartMove(Vector3 destination)
     {
-        //destinationTarget = null;
         this.destination = destination;
-        //targetRotation = Quaternion.LookRotation(destination - transform.position);
-        //rotating = true;
 
         gameObject.GetComponent<NavMeshObstacle>().enabled = false;
         gameObject.GetComponent<NavMeshAgent>().enabled = true;
@@ -139,41 +127,8 @@ public class Unit : WorldObject
         moving = true;
     }
 
-    //TODO szar az egész
-
-    //elvilge nem kell
-    /*
-    public void StartMove(Vector3 destination, GameObject destinationTarget)
+    private void Move()
     {
-        StartMove(destination);
-        //this.destinationTarget = destinationTarget;
-    }*/
-
-    /*
-    private void TurnToTarget()
-    {
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed);
-        //sometimes it gets stuck exactly 180 degrees out in the calculation and does nothing, this check fixes that
-        Quaternion inverseTargetRotation = new Quaternion(-targetRotation.x, -targetRotation.y, -targetRotation.z, -targetRotation.w);
-        if (transform.rotation == targetRotation || transform.rotation == inverseTargetRotation)
-        {
-            rotating = false;
-            moving = true;
-        }
-        //CalculateBounds();
-        if (destinationTarget) CalculateTargetDestination();
-    }*/
-
-    private void MakeMove()
-    {
-        //transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime * moveSpeed);
-        /*
-        if (transform.position == destination)
-        {
-            moving = false;
-            movingIntoPosition = false; // for attack
-        }
-        */
         if (!agent.pathPending)
         {
             if (agent.remainingDistance <= agent.stoppingDistance)
@@ -200,45 +155,9 @@ public class Unit : WorldObject
         }
         return false;
     }
-    /*
-    private void CalculateTargetDestination()
-    {
-        //calculate number of unit vectors from unit centre to unit edge of bounds
-        Vector3 originalExtents = selectionBounds.extents;
-        Vector3 normalExtents = originalExtents;
-        normalExtents.Normalize();
-        float numberOfExtents = originalExtents.x / normalExtents.x;
-        int unitShift = Mathf.FloorToInt(numberOfExtents);
-
-        //calculate number of unit vectors from target centre to target edge of bounds
-        WorldObject worldObject = destinationTarget.GetComponent<WorldObject>();
-        if (worldObject) originalExtents = worldObject.GetSelectionBounds().extents;
-        else originalExtents = new Vector3(0.0f, 0.0f, 0.0f);
-        normalExtents = originalExtents;
-        normalExtents.Normalize();
-        numberOfExtents = originalExtents.x / normalExtents.x;
-        int targetShift = Mathf.FloorToInt(numberOfExtents);
-
-        //calculate number of unit vectors between unit centre and destination centre with bounds just touching
-        int shiftAmount = targetShift + unitShift;
-
-        //calculate direction unit needs to travel to reach destination in straight line and normalize to unit vector
-        Vector3 origin = transform.position;
-        Vector3 direction = new Vector3(destination.x - origin.x, 0.0f, destination.z - origin.z);
-        direction.Normalize();
-
-        //destination = center of destination - number of unit vectors calculated above
-        //this should give us a destination where the unit will not quite collide with the target
-        //giving the illusion of moving to the edge of the target and then stopping
-        for (int i = 0; i < shiftAmount; i++) destination -= direction;
-        destination.y = destinationTarget.transform.position.y;
-        // TurnToTarget()  wwont call it again
-        destinationTarget = null;
-    }*/
+   
 
     //attack
-
-
     protected override void AimAtTarget()
     {
         base.AimAtTarget();

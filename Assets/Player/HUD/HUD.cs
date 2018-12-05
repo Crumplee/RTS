@@ -79,31 +79,31 @@ public class HUD : MonoBehaviour
         }
         buildAreaHeight = Screen.height - RESOURCE_BAR_HEIGHT - SELECTION_NAME_HEIGHT - 2 * BUTTON_SPACING;
 
-        Dictionary<ResourceType, Texture2D> resourceHealthBarTextures = new Dictionary<ResourceType, Texture2D>();
+        Dictionary<ResourceType, Texture2D> resourceHPTextures = new Dictionary<ResourceType, Texture2D>();
         for (int i = 0; i < resourceHealthBars.Length; i++)
         {
             switch (resourceHealthBars[i].name)
             {
                 case "food":
-                    resourceHealthBarTextures.Add(ResourceType.Food, resourceHealthBars[i]);
+                    resourceHPTextures.Add(ResourceType.Food, resourceHealthBars[i]);
                     break;
                 case "wood":
-                    resourceHealthBarTextures.Add(ResourceType.Wood, resourceHealthBars[i]);
+                    resourceHPTextures.Add(ResourceType.Wood, resourceHealthBars[i]);
                     break;
                 case "gold":
-                    resourceHealthBarTextures.Add(ResourceType.Gold, resourceHealthBars[i]);
+                    resourceHPTextures.Add(ResourceType.Gold, resourceHealthBars[i]);
                     break;
                 default: break;
             }
         }
-        ResourceManager.SetResourceHealthBarTextures(resourceHealthBarTextures);
+        ResourceManager.SetResourceHealthBarTextures(resourceHPTextures);
         SetCursorState(CursorState.Select);
     }
 
 
     void OnGUI()
     {
-        if (player.human && player.IsLocalPlayer())
+        if (player.IsLocalPlayer())
         {
             DrawResourcesBar();
             DrawOrdersBar();
@@ -116,15 +116,15 @@ public class HUD : MonoBehaviour
         GUI.skin = ordersSkin;
         GUI.BeginGroup(new Rect(Screen.width - ORDERS_BAR_WIDTH - BUILD_IMAGE_WIDTH, RESOURCE_BAR_HEIGHT, ORDERS_BAR_WIDTH + BUILD_IMAGE_WIDTH, Screen.height - RESOURCE_BAR_HEIGHT));
         GUI.Box(new Rect(BUILD_IMAGE_WIDTH + SCROLL_BAR_WIDTH, 0, ORDERS_BAR_WIDTH, Screen.height - RESOURCE_BAR_HEIGHT), "");
-        string selectionName = "";
+        string selectedObjectName = "";
         if (player.SelectedObject)
         {
-            selectionName = player.SelectedObject.objectName;
-            if (!selectionName.Equals(""))
+            selectedObjectName = player.SelectedObject.objectName;
+            if (!selectedObjectName.Equals(""))
             {
                 int leftPos = BUILD_IMAGE_WIDTH + SCROLL_BAR_WIDTH / 2 + 64;
                 int topPos = buildAreaHeight + BUTTON_SPACING;
-                GUI.Label(new Rect(leftPos, 10, ORDERS_BAR_WIDTH, SELECTION_NAME_HEIGHT), selectionName);
+                GUI.Label(new Rect(leftPos, 10, ORDERS_BAR_WIDTH, SELECTION_NAME_HEIGHT), selectedObjectName);
             }
 
             Player p = player.SelectedObject.GetComponentInParent<Player>();
@@ -138,7 +138,7 @@ public class HUD : MonoBehaviour
                 Building selectedBuilding = lastSelection.GetComponent<Building>();
                 if (selectedBuilding)
                 {
-                    DrawBuildQueue(selectedBuilding.getBuildQueueValues(), selectedBuilding.getBuildPercentage());
+                    DrawBuildQueue(selectedBuilding.getTrainQueueValues(), selectedBuilding.getTrainPercentage());
                     DrawStandardBuildingOptions(selectedBuilding);
                 }
             }
@@ -215,7 +215,7 @@ public class HUD : MonoBehaviour
             int column = i % 2;
             int row = i / 2;
             Rect pos = GetButtonPos(row, column);
-            Texture2D action = ResourceManager.GetBuildImage(actions[i]);
+            Texture2D action = ResourceManager.GetObjectImage(actions[i]);
 
             if (action)
             {
@@ -273,7 +273,7 @@ public class HUD : MonoBehaviour
         {
             float topPos = i * BUILD_IMAGE_HEIGHT - (i) * BUILD_IMAGE_PADDING;
             Rect buildPos = new Rect(BUILD_IMAGE_PADDING, topPos, BUILD_IMAGE_WIDTH, BUILD_IMAGE_HEIGHT);
-            GUI.DrawTexture(buildPos, ResourceManager.GetBuildImage(buildQueue[i]));
+            GUI.DrawTexture(buildPos, ResourceManager.GetObjectImage(buildQueue[i]));
             GUI.DrawTexture(buildPos, buildFrame);
             topPos += BUILD_IMAGE_PADDING;
             float width = BUILD_IMAGE_WIDTH - 2 * BUILD_IMAGE_PADDING;
@@ -313,8 +313,6 @@ public class HUD : MonoBehaviour
 
     private void UpdateCursorAnimation()
     {
-        //sequence animation for cursor (based on more than one image for the cursor)
-        //change once per second, loops through array of images
         if (activeCursorState == CursorState.Move)
         {
             currentFrame = (int)Time.time % moveCursors.Length;
@@ -334,10 +332,9 @@ public class HUD : MonoBehaviour
 
     private Rect GetCursorDrawPosition()
     {
-        //set base position for custom cursor image
         float leftPos = Input.mousePosition.x;
-        float topPos = Screen.height - Input.mousePosition.y; //screen draw coordinates are inverted
-                                                              //adjust position base on the type of cursor being shown
+        float topPos = Screen.height - Input.mousePosition.y;
+
         if (activeCursorState == CursorState.PanRight) leftPos = Screen.width - activeCursor.width;
         else if (activeCursorState == CursorState.PanDown) topPos = Screen.height - activeCursor.height;
         else if (activeCursorState == CursorState.Move || activeCursorState == CursorState.Select || activeCursorState == CursorState.Harvest)

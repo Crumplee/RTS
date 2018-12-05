@@ -44,7 +44,7 @@ public class Swordsman : Unit
     {
         base.SetHoverState(hoverObject);
         //only handle input if owned by a human player and currently selected
-        if (player && player.human && currentlySelected)
+        if (player && currentlySelected)
         {
             if (hoverObject.name != "Ground")
             {
@@ -59,7 +59,7 @@ public class Swordsman : Unit
         base.MouseClick(hitObject, hitPoint, controller);
         bool doBase = true;
         //only handle input if owned by a human player
-        if (player && player.human)
+        if (player)
         {
             if (hitObject && hitObject.name != "Ground")
             {

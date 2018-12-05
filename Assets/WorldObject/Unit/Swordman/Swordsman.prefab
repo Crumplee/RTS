@@ -1722,15 +1722,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectName: Swordsman
-  buildImage: {fileID: 2800000, guid: 93c2607b9380a93499294e7ca68ff98d, type: 3}
+  objectImage: {fileID: 2800000, guid: 93c2607b9380a93499294e7ca68ff98d, type: 3}
   hitPoints: 150
   maxHitPoints: 150
   player: {fileID: 0}
-  actions: []
   foodCost: 100
   woodCost: 80
   goldCost: 20
-  populationCost: 0
+  populationCost: 1
   attacking: 0
   weaponRange: 2
   weaponAimSpeed: 8
@@ -1738,11 +1737,7 @@ MonoBehaviour:
   objectRange: 1
   agent: {fileID: 195762569836603508}
   moving: 0
-  rotating: 0
-  idle: 0
   destination: {x: 0, y: 0, z: 0}
-  moveSpeed: 0
-  rotateSpeed: 0
 --- !u!135 &135252817807470060
 SphereCollider:
   m_ObjectHideFlags: 1
