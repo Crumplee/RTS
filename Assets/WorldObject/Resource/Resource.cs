@@ -14,7 +14,7 @@ public class Resource : WorldObject
     protected float amountLeft;
     protected ResourceType resourceType;
 
-    /*** Game Engine methods, all can be overridden by subclass ***/
+    /*** Game Engine methods, all can be overridden by subclass ***/    
 
     protected override void Start()
     {

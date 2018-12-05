@@ -100,10 +100,10 @@ public class HUD : MonoBehaviour
         SetCursorState(CursorState.Select);
     }
 
-    // Update is called once per frame
+
     void OnGUI()
     {
-        if (player.IsLocalPlayer())
+        if (player.human && player.IsLocalPlayer())
         {
             DrawResourcesBar();
             DrawOrdersBar();
@@ -120,12 +120,16 @@ public class HUD : MonoBehaviour
         if (player.SelectedObject)
         {
             selectionName = player.SelectedObject.objectName;
-
+            if (!selectionName.Equals(""))
+            {
+                int leftPos = BUILD_IMAGE_WIDTH + SCROLL_BAR_WIDTH / 2 + 64;
+                int topPos = buildAreaHeight + BUTTON_SPACING;
+                GUI.Label(new Rect(leftPos, 10, ORDERS_BAR_WIDTH, SELECTION_NAME_HEIGHT), selectionName);
+            }
 
             Player p = player.SelectedObject.GetComponentInParent<Player>();
             if (p && p.IsLocalPlayer()) // !!!
             {
-                //reset slider value if the selected object has changed
                 if (lastSelection && lastSelection != player.SelectedObject) sliderValue = 0.0f;
 
                 DrawActions(player.SelectedObject.GetActions());
@@ -139,14 +143,7 @@ public class HUD : MonoBehaviour
                 }
             }
         }
-        /*
-        if (!selectionName.Equals(""))
-        {
-            int leftPos = BUILD_IMAGE_WIDTH + SCROLL_BAR_WIDTH / 2 + 64;
-            int topPos = buildAreaHeight + BUTTON_SPACING;
-            GUI.Label(new Rect(leftPos, topPos, ORDERS_BAR_WIDTH, SELECTION_NAME_HEIGHT), selectionName);
-        }
-        */
+        
         GUI.EndGroup();
     }
 
@@ -172,11 +169,9 @@ public class HUD : MonoBehaviour
 
     public bool MouseInBounds()
     {
-        //Screen coordinates start in the lower-left corner of the screen
-        //not the top-left of the screen like the drawing coordinates do
-        Vector3 mousePos = Input.mousePosition;
-        bool insideWidth = mousePos.x >= 0 && mousePos.x <= Screen.width - ORDERS_BAR_WIDTH;
-        bool insideHeight = mousePos.y >= 0 && mousePos.y <= Screen.height - RESOURCE_BAR_HEIGHT;
+        Vector3 mousePosition = Input.mousePosition;
+        bool insideWidth = mousePosition.x >= 0 && mousePosition.x <= Screen.width - ORDERS_BAR_WIDTH;
+        bool insideHeight = mousePosition.y >= 0 && mousePosition.y <= Screen.height - RESOURCE_BAR_HEIGHT;
         return insideWidth && insideHeight;
     }
 

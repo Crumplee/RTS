@@ -15,7 +15,6 @@ public class WorldObject : NetworkBehaviour
 
     [SerializeField]
     protected Player player;
-    [SerializeField]    
     protected string[] actions = { };
     protected bool currentlySelected = false;
 
@@ -52,7 +51,7 @@ public class WorldObject : NetworkBehaviour
     protected virtual void Start()
     {
         SetPlayer();
-        if (player) SetTeamColor();
+        if (player) SetTeamColor(); 
     }
 
     public void SetPlayer()
@@ -94,33 +93,36 @@ public class WorldObject : NetworkBehaviour
 
     public virtual void MouseClick(GameObject hitObject, Vector3 hitPoint, Player controller)
     {
-        //only handle input if currently selected
         if (currentlySelected && hitObject && hitObject.name != "Ground")
         {
             WorldObject worldObject = hitObject.transform.parent.GetComponent<WorldObject>();
+
             //clicked on another selectable object
             if (worldObject)
             {
                 Resource resource = hitObject.transform.parent.GetComponent<Resource>();
                 if (resource && resource.isEmpty()) return;
+
+                //!!!!!
                 Player owner = hitObject.transform.root.GetComponent<Player>();
                 if (owner && this.GetComponentInParent<Player>().IsLocalPlayer())
                 {
                     //start attack if object is not owned by the same player and this object can attack
                     if (player.username != owner.username && CanAttack())
                         player.CmdBeginAttack(worldObject.GetComponent<NetworkIdentity>().netId, this.gameObject.GetComponent<NetworkIdentity>().netId);
-                    else ChangeSelection(worldObject, controller);
+                    else ChangeSelectedObject(worldObject, controller);
                 }
-                else ChangeSelection(worldObject, controller);
+
+                else ChangeSelectedObject(worldObject, controller);
             }
         }
     }
 
-    private void ChangeSelection(WorldObject worldObject, Player controller)
+    private void ChangeSelectedObject(WorldObject worldObject, Player controller)
     {
-        //this should be called by the following line, but there is an outside chance it will not
         SetSelection(false, playingArea);
-        if (controller.SelectedObject) controller.SelectedObject.SetSelection(false, playingArea);
+        if (controller.SelectedObject)
+            controller.SelectedObject.SetSelection(false, playingArea);
         controller.SelectedObject = worldObject;
         worldObject.SetSelection(true, controller.hud.GetPlayingArea());
     }
@@ -129,7 +131,7 @@ public class WorldObject : NetworkBehaviour
     {
         GUI.skin = ResourceManager.SelectBoxSkin;
         Rect selectBox = WorkManager.CalculateSelectionBox(selectionBounds, playingArea);
-        //Draw the selection box around the currently selected object, within the bounds of the playing area
+
         GUI.BeginGroup(playingArea);
         DrawSelectionBox(selectBox);
         GUI.EndGroup();
@@ -150,7 +152,7 @@ public class WorldObject : NetworkBehaviour
     protected virtual void DrawSelectionBox(Rect selectBox)
     {
         GUI.Box(selectBox, "");
-        CalculateCurrentHealth(0.35f, 0.65f);
+        CalculateCurrentHealth(0.3f, 0.7f);
         DrawHealthBar(selectBox, "");
     }
 

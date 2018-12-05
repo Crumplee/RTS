@@ -155,7 +155,7 @@ public class Player : NetworkBehaviour
 
     public void FindBuildingLocation()
     {
-        Vector3 newLocation = WorkManager.FindHitPoint(Input.mousePosition);
+        Vector3 newLocation = WorkManager.GetHitPoint(Input.mousePosition);
         newLocation.y = 0;
         tempBuilding.transform.position = newLocation;
     }
@@ -187,7 +187,7 @@ public class Player : NetworkBehaviour
 
         foreach (Vector3 corner in corners)
         {
-            GameObject hitObject = WorkManager.FindHitObject(corner);
+            GameObject hitObject = WorkManager.GetHitObject(corner);
             if (hitObject && hitObject.name != "Ground")
             {
                 WorldObject worldObject = hitObject.transform.parent.GetComponent<WorldObject>();
