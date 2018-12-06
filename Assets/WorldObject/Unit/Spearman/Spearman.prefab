@@ -900,7 +900,7 @@ MonoBehaviour:
   goldCost: 0
   populationCost: 1
   attacking: 0
-  weaponRange: 3
+  weaponRange: 6
   weaponAimSpeed: 8
   weaponRechargeTime: 2
   objectRange: 1

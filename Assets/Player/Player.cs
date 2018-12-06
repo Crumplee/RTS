@@ -13,7 +13,7 @@ public class Player : NetworkBehaviour
     public WorldObject SelectedObject { get; set; }
 
     private Dictionary<ResourceType, int> resources;
-    private int currentPopulation;
+    public int currentPopulation;
 
     //for building
     public Material notAllowedMaterial, allowedMaterial;
@@ -328,7 +328,8 @@ public class Player : NetworkBehaviour
     [ClientRpc]
     public void RpcBeginAttack(GameObject target, GameObject attacker)
     {
-        WorldObject a = attacker.GetComponent<WorldObject>();
+        //WorldObject a = attacker.GetComponent<WorldObject>();
+        Unit a = attacker.GetComponent<Unit>();
         WorldObject t = target.GetComponent<WorldObject>();
         a.BeginAttack(t);
     }
@@ -343,7 +344,8 @@ public class Player : NetworkBehaviour
     [ClientRpc]
     public void RpcStopAttack(GameObject attacker)
     {
-        WorldObject a = attacker.GetComponent<WorldObject>();
+        //WorldObject a = attacker.GetComponent<WorldObject>();
+        Unit a = attacker.GetComponent<Unit>();
         a.StopAttack();
     }
 }

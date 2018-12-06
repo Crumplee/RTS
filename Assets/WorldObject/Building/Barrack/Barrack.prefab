@@ -731,7 +731,7 @@ MonoBehaviour:
   weaponAimSpeed: 1
   weaponRechargeTime: 1
   objectRange: 8.5
-  maxTrainProgress: 12
+  maxTrainProgress: 4
   spawnPoint: {x: 0, y: 0, z: 0}
   buildingPoint: {x: 0, y: 0, z: 0}
   rallyPointImage: {fileID: 2800000, guid: 6bc265cd42d368c44a529af211999415, type: 3}

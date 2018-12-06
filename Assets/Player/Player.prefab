@@ -1379,7 +1379,7 @@ MonoBehaviour:
   weaponAimSpeed: 8
   weaponRechargeTime: 2
   objectRange: 10.5
-  maxTrainProgress: 8
+  maxTrainProgress: 2
   spawnPoint: {x: 0, y: 0, z: 0}
   buildingPoint: {x: 0, y: 0, z: 0}
   rallyPointImage: {fileID: 2800000, guid: 6bc265cd42d368c44a529af211999415, type: 3}
@@ -1427,7 +1427,7 @@ MonoBehaviour:
   m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TransformSyncMode: 0
+  m_TransformSyncMode: 1
   m_SendInterval: 0.1
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0

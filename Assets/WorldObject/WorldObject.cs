@@ -38,7 +38,7 @@ public class WorldObject : NetworkBehaviour
     protected bool aiming = false;
     public float weaponAimSpeed = 8.0f;
     public float weaponRechargeTime = 2.0f;
-    private float currentWeaponChargeTime;
+    protected float currentWeaponChargeTime;
 
     public float objectRange = 0.0f;
 
@@ -67,7 +67,7 @@ public class WorldObject : NetworkBehaviour
     protected virtual void Update()
     {
         currentWeaponChargeTime += Time.deltaTime;
-        if (attacking && !movingIntoPosition && !aiming) PerformAttack();
+        
     }
 
     protected virtual void OnGUI()
@@ -102,17 +102,14 @@ public class WorldObject : NetworkBehaviour
             {
                 Resource resource = hitObject.transform.parent.GetComponent<Resource>();
                 if (resource && resource.isEmpty()) return;
-
-                //!!!!!
+                
                 Player owner = hitObject.transform.root.GetComponent<Player>();
                 if (owner && this.GetComponentInParent<Player>().IsLocalPlayer())
                 {
-                    //start attack if object is not owned by the same player and this object can attack
                     if (player.username != owner.username && CanAttack())
                         player.CmdBeginAttack(worldObject.GetComponent<NetworkIdentity>().netId, this.gameObject.GetComponent<NetworkIdentity>().netId);
                     else ChangeSelectedObject(worldObject, controller);
                 }
-
                 else ChangeSelectedObject(worldObject, controller);
             }
         }
@@ -266,91 +263,10 @@ public class WorldObject : NetworkBehaviour
         foreach (TeamColor teamColor in teamColors) teamColor.GetComponent<Renderer>().material.color = player.teamColor;
     }
 
-    // if the target is close enough, and lock the target
-    public virtual void BeginAttack(WorldObject target)
-    {
-        this.target = target;
-        if (TargetInRange())
-        {
-            attacking = true;
-            PerformAttack();
-        }
-        else AdjustPosition();
-    }
-
-    public virtual void StopAttack()
-    {
-        this.target = null;
-        attacking = false;
-    }
-
-    // target is in range
-    // docs.unity3d.com/Manual/DirectionDistanceFromOneObjectToAnother.html
-    private bool TargetInRange()
-    {
-        Vector3 targetLocation = target.transform.position;
-        Vector3 direction = targetLocation - transform.position;
-        if (direction.sqrMagnitude < weaponRange * weaponRange + target.objectRange * target.objectRange)
-        {
-            return true;
-        }
-        return false;
-    }
-
-    // only unit can move and attack
-    private void AdjustPosition()
-    {
-        Unit self = this as Unit;
-        if (self)
-        {
-            movingIntoPosition = true;
-            Vector3 attackPosition = FindNearestAttackPosition();
-            self.StartMove(attackPosition);
-            attacking = true;
-        }
-        else attacking = false;
-    }
-
-    private Vector3 FindNearestAttackPosition()
-    {
-        Vector3 targetLocation = target.transform.position;
-        Vector3 direction = targetLocation - transform.position;
-        float targetDistance = direction.magnitude;
-        float distanceToTravel = targetDistance - (0.9f * weaponRange);
-        return Vector3.Lerp(transform.position, targetLocation, distanceToTravel / targetDistance);
-    }
-
-    // check the target still exist, in range
-    private void PerformAttack()
-    {
-        if (!target)
-        {
-            attacking = false;
-            return;
-        }
-        if (!TargetInRange()) AdjustPosition();
-        else if (!TargetInFrontOfWeapon()) AimAtTarget();
-        else if (ReadyToFire()) UseWeapon();
-    }
-
-    private bool TargetInFrontOfWeapon()
-    {
-        Vector3 targetLocation = target.transform.position;
-        Vector3 direction = targetLocation - transform.position;
-        if (direction.normalized == transform.forward.normalized) return true;
-        else return false;
-    }
-
     protected virtual void AimAtTarget()
     {
         //this needs to be specified
         aiming = true;
-    }
-
-    private bool ReadyToFire()
-    {
-        if (currentWeaponChargeTime >= weaponRechargeTime) return true;
-        return false;
     }
 
     protected virtual void UseWeapon()

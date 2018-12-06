@@ -105,7 +105,7 @@ namespace RTS
             if (wo.foodCost <= player.GetResource(ResourceType.Food) &&
                 wo.woodCost <= player.GetResource(ResourceType.Wood) &&
                 wo.goldCost <= player.GetResource(ResourceType.Gold) &&
-                wo.populationCost <= player.GetResource(ResourceType.Population)) return true;
+                wo.populationCost + player.currentPopulation <= player.GetResource(ResourceType.Population)) return true;
 
             return false;
         }

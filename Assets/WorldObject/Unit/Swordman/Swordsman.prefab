@@ -55,7 +55,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4324905192120680}
-  - component: {fileID: 114490749897877570}
+  - component: {fileID: 114400554008934966}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -248,7 +248,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4753005184798800}
-  - component: {fileID: 114307487267999944}
+  - component: {fileID: 114614860621680370}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -1650,20 +1650,19 @@ MonoBehaviour:
     i15: 148
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &114307487267999944
+--- !u!114 &114400554008934966
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1502325533280068}
+  m_GameObject: {fileID: 1055703318269674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e2916399701b9f4cbb9b7de8db36e4b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7749c394b98d40141b31adbbd86a3440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 1
   damage: 10
-  range: 1
 --- !u!114 &114408448409707964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1675,20 +1674,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cfbf773d0445404da3bd468f4df2513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114490749897877570
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1055703318269674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e2916399701b9f4cbb9b7de8db36e4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocity: 1
-  damage: 10
-  range: 1
 --- !u!114 &114574504505915972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1701,7 +1686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 1
-  m_SendInterval: 0.1
+  m_SendInterval: 0
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
@@ -1710,6 +1695,19 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &114614860621680370
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1502325533280068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7749c394b98d40141b31adbbd86a3440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 1
+  damage: 10
 --- !u!114 &114661788118859966
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1731,7 +1729,7 @@ MonoBehaviour:
   goldCost: 20
   populationCost: 1
   attacking: 0
-  weaponRange: 2
+  weaponRange: 4
   weaponAimSpeed: 8
   weaponRechargeTime: 1.5
   objectRange: 1

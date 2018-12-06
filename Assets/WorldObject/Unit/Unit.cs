@@ -32,7 +32,8 @@ public class Unit : WorldObject
     protected override void Update()
     {
         base.Update();
-        
+        if (attacking && !movingIntoPosition && !aiming) PerformAttack();
+
         if (moving)
             Move();
         else if (aiming)
@@ -113,6 +114,7 @@ public class Unit : WorldObject
 
                 player.CmdStartMove(destination, this.gameObject.GetComponent<NetworkIdentity>().netId);
             }
+
         }
     }
     
@@ -125,6 +127,16 @@ public class Unit : WorldObject
         gameObject.GetComponent<NavMeshAgent>().enabled = true;
         agent.SetDestination(destination);
         moving = true;
+    }
+
+    public virtual void StopMove()
+    {
+        if (moving)
+        {
+            NavMeshAgent agent = gameObject.GetComponent<NavMeshAgent>();
+            if (agent.enabled) agent.isStopped = true;
+            moving = false;
+        }
     }
 
     private void Move()
@@ -164,4 +176,89 @@ public class Unit : WorldObject
         aimRotation = Quaternion.LookRotation(target.transform.position - transform.position);
     }
 
+    public virtual void BeginAttack(WorldObject target)
+    {
+        this.target = target;
+        if (TargetInRange())
+        {
+            attacking = true;
+            PerformAttack();
+        }
+        else AdjustPosition();
+    }
+
+    public virtual void StopAttack()
+    {
+        this.target = null;
+        attacking = false;
+    }
+
+    // target is in range
+    // docs.unity3d.com/Manual/DirectionDistanceFromOneObjectToAnother.html
+    private bool TargetInRange()
+    {
+        Vector3 targetLocation = target.transform.position;
+        Vector3 direction = targetLocation - transform.position;
+        if (direction.sqrMagnitude < weaponRange * weaponRange + target.objectRange * target.objectRange)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    // only unit can move and attack
+    private void AdjustPosition()
+    {
+        Unit self = this as Unit;
+        if (self)
+        {
+            movingIntoPosition = true;
+            Vector3 attackPosition = FindNearestAttackPosition();
+            self.StartMove(attackPosition);
+            attacking = true;
+        }
+        else attacking = false;
+    }
+
+    private Vector3 FindNearestAttackPosition()
+    {
+        Vector3 targetLocation = target.transform.position;
+        Vector3 direction = targetLocation - transform.position;
+        float targetDistance = direction.magnitude;
+        float distanceToTravel = targetDistance - (0.9f * weaponRange);
+        return Vector3.Lerp(transform.position, targetLocation, distanceToTravel / targetDistance);
+    }
+
+    // check the target still exist, in range
+    private void PerformAttack()
+    {
+        if (!target)
+        {
+            attacking = false;
+            return;
+        }
+        if (!TargetInRange()) AdjustPosition();
+        else
+        {
+            StopMove();
+            if (!TargetInFrontOfWeapon()) AimAtTarget();
+            else if (ReadyToFire()) UseWeapon();
+        }
+        
+    }
+
+    private bool TargetInFrontOfWeapon()
+    {
+        Vector3 targetLocation = target.transform.position;
+        Vector3 direction = targetLocation - transform.position;
+        if (direction.normalized == transform.forward.normalized) return true;
+        else return false;
+    }
+
+
+    private bool ReadyToFire()
+    {
+        if (currentWeaponChargeTime >= weaponRechargeTime) return true;
+        return false;
+    }
 }
