@@ -315,6 +315,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Menu\Scripts\MainMenu.cs" />
+    <Compile Include="Assets\Menu\Scripts\MainMenuController.cs" />
     <Compile Include="Assets\Menu\Scripts\Menu.cs" />
     <Compile Include="Assets\Menu\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Player\HUD\HUD.cs" />

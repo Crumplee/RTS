@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using RTS;
+using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
@@ -39,10 +40,23 @@ public class Menu : MonoBehaviour
         float leftPos = ResourceManager.MenuWidth / 2 - ResourceManager.ButtonWidth / 2;
         float topPos = 2 * ResourceManager.Padding + header.height;
 
+        if (inputs != null)
+        {
+            for (int i = 0; i < inputs.Length; i++)
+            {
+                if (i > 0) topPos += ResourceManager.ButtonHeight + ResourceManager.Padding;
+                GUI.TextField(new Rect(leftPos, topPos, ResourceManager.ButtonWidth, ResourceManager.InputHeight), inputs[i]);
+                
+               
+
+            }
+            topPos += ResourceManager.InputHeight + ResourceManager.Padding;
+        }
+
         //menu buttons
         if (buttons != null)
         {
-            /*
+            
             for (int i = 0; i < buttons.Length; i++)
             {
                 if (i > 0) topPos += ResourceManager.ButtonHeight + ResourceManager.Padding;
@@ -51,20 +65,10 @@ public class Menu : MonoBehaviour
                     HandleButton(buttons[i]);
                 }
                 Debug.Log(topPos);
-            }*/
-        }
-
-        if (inputs != null)
-        {
-            topPos += ResourceManager.ButtonHeight + ResourceManager.Padding;
-            for (int i = 0; i < inputs.Length; i++)
-            {
-                if (i > 0) topPos += ResourceManager.ButtonHeight + ResourceManager.Padding;
-                GUI.TextField(new Rect(0, 202, ResourceManager.ButtonWidth, ResourceManager.ButtonHeight/2), inputs[i]);
-                Debug.Log(topPos);
-                
             }
         }
+
+        
 
         GUI.EndGroup();
     }
@@ -87,10 +91,14 @@ public class Menu : MonoBehaviour
     protected virtual float GetMenuHeight()
     {
         float buttonHeight = 0;
-        if (buttons != null) buttonHeight = buttons.Length * ResourceManager.ButtonHeight;
+        float inputHeight = 0;
         float paddingHeight = 2 * ResourceManager.Padding;
+
+        if (buttons != null) buttonHeight = buttons.Length * ResourceManager.ButtonHeight;
         if (buttons != null) paddingHeight += buttons.Length * ResourceManager.Padding;
-        return ResourceManager.HeaderHeight + buttonHeight + paddingHeight;
+        if (inputs != null) inputHeight += inputs.Length * (ResourceManager.ButtonHeight / 2);
+        if (inputs != null) paddingHeight += inputs.Length * ResourceManager.InputHeight;
+        return ResourceManager.HeaderHeight + buttonHeight + inputHeight + paddingHeight;
     }
 
     protected void ExitGame()
