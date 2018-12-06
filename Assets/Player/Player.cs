@@ -348,4 +348,22 @@ public class Player : NetworkBehaviour
         Unit a = attacker.GetComponent<Unit>();
         a.StopAttack();
     }
+
+    [Command]
+    public void CmdStartRepairing(NetworkInstanceId unitId, NetworkInstanceId buildingId)
+    {
+        GameObject unit = ClientScene.FindLocalObject(unitId);
+        GameObject building = ClientScene.FindLocalObject(buildingId);
+
+        RpcSyncRepairing(unit, building);
+    }
+
+    [ClientRpc]
+    public void RpcSyncRepairing(GameObject unit, GameObject building)
+    {
+        Building b = building.GetComponent<Building>();
+        Unit u = unit.GetComponent<Unit>();
+        
+        u.SetBuilding(b);
+    }
 }

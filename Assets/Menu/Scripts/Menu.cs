@@ -9,10 +9,12 @@ public class Menu : MonoBehaviour
     public Texture2D header;
 
     protected string[] buttons;
+    protected string[] inputs;
 
     protected virtual void Start()
     {
         SetButtons();
+        SetInputs();
     }
 
     protected virtual void OnGUI()
@@ -34,11 +36,13 @@ public class Menu : MonoBehaviour
         //header image
         GUI.DrawTexture(new Rect(ResourceManager.Padding, ResourceManager.Padding, ResourceManager.HeaderWidth, ResourceManager.HeaderHeight), header);
 
+        float leftPos = ResourceManager.MenuWidth / 2 - ResourceManager.ButtonWidth / 2;
+        float topPos = 2 * ResourceManager.Padding + header.height;
+
         //menu buttons
         if (buttons != null)
         {
-            float leftPos = ResourceManager.MenuWidth / 2 - ResourceManager.ButtonWidth / 2;
-            float topPos = 2 * ResourceManager.Padding + header.height;
+            /*
             for (int i = 0; i < buttons.Length; i++)
             {
                 if (i > 0) topPos += ResourceManager.ButtonHeight + ResourceManager.Padding;
@@ -46,6 +50,19 @@ public class Menu : MonoBehaviour
                 {
                     HandleButton(buttons[i]);
                 }
+                Debug.Log(topPos);
+            }*/
+        }
+
+        if (inputs != null)
+        {
+            topPos += ResourceManager.ButtonHeight + ResourceManager.Padding;
+            for (int i = 0; i < inputs.Length; i++)
+            {
+                if (i > 0) topPos += ResourceManager.ButtonHeight + ResourceManager.Padding;
+                GUI.TextField(new Rect(0, 202, ResourceManager.ButtonWidth, ResourceManager.ButtonHeight/2), inputs[i]);
+                Debug.Log(topPos);
+                
             }
         }
 
@@ -53,6 +70,11 @@ public class Menu : MonoBehaviour
     }
 
     protected virtual void SetButtons()
+    {
+
+    }
+
+    protected virtual void SetInputs()
     {
 
     }

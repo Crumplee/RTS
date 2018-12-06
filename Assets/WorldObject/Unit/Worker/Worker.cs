@@ -83,7 +83,7 @@ public class Worker : Unit
                 {
                     amountBuilt -= amount;
                     currentProject.Construct(amount);
-                    if (!currentProject.UnderConstruction())
+                    if (!currentProject.UnderConstruction() && currentProject.hitPoints == currentProject.maxHitPoints)
                     {
                         building = false;
                         /*
@@ -181,9 +181,9 @@ public class Worker : Unit
                 }
                 if (building)
                 {
-                    if (building.UnderConstruction())
+                    if (building.UnderConstruction() || hitPoints < maxHitPoints)
                     {
-                        SetBuilding(building);
+                        player.CmdStartRepairing(this.GetComponent<NetworkIdentity>().netId, building.GetComponent<NetworkIdentity>().netId);
                         doBase = false;
                     }
                 }
