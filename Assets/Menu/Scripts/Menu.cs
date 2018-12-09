@@ -32,9 +32,9 @@ public class Menu : MonoBehaviour
         float groupTop = Screen.height / 2 - menuHeight / 2;
         GUI.BeginGroup(new Rect(groupLeft, groupTop, ResourceManager.MenuWidth, menuHeight));
 
-        //background box
+
         GUI.Box(new Rect(0, 0, ResourceManager.MenuWidth, menuHeight), "");
-        //header image
+
         GUI.DrawTexture(new Rect(ResourceManager.Padding, ResourceManager.Padding, ResourceManager.HeaderWidth, ResourceManager.HeaderHeight), header);
 
         float leftPos = ResourceManager.MenuWidth / 2 - ResourceManager.ButtonWidth / 2;

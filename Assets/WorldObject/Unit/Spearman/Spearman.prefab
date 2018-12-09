@@ -878,7 +878,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 1
   damage: 10
-  range: 1
 --- !u!114 &114432863776383880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -896,8 +895,8 @@ MonoBehaviour:
   maxHitPoints: 100
   player: {fileID: 0}
   foodCost: 100
-  woodCost: 100
-  goldCost: 0
+  woodCost: 80
+  goldCost: 20
   populationCost: 1
   attacking: 0
   weaponRange: 6

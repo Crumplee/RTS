@@ -23,7 +23,7 @@ public class GoldDeposit : Resource
         if (numBlocksToShow >= 0 && numBlocksToShow < blocks.Length)
         {
             Gold[] sortedBlocks = new Gold[blocks.Length];
-            //sort the list from highest to lowest
+
             foreach (Gold gold in blocks)
             {
                 sortedBlocks[blocks.Length - int.Parse(gold.name)] = gold;

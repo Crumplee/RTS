@@ -153,7 +153,7 @@ public class WorldObject : NetworkBehaviour
         DrawHealthBar(selectBox, "");
     }
 
-    // calculates the selected object health
+
     protected virtual void CalculateCurrentHealth(float lowSplit, float highSplit)
     {
         healthPercentage = (float)hitPoints / (float)maxHitPoints;
@@ -183,17 +183,16 @@ public class WorldObject : NetworkBehaviour
 
     public virtual void SetHoverState(GameObject hoverObject)
     {
-        //only handle input if owned by a human player and currently selected
         if (player && currentlySelected)
         {
-            //something other than the ground is being hovered over
+
             if (hoverObject.name != "Ground")
             {
                 Player owner = hoverObject.transform.root.GetComponent<Player>();
                 Unit unit = hoverObject.transform.parent.GetComponent<Unit>();
                 Building building = hoverObject.transform.parent.GetComponent<Building>();
                 if (owner)
-                { //the object is owned by a player
+                {
                     if (owner.username == player.username) player.hud.SetCursorState(CursorState.Select);
                     else if (CanAttack()) player.hud.SetCursorState(CursorState.Attack);
                     else player.hud.SetCursorState(CursorState.Select);
@@ -257,7 +256,7 @@ public class WorldObject : NetworkBehaviour
         return false;
     }
 
-    protected void SetTeamColor()
+    public void SetTeamColor()
     {
         TeamColor[] teamColors = GetComponentsInChildren<TeamColor>();
         foreach (TeamColor teamColor in teamColors) teamColor.GetComponent<Renderer>().material.color = player.teamColor;
@@ -265,13 +264,11 @@ public class WorldObject : NetworkBehaviour
 
     protected virtual void AimAtTarget()
     {
-        //this needs to be specified
         aiming = true;
     }
 
     protected virtual void UseWeapon()
     {
-        //this needs to be specified
         currentWeaponChargeTime = 0.0f;
     }
 

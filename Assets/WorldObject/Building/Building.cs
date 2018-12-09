@@ -11,9 +11,7 @@ public class Building : WorldObject
     private float currentTrainProgress = 0.0f;
 
     public Vector3 spawnPoint;
-    protected Vector3 rallyPoint;
     public Vector3 buildingPoint;
-    public Texture2D rallyPointImage;
 
     private bool needsBuilding = false;
 
@@ -30,7 +28,6 @@ public class Building : WorldObject
         base.Start();
         spawnPoint = GetComponentInChildren<SpawnPoint>().GetPoint();
         buildingPoint = GetComponentInChildren<BuildingPoint>().GetPoint();
-        rallyPoint = spawnPoint;
     }
 
     protected override void Update()
@@ -67,7 +64,7 @@ public class Building : WorldObject
             currentTrainProgress += Time.deltaTime * ResourceManager.BuildSpeed;
             if (currentTrainProgress > maxTrainProgress)
             {
-                if (player) player.CmdAddUnit(trainQueue.Dequeue(), spawnPoint, rallyPoint, transform.rotation/*, this*/);
+                if (player) player.CmdAddUnit(trainQueue.Dequeue(), spawnPoint, transform.rotation);
                 currentTrainProgress = 0.0f;
             }
         }
@@ -91,63 +88,41 @@ public class Building : WorldObject
         base.SetSelection(selected, playingArea);
         if (player)
         {
-            RallyPoint flag = player.GetComponentInChildren<RallyPoint>();
             if (selected)
             {
-                if (flag && spawnPoint != ResourceManager.InvalidPosition && rallyPoint != ResourceManager.InvalidPosition)
-                {
-                    flag.transform.localPosition = rallyPoint;
-                    flag.transform.forward = transform.forward;
-                    flag.Enable();
-                }
+
             }
             else
             {
-                if (flag) flag.Disable();
+
             }
         }
     }
-
-    public bool hasSpawnPoint()
-    {
-        return spawnPoint != ResourceManager.InvalidPosition && rallyPoint != ResourceManager.InvalidPosition;
-    }
+    
 
     public override void SetHoverState(GameObject hoverObject)
     {
         base.SetHoverState(hoverObject);
-        //only handle input if owned by a human player and currently selected
+
         if (player && currentlySelected)
         {
             if (hoverObject.name == "Ground")
             {
-                if (player.hud.GetPreviousCursorState() == CursorState.RallyPoint) player.hud.SetCursorState(CursorState.RallyPoint);
+ 
             }
         }
     }
-
-    public void SetRallyPoint(Vector3 position)
-    {
-        rallyPoint = position;
-        if (player && currentlySelected)
-        {
-            RallyPoint flag = player.GetComponentInChildren<RallyPoint>();
-            if (flag) flag.transform.localPosition = rallyPoint;
-        }
-    }
+    
 
     public override void MouseClick(GameObject hitObject, Vector3 hitPoint, Player controller)
     {
         base.MouseClick(hitObject, hitPoint, controller);
-        //only handle iput if owned by a human player and currently selected
+
         if (player && currentlySelected)
         {
             if (hitObject.name == "Ground")
             {
-                if ((player.hud.GetCursorState() == CursorState.RallyPoint || player.hud.GetPreviousCursorState() == CursorState.RallyPoint) && hitPoint != ResourceManager.InvalidPosition)
-                {
-                    SetRallyPoint(hitPoint);
-                }
+
             }
         }
     }
@@ -167,7 +142,7 @@ public class Building : WorldObject
     {
         GUI.skin = ResourceManager.SelectBoxSkin;
         Rect selectBox = WorkManager.CalculateSelectionBox(selectionBounds, playingArea);
-        //Draw the selection box around the currently selected object, within the bounds of the main draw area
+        
         GUI.BeginGroup(playingArea);
         CalculateCurrentHealth(0.5f, 0.99f);
         DrawHealthBar(selectBox, "Building ...");
@@ -179,10 +154,9 @@ public class Building : WorldObject
         return needsBuilding;
     }
 
-    private void SetSpawnandRallyPoint()
+    private void SetSpawnPoint()
     {
         spawnPoint = GetComponentInChildren<SpawnPoint>().GetPoint();
-        rallyPoint = spawnPoint;
     }
 
     public void Construct(int amount)
@@ -194,7 +168,7 @@ public class Building : WorldObject
             needsBuilding = false;
             RestoreMaterials();
             SetTeamColor();
-            SetSpawnandRallyPoint();
+            SetSpawnPoint();
             player.AddResource(ResourceType.Population, population);
             if (gameObject.tag == "Farm") gameObject.GetComponent<FarmResource>().enabled = true;
         }

@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4185440090024756}
   - component: {fileID: 114989743209098626}
   - component: {fileID: 114306949151957042}
+  - component: {fileID: 114763864279562094}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1195160783838830}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 227461547, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
@@ -56,6 +57,23 @@ MonoBehaviour:
   showGUI: 1
   offsetX: 0
   offsetY: 0
+--- !u!114 &114763864279562094
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1195160783838830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a492b6e8ac975b4ab1c2a924e336dc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  networkManager: {fileID: 0}
+  input: {fileID: 0}
+  host: {fileID: 0}
+  join: {fileID: 0}
+  exit: {fileID: 0}
+  ip: 
 --- !u!114 &114989743209098626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -80,15 +98,17 @@ MonoBehaviour:
     type: 2}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 1
-  m_OfflineScene: 
-  m_OnlineScene: 
+  m_OfflineScene: MainMenu
+  m_OnlineScene: MainMulti
   m_SpawnPrefabs:
   - {fileID: 1519123076109064, guid: 3ae79667c9faf154689373aa7b92b99e, type: 2}
   - {fileID: 1802499784765536, guid: 58f077ec46b967d4c8e23eda4295640b, type: 2}
-  - {fileID: 1276698372022922, guid: 925a80aded24e914e844e17dfa82aaed, type: 2}
+  - {fileID: 1864024751671374, guid: c40b24a5af3131a4f836203a7feb1648, type: 2}
   - {fileID: 1868051568754486, guid: 45c978d15f8c26342b6c02299cbd276c, type: 2}
   - {fileID: 1998238954935930, guid: ea343ab338a49fd4f957ce4f79033a0e, type: 2}
   - {fileID: 1115357157560412, guid: 40bd395c690a8c3498d5f909b887d194, type: 2}
+  - {fileID: 1649191557850028, guid: 15f28a58a77062b44a0eb8bd2ee00138, type: 2}
+  - {fileID: 1076199795147052, guid: b771ec82690ea8246913ee2f2adad691, type: 2}
   m_CustomConfig: 1
   m_MaxConnections: 1
   m_ConnectionConfig:

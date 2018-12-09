@@ -41,9 +41,7 @@ public class HUD : MonoBehaviour
     public Texture2D healthy, damaged, critical;
     public Texture2D[] resourceHealthBars;
 
-    //rallypoint
     public Texture2D smallButtonHover, smallButtonClick;
-    public Texture2D rallyPointCursor;
     private CursorState previousCursorState;
 
     // Use this for initialization
@@ -139,7 +137,7 @@ public class HUD : MonoBehaviour
                 if (selectedBuilding)
                 {
                     DrawBuildQueue(selectedBuilding.getTrainQueueValues(), selectedBuilding.getTrainPercentage());
-                    DrawStandardBuildingOptions(selectedBuilding);
+                    DrawBasicBuildingButtons(selectedBuilding);
                 }
             }
         }
@@ -204,11 +202,10 @@ public class HUD : MonoBehaviour
         buttons.active.background = buttonClick;
         GUI.skin.button = buttons;
         int numActions = actions.Length;
-        //define the area to draw the actions inside
+
         GUI.BeginGroup(new Rect(BUILD_IMAGE_WIDTH, 0, ORDERS_BAR_WIDTH, buildAreaHeight));
-        //draw scroll bar for the list of actions if need be
+
         if (numActions >= MaxNumRows(buildAreaHeight)) DrawSlider(buildAreaHeight, numActions / 2.0f);
-        //display possible actions as buttons and handle the button click for each
 
         for (int i = 0; i < numActions; i++)
         {
@@ -219,7 +216,6 @@ public class HUD : MonoBehaviour
 
             if (action)
             {
-                //create the button and handle the click of that button
                 if (GUI.Button(pos, action))
                 {
                     if (player.SelectedObject)
@@ -258,7 +254,6 @@ public class HUD : MonoBehaviour
 
     private void DrawSlider(int groupHeight, float numRows)
     {
-        //slider goes from 0 to the number of rows that do not fit on screen
         sliderValue = GUI.VerticalSlider(GetScrollPos(groupHeight), sliderValue, 0.0f, numRows - MaxNumRows(groupHeight));
     }
 
@@ -280,7 +275,7 @@ public class HUD : MonoBehaviour
             float height = BUILD_IMAGE_HEIGHT;
             if (i == 0)
             {
-                //shrink the build mask on the item currently being built to give an idea of progress
+                //shrink mask to progress
                 topPos += height * buildPercentage;
                 height *= (1 - buildPercentage);
             }
@@ -342,7 +337,6 @@ public class HUD : MonoBehaviour
             topPos -= activeCursor.height / 2;
             leftPos -= activeCursor.width / 2;
         }
-        else if (activeCursorState == CursorState.RallyPoint) topPos -= activeCursor.height;
         return new Rect(leftPos, topPos, activeCursor.width, activeCursor.height);
     }
 
@@ -380,39 +374,18 @@ public class HUD : MonoBehaviour
             case CursorState.PanDown:
                 activeCursor = downCursor;
                 break;
-            case CursorState.RallyPoint:
-                activeCursor = rallyPointCursor;
-                break;
             default:
                 activeCursor = selectCursor;
                 break;
         }
     }
 
-    private void DrawStandardBuildingOptions(Building building)
+    private void DrawBasicBuildingButtons(Building building)
     {
         GUIStyle buttons = new GUIStyle();
         buttons.hover.background = smallButtonHover;
         buttons.active.background = smallButtonClick;
         GUI.skin.button = buttons;
-        int leftPos = BUILD_IMAGE_WIDTH + SCROLL_BAR_WIDTH + BUTTON_SPACING;
-        int topPos = buildAreaHeight - BUILD_IMAGE_HEIGHT / 2;
-        int width = BUILD_IMAGE_WIDTH / 2;
-        int height = BUILD_IMAGE_HEIGHT / 2;
-        /*
-        if (building.hasSpawnPoint())
-        {
-            if (GUI.Button(new Rect(leftPos, topPos, width, height), building.rallyPointImage))
-            {
-                if (activeCursorState != CursorState.RallyPoint && previousCursorState != CursorState.RallyPoint)
-                    SetCursorState(CursorState.RallyPoint);
-                else
-                {
-                    SetCursorState(CursorState.PanRight);
-                    SetCursorState(CursorState.Select);
-                }
-            }
-        }*/
     }
 
     public CursorState GetPreviousCursorState()

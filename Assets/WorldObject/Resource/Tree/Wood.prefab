@@ -235,20 +235,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectName: 
-  buildImage: {fileID: 0}
+  objectImage: {fileID: 0}
   hitPoints: 0
   maxHitPoints: 0
   player: {fileID: 0}
-  actions: []
   foodCost: 0
   woodCost: 0
   goldCost: 0
   populationCost: 0
+  attacking: 0
   weaponRange: 2
   weaponAimSpeed: 8
   weaponRechargeTime: 2
   objectRange: 0
-  capacity: 100
+  capacity: 500
   amountLeft: 0
 --- !u!114 &114689327272080240
 MonoBehaviour:

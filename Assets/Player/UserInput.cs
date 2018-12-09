@@ -26,7 +26,6 @@ public class UserInput : MonoBehaviour
 
     private void OpenPauseMenu()
     {
-        //Time.timeScale = 0.0f; //stop time
         GetComponentInChildren<PauseMenu>().enabled = true;
         GetComponent<UserInput>().enabled = false;
         Cursor.visible = true;

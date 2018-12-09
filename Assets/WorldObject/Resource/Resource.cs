@@ -6,15 +6,16 @@ public class Resource : WorldObject
 
     private bool canHarvest;
 
-    //Public variables
+
     public float capacity;
 
-    //Variables accessible by subclass
+
     [SerializeField]
     protected float amountLeft;
     protected ResourceType resourceType;
 
-    /*** Game Engine methods, all can be overridden by subclass ***/    
+  
+    
 
     protected override void Start()
     {

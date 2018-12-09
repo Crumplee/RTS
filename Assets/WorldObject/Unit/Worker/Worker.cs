@@ -94,7 +94,6 @@ public class Worker : Unit
                             player.CmdStartHarvest(resource.GetComponent<NetworkIdentity>().netId, this.gameObject.GetComponent<NetworkIdentity>().netId); ;
 
                         }*/
-                        //idle = true;
                     }
                 }
             }

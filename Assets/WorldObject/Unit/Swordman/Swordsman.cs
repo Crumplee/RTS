@@ -43,13 +43,11 @@ public class Swordsman : Unit
     public override void SetHoverState(GameObject hoverObject)
     {
         base.SetHoverState(hoverObject);
-        //only handle input if owned by a human player and currently selected
+
         if (player && currentlySelected)
         {
             if (hoverObject.name != "Ground")
             {
-                //Resource resource = hoverObject.transform.parent.GetComponent<Resource>();
-                //if (resource && !resource.isEmpty()) player.hud.SetCursorState(CursorState.Harvest);
             }
         }
     }
@@ -58,12 +56,10 @@ public class Swordsman : Unit
     {
         base.MouseClick(hitObject, hitPoint, controller);
         bool doBase = true;
-        //only handle input if owned by a human player
         if (player)
         {
             if (hitObject && hitObject.name != "Ground")
             {
-                //idle = false;
             }
 
             if (doBase) base.MouseClick(hitObject, hitPoint, controller);

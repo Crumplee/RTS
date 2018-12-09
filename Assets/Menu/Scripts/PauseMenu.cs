@@ -39,8 +39,7 @@ public class PauseMenu : Menu
     }
 
     private void Resume()
-    {        
-        //Time.timeScale = 1.0f; //stop time
+    {
         GetComponent<PauseMenu>().enabled = false;
         if (player) player.GetComponent<UserInput>().enabled = true;
         Cursor.visible = false;

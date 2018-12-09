@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33934405122519224}
   - component: {fileID: 23937183625914526}
   - component: {fileID: 65441570466023176}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 33404463512243390}
   - component: {fileID: 23817649775561596}
   - component: {fileID: 65324627190374776}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 33683518620379396}
   - component: {fileID: 23173471673849894}
   - component: {fileID: 65573659300617538}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tower2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4670557622953042}
   - component: {fileID: 114590526788349990}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 33256575279255656}
   - component: {fileID: 23314404060976096}
   - component: {fileID: 65022496400520090}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 33742015888269846}
   - component: {fileID: 23147731367610178}
   - component: {fileID: 65522616213582448}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tower1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 33281494499688234}
   - component: {fileID: 23474838108759494}
   - component: {fileID: 65702054947516868}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 33332025693948034}
   - component: {fileID: 23195455607018278}
   - component: {fileID: 65359552500520528}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tower4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 33278233980966354}
   - component: {fileID: 23372116837816798}
   - component: {fileID: 65628911872567620}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 114205509599682682}
   - component: {fileID: 114925189076161796}
   - component: {fileID: 208765133638293830}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Castle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4876793507765428}
   - component: {fileID: 114865652750083432}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BuildPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 33650706682053034}
   - component: {fileID: 23726221391050588}
   - component: {fileID: 65554344903216778}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tower3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1046,7 +1046,6 @@ MonoBehaviour:
   maxTrainProgress: 8
   spawnPoint: {x: 0, y: 0, z: 0}
   buildingPoint: {x: 0, y: 0, z: 0}
-  rallyPointImage: {fileID: 2800000, guid: 6bc265cd42d368c44a529af211999415, type: 3}
   population: 10
 --- !u!114 &114865652750083432
 MonoBehaviour:
@@ -1086,12 +1085,12 @@ NavMeshObstacle:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1864024751671374}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_Extents: {x: 10, y: 7, z: 10}
   m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 7, z: 0}
   m_TimeToStationary: 0.5

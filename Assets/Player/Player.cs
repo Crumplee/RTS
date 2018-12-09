@@ -38,7 +38,8 @@ public class Player : NetworkBehaviour
         }
         
         GameObject.Find("NetworkManager").GetComponent<NetworkManagerHUD>().enabled = false;
-        
+        //this.CmdInitPlayer();
+        GetComponentInChildren<Castle>().GetComponent<NavMeshObstacle>().enabled = true;
         if (isLocalPlayer) Camera.main.transform.position = new Vector3(this.transform.position.x + 30, Camera.main.transform.position.y, this.transform.position.z - 20);
     }
 
@@ -47,10 +48,6 @@ public class Player : NetworkBehaviour
         resources = InitResourceList();
         currentPopulation = 0;
         AddResource(ResourceType.Population, 10);
-        /*
-        gameObject.transform.GetChild(1).gameObject.AddComponent<NetworkIdentity>();
-        gameObject.transform.GetChild(2).gameObject.AddComponent<NetworkIdentity>();
-        */
     }
 
     public override void OnStartLocalPlayer()
@@ -81,9 +78,9 @@ public class Player : NetworkBehaviour
     private Dictionary<ResourceType, int> InitResourceList()
     {
         Dictionary<ResourceType, int> list = new Dictionary<ResourceType, int>();
-        list.Add(ResourceType.Food, 1000);
-        list.Add(ResourceType.Wood, 1000);
-        list.Add(ResourceType.Gold, 1000);
+        list.Add(ResourceType.Food, 400);
+        list.Add(ResourceType.Wood, 200);
+        list.Add(ResourceType.Gold, 0);
         list.Add(ResourceType.Population, 0);
         
         return list;
@@ -111,27 +108,23 @@ public class Player : NetworkBehaviour
     }
 
     [Command]
-    public void CmdAddUnit(string unitName, Vector3 spawnPoint, Vector3 rallyPoint, Quaternion rotation/*, Building creator*/)
+    public void CmdAddUnit(string unitName, Vector3 spawnPoint, Quaternion rotation/*, Building creator*/)
     {
         Units units = GetComponentInChildren<Units>();
         GameObject newUnit = (GameObject)Instantiate(ResourceManager.GetUnit(unitName), spawnPoint, rotation);
         newUnit.transform.parent = units.transform;
 
         NetworkServer.Spawn(newUnit);
-        RpcSyncUnit(newUnit, this.gameObject, spawnPoint, rallyPoint);        
+        RpcSyncUnit(newUnit, this.gameObject, spawnPoint);        
     }
 
     [ClientRpc]
-    public void RpcSyncUnit(GameObject unit, GameObject parent, Vector3 spawnPoint, Vector3 rallyPoint)
+    public void RpcSyncUnit(GameObject unit, GameObject parent, Vector3 spawnPoint)
     {
         unit.transform.parent = parent.GetComponentInChildren<Units>().transform;
 
-        Unit unitObject = unit.GetComponent<Unit>();
-
-        if (unitObject)
-        {
-            if (spawnPoint != rallyPoint) unitObject.StartMove(rallyPoint);
-        }
+        //Unit unitObject = unit.GetComponent<Unit>();
+        
     }
 
     //building
@@ -167,16 +160,16 @@ public class Player : NetworkBehaviour
         bool canPlace = true;
 
         Bounds placeBounds = tempBuilding.GetSelectionBounds();
-        //shorthand for the coordinates of the center of the selection bounds
+
         float cx = placeBounds.center.x;
         float cy = placeBounds.center.y;
         float cz = placeBounds.center.z;
-        //shorthand for the coordinates of the extents of the selection box
+
         float ex = placeBounds.extents.x;
         float ey = placeBounds.extents.y;
         float ez = placeBounds.extents.z;
 
-        //Determine the screen coordinates for the corners of the selection bounds
+
         List<Vector3> corners = new List<Vector3>();
         corners.Add(Camera.main.WorldToScreenPoint(new Vector3(cx + ex, cy + ey, cz + ez)));
         corners.Add(Camera.main.WorldToScreenPoint(new Vector3(cx + ex, cy + ey, cz - ez)));
@@ -203,30 +196,18 @@ public class Player : NetworkBehaviour
     public void ConfirmConstruction()
     {
         findingPlacement = false;
-        /*
-        Buildings buildings = GetComponentInChildren<Buildings>();
-        if (buildings) tempBuilding.transform.parent = buildings.transform;
-        
-        GameObject newbuilding = tempBuilding.gameObject;
-        */
         CmdStartConstruction(tempBuilding.objectName, tempBuilding.transform.position, tempBuilding.transform.rotation, tempCreator.GetComponent<NetworkIdentity>().netId);
         Destroy(tempBuilding.gameObject);
         tempBuilding = null;
-
-        /*
-        tempBuilding.SetPlayer();
-        tempBuilding.SetColliders(true);
-        ReduceResources(tempBuilding.GetCosts());
-        tempCreator.SetBuilding(tempBuilding);
-        tempBuilding.StartConstruction();
-        */
     }    
 
     [Command]
-    public void CmdStartConstruction(string buildingName, Vector3 position, Quaternion rotation, NetworkInstanceId id)
+    public void CmdStartConstruction(string buildingName, Vector3 position, Quaternion rotation, 
+                                    NetworkInstanceId id)
     {
         Buildings buildings = GetComponentInChildren<Buildings>();
-        GameObject newbuilding = (GameObject)Instantiate(ResourceManager.GetBuilding(buildingName), position, rotation);
+        GameObject newbuilding = (GameObject)Instantiate(ResourceManager.GetBuilding(buildingName), 
+                                    position, rotation);
         newbuilding.transform.parent = buildings.transform;
 
         GameObject creator = ClientScene.FindLocalObject(id);
@@ -366,4 +347,46 @@ public class Player : NetworkBehaviour
         
         u.SetBuilding(b);
     }
+
+    [Command]
+    public void CmdInitPlayer()
+    {
+        Debug.Log("elindultaaam");
+        Vector3 spawnPoint = this.transform.position;
+        Quaternion rotation = this.transform.rotation;
+        GameObject castle = (GameObject)Instantiate(ResourceManager.GetBuilding("Castle"), spawnPoint, rotation);
+
+        spawnPoint.z -= 20;
+        spawnPoint.x -= 5;
+        GameObject worker1 = (GameObject)Instantiate(ResourceManager.GetUnit("Worker"), spawnPoint, rotation);
+        spawnPoint.x += 10;
+        GameObject worker2 = (GameObject)Instantiate(ResourceManager.GetUnit("Worker"), spawnPoint, rotation);
+
+        Buildings bs = this.GetComponentInChildren<Buildings>();
+        Units us = this.GetComponentInChildren<Units>();
+        castle.transform.parent = bs.transform;
+        worker1.transform.parent = us.transform;
+        worker2.transform.parent = us.transform;
+
+        NetworkServer.Spawn(castle);
+        NetworkServer.Spawn(worker1);
+        NetworkServer.Spawn(worker2);
+
+        RpcInitPlayer(this.gameObject, castle, worker1, worker2);
+    }
+
+    [ClientRpc]
+    public void RpcInitPlayer(GameObject player, GameObject castle, GameObject worker1, GameObject worker2)
+    {
+        Debug.Log("éniiis");
+        Buildings bs = player.GetComponentInChildren<Buildings>();
+        Units us = player.GetComponentInChildren<Units>();
+
+        castle.GetComponent<NavMeshObstacle>().enabled = true;
+        castle.transform.parent = bs.transform;
+        worker1.transform.parent = us.transform;
+        worker2.transform.parent = us.transform;
+
+    }
+
 }
