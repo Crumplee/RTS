@@ -211,7 +211,7 @@ public class HUD : MonoBehaviour
         {
             int column = i % 2;
             int row = i / 2;
-            Rect pos = GetButtonPos(row, column);
+            Rect pos = GetButtonPos(row+1, column);
             Texture2D action = ResourceManager.GetObjectImage(actions[i]);
 
             if (action)
@@ -233,7 +233,7 @@ public class HUD : MonoBehaviour
     {
         int column = numActions % 2;
         int row = numActions / 2;
-        Rect pos = GetButtonPos(row, column);
+        Rect pos = GetButtonPos(row+1, column);
         if (GUI.Button(pos, deleteImage))
         {
             if (player.SelectedObject) player.SelectedObject.DestroyObject();
